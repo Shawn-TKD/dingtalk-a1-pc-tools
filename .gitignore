@@ -1,0 +1,41 @@
+# Device credentials and app exports
+.env
+.env.*
+!.env.example
+.a1-device.json
+*PreferenceUtils*.xml
+extract/
+private/
+
+# Captures, firmware, packages, and user recordings
+*.apk
+*.apks
+*.xapk
+*.dex
+*.so
+*.bin
+*.img
+*.pcap
+*.pcapng
+*.btsnoop
+*.log
+*.zip
+*.7z
+*.dtyj
+*.ogg
+recordings/
+outputs/
+
+# Python / Node build products
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+console/dist/
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
