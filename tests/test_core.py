@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import asyncio
+import http.client
 import json
 from pathlib import Path
 import sys
 import tempfile
+import threading
+from types import SimpleNamespace
 import unittest
 
 
@@ -17,7 +20,13 @@ from a1_live_stream_probe import parse_stream_metadata, stream_control_body  # n
 from dtyj_to_ogg import extract_packets  # noqa: E402
 from extract_preferences import load_devices, mask, select_device  # noqa: E402
 from h5_contract_scan import scan_paths  # noqa: E402
-from server import parse_byte_range  # noqa: E402
+import server as console_server  # noqa: E402
+from server import (  # noqa: E402
+    access_token_matches,
+    delete_request_body,
+    deletion_confirmation,
+    parse_byte_range,
+)
 
 
 class ProtocolTests(unittest.TestCase):
@@ -169,6 +178,117 @@ class ConsoleTests(unittest.TestCase):
         self.assertEqual(parse_byte_range("bytes=-10", 100), (90, 99))
         with self.assertRaises(ValueError):
             parse_byte_range("bytes=100-", 100)
+
+    def test_delete_body_matches_official_string_fid_contract(self):
+        self.assertEqual(
+            delete_request_body("owned-device", 1700000000),
+            {"did": "owned-device", "fid": "1700000000"},
+        )
+
+    def test_lan_access_token_requires_exact_match(self):
+        token = "a-secure-random-token-value"
+        self.assertTrue(access_token_matches(token, token))
+        self.assertFalse(access_token_matches(token, "wrong-token"))
+        self.assertTrue(access_token_matches("", ""))
+
+    def test_unbacked_delete_uses_stronger_confirmation(self):
+        self.assertEqual(deletion_confirmation(1700000000, True), "DELETE-1700000000")
+        self.assertEqual(
+            deletion_confirmation(1700000000, False),
+            "DELETE-NOBACKUP-1700000000",
+        )
+
+
+class ConsoleHttpTests(unittest.TestCase):
+    def setUp(self):
+        self.temp_directory = tempfile.TemporaryDirectory()
+        self.original_options = console_server.OPTIONS
+        self.original_state = console_server.LAST_STATE
+        self.original_delete = console_server.delete_recording
+        self.fid = 1700000000
+        self.token = "test-access-token-value-1234"
+        self.delete_calls = []
+        console_server.OPTIONS = SimpleNamespace(
+            access_token=self.token,
+            output_dir=self.temp_directory.name,
+        )
+        console_server.LAST_STATE = {
+            "connected": True,
+            "device": None,
+            "recordings": [{"fid": self.fid, "duration_seconds": 5}],
+        }
+
+        async def fake_delete(fid):
+            self.delete_calls.append(fid)
+            return {"code": 200}
+
+        console_server.delete_recording = fake_delete
+        self.server = console_server.ThreadingHTTPServer(
+            ("127.0.0.1", 0), console_server.ConsoleHandler
+        )
+        self.thread = threading.Thread(target=self.server.serve_forever, daemon=True)
+        self.thread.start()
+
+    def tearDown(self):
+        self.server.shutdown()
+        self.server.server_close()
+        self.thread.join(timeout=2)
+        console_server.OPTIONS = self.original_options
+        console_server.LAST_STATE = self.original_state
+        console_server.delete_recording = self.original_delete
+        self.temp_directory.cleanup()
+
+    def request(self, method, path, body=None, token=None):
+        connection = http.client.HTTPConnection("127.0.0.1", self.server.server_port)
+        headers = {}
+        if token:
+            headers["X-A1-Access-Token"] = token
+        if body is not None:
+            body = json.dumps(body)
+            headers["Content-Type"] = "application/json"
+        connection.request(method, path, body=body, headers=headers)
+        response = connection.getresponse()
+        payload = json.loads(response.read().decode("utf-8"))
+        connection.close()
+        return response.status, payload
+
+    def test_api_rejects_missing_access_token(self):
+        status, payload = self.request("GET", "/api/state")
+        self.assertEqual(status, 401)
+        self.assertIn("访问令牌", payload["error"])
+
+    def test_delete_without_backup_requires_nobackup_confirmation(self):
+        weak_body = {"fid": self.fid, "confirmation": f"DELETE-{self.fid}"}
+        status, payload = self.request("POST", "/api/delete", weak_body, self.token)
+        self.assertEqual(status, 500)
+        self.assertIn("confirmation", payload["error"])
+        self.assertEqual(self.delete_calls, [])
+
+        request_body = {"fid": self.fid, "confirmation": f"DELETE-NOBACKUP-{self.fid}"}
+        status, payload = self.request("POST", "/api/delete", request_body, self.token)
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["deleted_fid"], self.fid)
+        self.assertEqual(self.delete_calls, [self.fid])
+        self.assertEqual(payload["state"]["recordings"], [])
+
+    def test_delete_with_backups_preserves_them_as_local_only(self):
+        output_dir = Path(self.temp_directory.name)
+        dtyj = output_dir / f"a1-{self.fid}.dtyj"
+        ogg = output_dir / f"a1-{self.fid}.ogg"
+        dtyj.write_bytes(b"DTYJ backup")
+        ogg.write_bytes(b"OggS backup")
+        request_body = {"fid": self.fid, "confirmation": f"DELETE-{self.fid}"}
+        status, payload = self.request("POST", "/api/delete", request_body, self.token)
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["deleted_fid"], self.fid)
+        self.assertEqual(self.delete_calls, [self.fid])
+        self.assertTrue(dtyj.exists())
+        self.assertTrue(ogg.exists())
+        self.assertEqual(len(payload["state"]["recordings"]), 1)
+        local_only = payload["state"]["recordings"][0]
+        self.assertEqual(local_only["fid"], self.fid)
+        self.assertFalse(local_only["on_device"])
+        self.assertTrue(local_only["local_url"].endswith(f"a1-{self.fid}.ogg"))
 
 
 if __name__ == "__main__":

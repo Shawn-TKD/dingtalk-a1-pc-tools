@@ -7,13 +7,13 @@ $pythonArgs = @()
 
 if (Test-Path -LiteralPath $venvPython) {
     $python = $venvPython
+} elseif (Test-Path -LiteralPath $codexPython) {
+    $python = $codexPython
 } elseif ($pythonCommand = Get-Command python.exe -ErrorAction SilentlyContinue) {
     $python = $pythonCommand.Source
 } elseif ($pyCommand = Get-Command py.exe -ErrorAction SilentlyContinue) {
     $python = $pyCommand.Source
     $pythonArgs = @('-3')
-} elseif (Test-Path -LiteralPath $codexPython) {
-    $python = $codexPython
 } else {
     throw 'Python 3.11+ was not found. Create .venv or install Python first.'
 }
@@ -35,5 +35,17 @@ if (Test-Path -LiteralPath $localDependencies) {
     }
 }
 
+$accessToken = $env:A1_CONSOLE_TOKEN
+if (-not $accessToken) {
+    $tokenBytes = New-Object byte[] 24
+    $rng = [Security.Cryptography.RandomNumberGenerator]::Create()
+    try {
+        $rng.GetBytes($tokenBytes)
+    } finally {
+        $rng.Dispose()
+    }
+    $accessToken = [Convert]::ToBase64String($tokenBytes).TrimEnd('=').Replace('+', '-').Replace('/', '_')
+}
+
 Set-Location -LiteralPath $appDir
-& $python @pythonArgs '.\server.py' --config $config --open
+& $python @pythonArgs '.\server.py' --config $config --host '0.0.0.0' --access-token $accessToken --open

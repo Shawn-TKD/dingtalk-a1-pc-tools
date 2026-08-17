@@ -31,13 +31,16 @@ offset  size  meaning
 | `0x0100` | audio record option | 已识别，默认工具不发送 |
 | `0x0110` | getFileList | 获取录音索引 |
 | `0x0111` | request file | 请求一条录音 |
+| `0x0113` | file delete | 删除一条录音，JSON 为字符串字段 `did`、`fid` |
 | `0x0114` | file attributes | 文件属性/确认 |
 | `0x0115` | file block | 文件数据/确认 |
 | `0x0132` | sync device status | 电量、存储、版本等 |
 | `0x0133` | connectDevice | 带 token 的鉴权 |
 | `0x0134` | disconnectDevice | 结束会话 |
 
-危险命令（例如 reset、delete、OTA）不在客户端接口中暴露。
+`0x0113` 仅在网页控制台的“当前设备索引单条 + 输入完整确认码”路径中暴露；
+没有本地备份时要求更显眼的 `DELETE-NOBACKUP-<fid>` 确认码。
+恢复出厂、解绑、OTA 和固件写入仍不提供。
 
 ## 鉴权
 

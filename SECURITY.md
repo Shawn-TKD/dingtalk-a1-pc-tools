@@ -3,8 +3,11 @@
 ## Intended use
 
 Use this project only with an A1 device and DingTalk account you own or are
-explicitly authorized to test. The tools deliberately omit reset, delete,
-unbind, OTA, firmware-write, and credential-guessing operations.
+explicitly authorized to test. The tools deliberately omit reset, unbind,
+OTA, firmware-write, and credential-guessing operations. Single-recording
+deletion is limited to one currently indexed recording and requires an exact
+typed confirmation. Unbacked recordings use a visibly stronger `NOBACKUP`
+confirmation because the toolkit cannot restore or upload them afterward.
 
 ## Protect `deviceSecret`
 
@@ -13,7 +16,8 @@ password:
 
 - never paste it into an issue, screenshot, terminal recording, or bug report;
 - keep `.a1-device.json`, app preference XML, HCI logs, and recordings private;
-- do not run the local console on a public interface;
+- use LAN mode only on a trusted private network and keep its random access URL private;
+- never expose the console with router port forwarding or directly to the internet;
 - rotate/rebind the device if you believe the credential was exposed.
 
 The repository's `.gitignore` blocks common sensitive artifacts, but it is not
