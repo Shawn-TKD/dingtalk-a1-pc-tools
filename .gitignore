@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 .a1-device.json
+.a1-console-token
 *PreferenceUtils*.xml
 extract/
 private/

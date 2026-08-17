@@ -15,10 +15,15 @@ irreversible-loss warning because the toolkit cannot restore or upload them afte
 password:
 
 - never paste it into an issue, screenshot, terminal recording, or bug report;
-- keep `.a1-device.json`, app preference XML, HCI logs, and recordings private;
+- keep `.a1-device.json`, `.a1-console-token`, app preference XML, HCI logs, and recordings private;
 - use LAN mode only on a trusted private network and keep its random access URL private;
 - never expose the console with router port forwarding or directly to the internet;
 - rotate/rebind the device if you believe the credential was exposed.
+
+The Windows launcher generates `.a1-console-token` once and reuses it across
+restarts. Delete that local file while the console is stopped, then start the
+console again to rotate the web access token. This token is independent from
+`deviceSecret`.
 
 The repository's `.gitignore` blocks common sensitive artifacts, but it is not
 a substitute for reviewing `git diff --cached` before every push.
