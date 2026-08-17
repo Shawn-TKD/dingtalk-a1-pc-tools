@@ -10,9 +10,12 @@
 - 使用 `getRandom (0x0008)` 获取随机挑战
 - 使用 `connectDevice (0x0133)` 离线鉴权
 - 读取设备状态和录音索引
+- 只读查询灰度配置与电量命令
 - 只读下载指定录音，不删除设备文件
 - 将 `BABA/DTYJ` 固定帧 Opus 容器转换为 `.ogg`
+- 对实时 `0x0117` Opus 流做短时、仅元数据探测（不保存音频并自动关闭）
 - 解析 Android `PreferenceUtils.xml`，生成仅保存在本机的设备配置
+- 扫描官方 H5 包中的 JSAPI/ASR 参数契约，不输出源码片段
 - 可选的本地网页控制台
 - 支持用标准 HCI/btsnoop 抓包方法复核协议（抓包解析建议使用 Wireshark）
 
@@ -96,7 +99,19 @@ python tools\a1_auth_test.py --config .a1-device.json --inspect
 
 认证工具默认只读取状态和索引，不会删除或修改录音。
 
-### 3. 下载并转换一条录音
+### 3. 验证实时流（可选）
+
+先让 A1 处于正在录音状态，再运行：
+
+```powershell
+python tools\a1_live_stream_probe.py --config .a1-device.json --seconds 3
+```
+
+它只统计推送帧数、84 字节 Opus 单元、TOC 和长度，不把音频写入磁盘；
+设备可能在一次推送中批量携带多个 Opus 单元。实时流会在
+`finally` 中关闭；脚本还要求关闭响应为 `code:200`。最长允许探测 15 秒。
+
+### 4. 下载并转换一条录音
 
 从索引结果选择属于自己的 `fid`：
 
@@ -110,7 +125,7 @@ python tools\dtyj_to_ogg.py recordings\a1-1700000000.dtyj `
 
 下载器拒绝覆盖已有文件。
 
-### 4. 本地网页控制台
+### 5. 本地网页控制台
 
 ```powershell
 cd console
@@ -121,6 +136,30 @@ python console\server.py --config .a1-device.json --open
 ```
 
 默认只监听 `127.0.0.1:8765`。不要通过端口转发或 `0.0.0.0` 暴露到局域网/互联网。
+
+### 6. 核对官方 H5 接口契约（可选）
+
+对自己从客户端研究环境导出的 H5 目录、单个 JS 或 tar 包运行：
+
+```powershell
+python tools\h5_contract_scan.py C:\private\a1-h5-package.tar --json
+```
+
+扫描器只报告 JSAPI/参数名称、出现次数、文件名和 URL 主机，不输出代码片段、
+URL 路径或查询参数。H5 包本身不应提交到仓库。
+
+## 固定上游研究分支
+
+仓库把作者的 `findings/h5-and-processing-architecture` 分支作为固定提交的
+Git 子模块保留，方便逐项复核，同时维持清晰的许可边界：
+
+```powershell
+git clone --recurse-submodules https://github.com/Shawn-TKD/dingtalk-a1-pc-tools.git
+```
+
+已经普通克隆过的仓库可运行 `git submodule update --init`。工具运行不依赖该
+子模块。具体提交、证据等级和未验证项目见
+[docs/VALIDATION-MATRIX.md](docs/VALIDATION-MATRIX.md)。
 
 ## 验证与测试
 
@@ -144,6 +183,8 @@ pnpm build
 - 当前下载路径是 BLE 文件传输。A1 还暴露了开启 Wi‑Fi AP 的命令，但本项目未实现或声称验证其完整传输协议。
 - App 更新或固件更新可能改变路径、字段和命令行为。
 - HCI 日志可能包含账号、设备标识和音频内容，公开前必须脱敏。
+- 实时流探针会短暂修改 `upload_stream` 状态，但会在所有退出路径尝试恢复为关闭；
+  若系统在进程级别强制终止，重新运行一次探针或官方客户端可再次关闭。
 
 ## 资料和致谢
 

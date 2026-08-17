@@ -65,10 +65,12 @@ def extract_packets(container: bytes) -> tuple[list[bytes], int, str]:
     for offset in range(0, len(records), record_size):
         record = records[offset : offset + record_size]
         prefix = record[:4]
-        # The first byte is a frame flag. Most recordings use 0x00; a real
-        # A1 sample also sets both high bits (0xC0) on one otherwise-normal
-        # Opus record. The remaining three bytes stay reserved/zero.
-        if prefix[1:] != b"\x00\x00\x00" or prefix[0] & 0x3F:
+        # The first byte is a frame-flag field. Independent samples contain
+        # 0x00, 0x20 and 0xC0 on otherwise-normal Opus records, so the upper
+        # three bits are accepted as flags. The lower five bits and remaining
+        # three reserved bytes must stay zero; this still rejects shifted or
+        # corrupt fixed-frame data instead of silently producing broken Ogg.
+        if prefix[1:] != b"\x00\x00\x00" or prefix[0] & 0x1F:
             raise ValueError(f"unexpected record prefix at frame {len(packets)}: {prefix.hex()}")
         packet = record[4:]
         if not packet:

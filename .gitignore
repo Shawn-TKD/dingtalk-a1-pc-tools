@@ -28,6 +28,7 @@ outputs/
 
 # Python / Node build products
 .venv/
+.tools/
 __pycache__/
 *.py[cod]
 .pytest_cache/

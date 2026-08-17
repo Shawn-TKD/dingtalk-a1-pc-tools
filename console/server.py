@@ -31,6 +31,7 @@ from a1_auth_test import (  # noqa: E402
     find_a1,
     make_frame,
     make_token,
+    parse_file_index,
 )
 from a1_download import download as download_from_a1  # noqa: E402
 from dtyj_to_ogg import convert as convert_dtyj  # noqa: E402
@@ -59,25 +60,6 @@ def load_public_metadata() -> dict:
         "serial_number": str(config.get("serial_number", "")),
         "device_id": config.get("device_id"),
     }
-
-
-def parse_file_index(payload: bytes) -> list[dict]:
-    if len(payload) < 4:
-        raise ValueError(f"file index too short: {len(payload)} bytes")
-    code = int.from_bytes(payload[0:2], "big")
-    count = int.from_bytes(payload[2:4], "big")
-    if code != 200:
-        raise RuntimeError(f"file index returned code={code}")
-    records = []
-    for index in range(count):
-        offset = 4 + index * 8
-        if offset + 8 > len(payload):
-            raise ValueError(f"file index record {index + 1}/{count} is incomplete")
-        flag = int.from_bytes(payload[offset : offset + 2], "big")
-        fid = int.from_bytes(payload[offset + 2 : offset + 6], "big")
-        duration = int.from_bytes(payload[offset + 6 : offset + 8], "big")
-        records.append({"fid": fid, "flag": flag, "duration_seconds": duration})
-    return records
 
 
 def local_file_info(fid: int) -> dict:
@@ -159,7 +141,7 @@ async def inspect_a1() -> dict:
                     key: value for key, value in auth.items() if key.startswith("cap_")
                 },
             },
-            "recordings": parse_file_index(index_payload),
+            "recordings": parse_file_index(index_payload)["records"],
         }
     )
 
