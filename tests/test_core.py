@@ -10,12 +10,14 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tools"))
+sys.path.insert(0, str(ROOT / "console"))
 
 from a1_auth_test import FrameReceiver, make_frame, make_token, parse_file_index  # noqa: E402
 from a1_live_stream_probe import parse_stream_metadata, stream_control_body  # noqa: E402
 from dtyj_to_ogg import extract_packets  # noqa: E402
 from extract_preferences import load_devices, mask, select_device  # noqa: E402
 from h5_contract_scan import scan_paths  # noqa: E402
+from server import parse_byte_range  # noqa: E402
 
 
 class ProtocolTests(unittest.TestCase):
@@ -157,6 +159,16 @@ class H5ContractTests(unittest.TestCase):
         self.assertEqual(result["url_hosts"], {"example.test": 1})
         self.assertFalse(result["source_snippets_included"])
         self.assertNotIn("private", json.dumps(result))
+
+
+class ConsoleTests(unittest.TestCase):
+    def test_parse_byte_range_supports_media_requests(self):
+        self.assertIsNone(parse_byte_range(None, 100))
+        self.assertEqual(parse_byte_range("bytes=0-9", 100), (0, 9))
+        self.assertEqual(parse_byte_range("bytes=10-", 100), (10, 99))
+        self.assertEqual(parse_byte_range("bytes=-10", 100), (90, 99))
+        with self.assertRaises(ValueError):
+            parse_byte_range("bytes=100-", 100)
 
 
 if __name__ == "__main__":

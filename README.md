@@ -127,6 +127,11 @@ python tools\dtyj_to_ogg.py recordings\a1-1700000000.dtyj `
 
 ### 5. 本地网页控制台
 
+Windows 上完成依赖安装和前端构建后，可以直接双击仓库根目录的
+`start-a1-console.cmd`。它只在 `127.0.0.1:8765` 启动服务并打开浏览器。
+
+也可以手动启动：
+
 ```powershell
 cd console
 pnpm install

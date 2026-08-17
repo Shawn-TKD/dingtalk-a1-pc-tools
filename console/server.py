@@ -41,6 +41,28 @@ LAST_STATE: dict = {"connected": False, "device": None, "recordings": []}
 OPTIONS = None
 
 
+def parse_byte_range(value: str | None, total_size: int) -> tuple[int, int] | None:
+    """Parse one HTTP bytes range and return inclusive start/end offsets."""
+    if not value:
+        return None
+    if total_size <= 0 or not value.startswith("bytes=") or "," in value:
+        raise ValueError("unsupported byte range")
+    start_text, separator, end_text = value.removeprefix("bytes=").partition("-")
+    if not separator or (not start_text and not end_text):
+        raise ValueError("invalid byte range")
+    if not start_text:
+        suffix_length = int(end_text)
+        if suffix_length <= 0:
+            raise ValueError("invalid byte range suffix")
+        start = max(0, total_size - suffix_length)
+        return start, total_size - 1
+    start = int(start_text)
+    end = int(end_text) if end_text else total_size - 1
+    if start < 0 or start >= total_size or end < start:
+        raise ValueError("byte range is outside the file")
+    return start, min(end, total_size - 1)
+
+
 def configured_args():
     args = SimpleNamespace(
         config=OPTIONS.config,
@@ -196,13 +218,28 @@ class ConsoleHandler(SimpleHTTPRequestHandler):
             if target.suffix.lower() != ".ogg" or not target.exists():
                 self.send_error(HTTPStatus.NOT_FOUND)
                 return
-            content = target.read_bytes()
-            self.send_response(HTTPStatus.OK)
+            total_size = target.stat().st_size
+            try:
+                byte_range = parse_byte_range(self.headers.get("Range"), total_size)
+            except (TypeError, ValueError):
+                self.send_response(HTTPStatus.REQUESTED_RANGE_NOT_SATISFIABLE)
+                self.send_header("Content-Range", f"bytes */{total_size}")
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
+            start, end = byte_range or (0, total_size - 1)
+            content_length = end - start + 1
+            self.send_response(HTTPStatus.PARTIAL_CONTENT if byte_range else HTTPStatus.OK)
             self.send_header("Content-Type", mimetypes.guess_type(target.name)[0] or "audio/ogg")
-            self.send_header("Content-Length", str(len(content)))
+            self.send_header("Accept-Ranges", "bytes")
+            if byte_range:
+                self.send_header("Content-Range", f"bytes {start}-{end}/{total_size}")
+            self.send_header("Content-Length", str(content_length))
             self.send_header("Cache-Control", "no-store")
             self.end_headers()
-            self.wfile.write(content)
+            with target.open("rb") as recording:
+                recording.seek(start)
+                self.wfile.write(recording.read(content_length))
             return
         if not DIST_DIR.exists():
             self.send_error(HTTPStatus.SERVICE_UNAVAILABLE, "build console first: pnpm build")
@@ -214,6 +251,7 @@ class ConsoleHandler(SimpleHTTPRequestHandler):
         self.send_response(HTTPStatus.OK)
         self.send_header("Content-Type", mimetypes.guess_type(requested.name)[0] or "application/octet-stream")
         self.send_header("Content-Length", str(len(content)))
+        self.send_header("Cache-Control", "no-store")
         self.end_headers()
         self.wfile.write(content)
 

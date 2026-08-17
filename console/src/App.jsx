@@ -71,8 +71,8 @@ function RecordingRow({ recording, busyFid, onDownload }) {
         )}
       </div>
       <div className="row-actions" data-label="操作">
-        <button type="button" className="text-action" disabled={busy} onClick={() => onDownload(recording.fid)}>
-          <DownloadIcon /> {busy ? "下载中" : local ? "重新下载" : "下载"}
+        <button type="button" className="text-action" disabled={busy || local} onClick={() => onDownload(recording.fid)}>
+          <DownloadIcon /> {busy ? "下载中" : local ? "已下载" : "下载"}
         </button>
         <a className={local ? "text-action" : "text-action disabled"} href={local ? recording.local_url : undefined} target="_blank" rel="noreferrer" aria-disabled={!local}>
           <PlayIcon /> 播放
@@ -177,7 +177,7 @@ export default function App() {
             <i /> {state.connected ? "已连接" : "未连接"}
           </span>
           <button type="button" className="refresh-button" disabled={busy} onClick={refreshDevice}>
-            <RefreshIcon /> {busy ? "连接中" : "刷新设备"}
+            <RefreshIcon /> {busy ? "连接中" : state.connected ? "重新读取" : "连接设备"}
           </button>
         </div>
       </header>
@@ -198,7 +198,7 @@ export default function App() {
           )) : (
             <div className="empty-state">
               <strong>还没有读取录音列表</strong>
-              <span>开启 A1 后点击“刷新设备”。</span>
+              <span>开启 A1 后点击“连接设备”；若手机正在占用 A1，请先断开手机蓝牙连接。</span>
             </div>
           )}
         </div>
