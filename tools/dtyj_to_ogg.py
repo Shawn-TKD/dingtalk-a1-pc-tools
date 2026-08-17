@@ -2,6 +2,7 @@
 
 import argparse
 import hashlib
+import json
 from pathlib import Path
 import struct
 
@@ -39,7 +40,7 @@ def make_page(packet: bytes, header_type: int, granule: int, serial: int, sequen
     return bytes(page)
 
 
-def extract_packets(container: bytes) -> tuple[list[bytes], int, str]:
+def extract_packets_with_markers(container: bytes) -> tuple[list[bytes], int, str, list[dict]]:
     if container[:4] != b"BABA" or container[8:12] != b"DTYJ":
         raise ValueError("not a DingTalk DTYJ/BABA container")
     declared_total = struct.unpack_from("<I", container, 4)[0]
@@ -62,25 +63,71 @@ def extract_packets(container: bytes) -> tuple[list[bytes], int, str]:
         )
 
     packets = []
+    markers = []
     for offset in range(0, len(records), record_size):
         record = records[offset : offset + record_size]
         prefix = record[:4]
-        # The first byte is a frame flag. Most recordings use 0x00; a real
-        # A1 sample also sets both high bits (0xC0) on one otherwise-normal
-        # Opus record. The remaining three bytes stay reserved/zero.
-        if prefix[1:] != b"\x00\x00\x00" or prefix[0] & 0x3F:
+        # The first byte is a frame-flag field. Independent samples contain
+        # 0x00, 0x20 and 0xC0 on otherwise-normal Opus records, so the upper
+        # three bits are accepted as flags. A marked frame may additionally
+        # carry a one-byte marker index (observed as 0x80010000). The last two
+        # bytes remain reserved, and a marker index is only valid alongside
+        # the 0x80 marker bit, so shifted/corrupt data is still rejected.
+        marker_index = prefix[1]
+        if (
+            prefix[2:] != b"\x00\x00"
+            or prefix[0] & 0x1F
+            or (marker_index and not prefix[0] & 0x80)
+        ):
             raise ValueError(f"unexpected record prefix at frame {len(packets)}: {prefix.hex()}")
+        if prefix[0] & 0x80:
+            markers.append(
+                {
+                    "relative_seconds": round(len(packets) * 0.02, 2),
+                    "frame_index": len(packets),
+                    "marker_index": marker_index,
+                    "flag": prefix.hex(),
+                    "source": "dtyj_frame_flag",
+                }
+            )
         packet = record[4:]
         if not packet:
             raise ValueError(f"empty Opus packet at frame {len(packets)}")
         packets.append(packet)
+    return packets, sample_rate, version, markers
+
+
+def extract_packets(container: bytes) -> tuple[list[bytes], int, str]:
+    """Backward-compatible audio-only view used by existing callers."""
+    packets, sample_rate, version, _markers = extract_packets_with_markers(container)
     return packets, sample_rate, version
+
+
+def write_marker_metadata(
+    destination: Path, markers: list[dict], duration_seconds: float | None = None
+) -> None:
+    metadata_path = destination.with_suffix(".json")
+    metadata = {}
+    if metadata_path.exists():
+        try:
+            value = json.loads(metadata_path.read_text(encoding="utf-8"))
+            if isinstance(value, dict):
+                metadata = value
+        except (OSError, json.JSONDecodeError):
+            pass
+    metadata["markers"] = markers
+    metadata["markers_scanned"] = True
+    if duration_seconds is not None:
+        metadata["duration_seconds"] = round(duration_seconds, 2)
+    temporary = metadata_path.with_suffix(".json.tmp")
+    temporary.write_text(json.dumps(metadata, ensure_ascii=False, indent=2), encoding="utf-8")
+    temporary.replace(metadata_path)
 
 
 def convert(source: Path, destination: Path, serial: int) -> None:
     if destination.exists():
         raise FileExistsError(f"refusing to overwrite {destination}")
-    packets, sample_rate, version = extract_packets(source.read_bytes())
+    packets, sample_rate, version, markers = extract_packets_with_markers(source.read_bytes())
 
     opus_head = (
         b"OpusHead"
@@ -113,6 +160,7 @@ def convert(source: Path, destination: Path, serial: int) -> None:
     content = b"".join(pages)
     destination.parent.mkdir(parents=True, exist_ok=True)
     destination.write_bytes(content)
+    write_marker_metadata(destination, markers, len(packets) * 0.02)
     print(
         f"Converted {len(packets)} Opus packets ({len(packets) * 0.02:.2f}s) "
         f"at input rate {sample_rate} Hz to {destination} ({len(content)} bytes); "

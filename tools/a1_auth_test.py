@@ -74,13 +74,43 @@ class FrameReceiver:
         return json.loads(payload.decode("utf-8"))
 
 
-def summarize_file_index(payload: bytes) -> dict:
-    summary = {"length": len(payload), "hex": payload.hex()}
-    if len(payload) >= 8:
-        summary["code_be16"] = int.from_bytes(payload[0:2], "big")
-        summary["declared_count_be16"] = int.from_bytes(payload[2:4], "big")
-        summary["tail_hex"] = payload[-4:].hex()
-    return summary
+def parse_file_index(payload: bytes) -> dict:
+    """Parse the A1 file-index response without exposing its raw payload."""
+    if len(payload) < 4:
+        raise ValueError(f"file index too short: {len(payload)} bytes")
+    code = int.from_bytes(payload[0:2], "big")
+    count = int.from_bytes(payload[2:4], "big")
+    if code != 200:
+        raise RuntimeError(f"file index returned code={code}")
+    records_end = 4 + count * 8
+    if records_end > len(payload):
+        raise ValueError(
+            f"file index declares {count} records but only {len(payload) - 4} data bytes remain"
+        )
+
+    records = []
+    for index in range(count):
+        offset = 4 + index * 8
+        flag = int.from_bytes(payload[offset : offset + 2], "big")
+        fid = int.from_bytes(payload[offset + 2 : offset + 6], "big")
+        status = int.from_bytes(payload[offset + 6 : offset + 8], "big")
+        # Known A1 fids are Unix timestamps. Treat implausible values as a
+        # layout-change warning instead of presenting them as real files.
+        if not 946684800 <= fid <= 4102444799:
+            raise ValueError(f"file index record {index} has implausible fid={fid}")
+        records.append(
+            {
+                "fid": fid,
+                "flag": flag,
+                "status_or_duration": status,
+                "duration_seconds": status,
+            }
+        )
+
+    tail = payload[records_end:]
+    if any(byte not in (0x00, 0x5A) for byte in tail):
+        raise ValueError(f"unexpected file index tail ({len(tail)} bytes)")
+    return {"code": code, "declared_count": count, "records": records, "tail_bytes": len(tail)}
 
 
 async def find_a1(timeout: float, address: str | None = None):
@@ -180,9 +210,28 @@ async def authenticate(args) -> int:
 
             await client.write_gatt_char(
                 COMMAND_CHAR,
+                make_frame(0x0137, 0x14, {"did": args.did, "action": "get"}),
+                response=True,
+            )
+            gray_switches = await receiver.wait_json(0x0137, args.command_timeout)
+            print(
+                "Gray switches (read-only):",
+                json.dumps(gray_switches, ensure_ascii=False, sort_keys=True),
+            )
+
+            await client.write_gatt_char(
+                COMMAND_CHAR,
+                make_frame(0x013F, 0x15, {"did": args.did, "key": "battery_key"}),
+                response=True,
+            )
+            battery = await receiver.wait_json(0x013F, args.command_timeout)
+            print("Battery query:", json.dumps(battery, ensure_ascii=False, sort_keys=True))
+
+            await client.write_gatt_char(
+                COMMAND_CHAR,
                 make_frame(
                     0x0110,
-                    0x13,
+                    0x16,
                     {"did": args.did, "s_fid": "0", "recently": 100, "e_fid": "0"},
                 ),
                 response=True,
@@ -190,7 +239,7 @@ async def authenticate(args) -> int:
             file_index = await receiver.wait_payload(0x0110, args.command_timeout)
             print(
                 "File index:",
-                json.dumps(summarize_file_index(file_index), ensure_ascii=False, sort_keys=True),
+                json.dumps(parse_file_index(file_index), ensure_ascii=False, sort_keys=True),
             )
 
         await client.stop_notify(NOTIFY_CHAR)
