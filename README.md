@@ -14,6 +14,7 @@
 - 下载指定录音；设备内录音可在一次确认后删除，未备份时显示不可恢复警告
 - 将 `BABA/DTYJ` 固定帧 Opus 容器转换为 `.ogg`
 - 对实时 `0x0117` Opus 流做短时、仅元数据探测（不保存音频并自动关闭）
+- 常驻接收短按语音备忘录的 `0x0117` Opus 流，自动保存 Ogg、调用可选 ASR，并在网页中播放、下载和删除
 - 解析 Android `PreferenceUtils.xml`，生成仅保存在本机的设备配置
 - 扫描官方 H5 包中的 JSAPI/ASR 参数契约，不输出源码片段
 - 可选的本地/局域网页控制台，使用首次启动随机生成并仅保存在本机的访问令牌
@@ -122,6 +123,23 @@ python tools\a1_download.py --config .a1-device.json `
 python tools\dtyj_to_ogg.py recordings\a1-1700000000.dtyj `
   recordings\a1-1700000000.ogg
 ```
+
+### 4.1 常驻接收语音备忘录
+
+```powershell
+$env:SILICONFLOW_API_KEY = "YOUR_API_KEY"
+python tools\a1_memo_capture.py --config .a1-device.json --output-dir recordings
+```
+
+出现 `READY` 后，在 A1 上短按录音即可。结束后会生成 `memo-<fid>.ogg` 和本地 JSON 元数据；网页控制台会自动显示新录音及转录文本。完整协议、Ogg 封装、标记事件与限制见 [语音备忘录实时接收与转录](docs/VOICE-MEMO-LIVE-CAPTURE.md)。
+
+已有的长录音转换成 Ogg 后，可以使用同一个 ASR 接口转录：
+
+```powershell
+python tools\transcribe_audio.py recordings\a1-1700000000.ogg
+```
+
+结果写入 `recordings\a1-1700000000.json`，网页会显示转录文本。若抓到了标记事件，可在 JSON 的 `markers` 数组中保存其相对秒数；标记是时间轴元数据，不改变音频转录方式。
 
 下载器拒绝覆盖已有文件。
 

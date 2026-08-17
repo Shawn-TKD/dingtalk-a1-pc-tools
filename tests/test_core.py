@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT / "console"))
 
 from a1_auth_test import FrameReceiver, make_frame, make_token, parse_file_index  # noqa: E402
 from a1_live_stream_probe import parse_stream_metadata, stream_control_body  # noqa: E402
+from a1_memo_capture import make_ogg, parse_audio_push  # noqa: E402
 from dtyj_to_ogg import extract_packets  # noqa: E402
 from extract_preferences import load_devices, mask, select_device  # noqa: E402
 from h5_contract_scan import scan_paths  # noqa: E402
@@ -119,6 +120,27 @@ class ProtocolTests(unittest.TestCase):
                 "params": [{"key": "upload_stream", "val": 1}],
             },
         )
+
+    def test_memo_parser_extracts_batched_packets_and_ignores_sentinel(self):
+        payload = bytearray(28 + 168)
+        payload[4:8] = (1700000000).to_bytes(4, "big")
+        payload[16:20] = (12).to_bytes(4, "big")
+        payload[20:24] = (168).to_bytes(4, "big")
+        payload[28:] = bytes([0x4B]) * 168
+        fid, block, packets = parse_audio_push(bytes(payload))
+        self.assertEqual((fid, block), (1700000000, 12))
+        self.assertEqual([len(packet) for packet in packets], [84, 84])
+
+        sentinel = bytearray(32)
+        sentinel[4:8] = (1700000000).to_bytes(4, "big")
+        self.assertEqual(parse_audio_push(bytes(sentinel))[2], [])
+
+    def test_memo_ogg_has_opus_headers_and_eos(self):
+        content = make_ogg([bytes([0x4B]) * 84] * 2, 16000, 123)
+        self.assertTrue(content.startswith(b"OggS"))
+        self.assertIn(b"OpusHead", content)
+        self.assertIn(b"OpusTags", content)
+        self.assertEqual(content.count(b"OggS"), 4)
 
     @staticmethod
     def _make_dtyj(records: bytes, record_size: int) -> bytes:
@@ -279,6 +301,31 @@ class ConsoleHttpTests(unittest.TestCase):
         self.assertEqual(local_only["fid"], self.fid)
         self.assertFalse(local_only["on_device"])
         self.assertTrue(local_only["local_url"].endswith(f"a1-{self.fid}.ogg"))
+
+    def test_local_memo_is_listed_and_deleted_with_its_metadata(self):
+        fid = self.fid + 1
+        output_dir = Path(self.temp_directory.name)
+        ogg = output_dir / f"memo-{fid}.ogg"
+        metadata = output_dir / f"memo-{fid}.json"
+        ogg.write_bytes(b"OggS memo")
+        metadata.write_text(
+            json.dumps({"duration_seconds": 4.08, "transcription": "测试文本"}),
+            encoding="utf-8",
+        )
+
+        status, state = self.request("GET", "/api/state", token=self.token)
+        self.assertEqual(status, 200)
+        memo = next(item for item in state["recordings"] if item["fid"] == fid)
+        self.assertEqual(memo["kind"], "voice_memo")
+        self.assertEqual(memo["transcription"], "测试文本")
+
+        status, payload = self.request(
+            "POST", "/api/delete", {"fid": fid, "confirmed": True}, self.token
+        )
+        self.assertEqual(status, 200)
+        self.assertTrue(payload["local_only"])
+        self.assertFalse(ogg.exists())
+        self.assertFalse(metadata.exists())
 
 
 if __name__ == "__main__":

@@ -97,18 +97,30 @@ function RecordingRow({ recording, busyFid, busyKind, onDownload, onDelete }) {
   const local = Boolean(recording.local_url);
   const busy = busyFid === recording.fid;
   const onDevice = recording.on_device !== false;
+  const isMemo = recording.kind === "voice_memo";
+  const canDelete = onDevice || isMemo;
   const hasBackup = local && Boolean(recording.local_dtyj_bytes);
   const mediaUrl = protectedUrl(recording.local_url);
   return (
     <div className="recording-row">
       <div className="recording-time" data-label="录制时间">{formatRecordingTime(recording.fid)}</div>
-      <div data-label="时长">{onDevice ? formatDuration(recording.duration_seconds) : "—"}</div>
-      <div data-label="状态">{onDevice ? "设备内" : "仅本地"}</div>
+      <div data-label="时长">{onDevice || isMemo ? formatDuration(recording.duration_seconds) : "—"}</div>
+      <div data-label="状态">{isMemo ? "语音备忘录" : onDevice ? "设备内" : "仅本地"}</div>
       <div className="local-file" data-label="本地文件">
         {local ? (
           <>
-            <span className="file-meta">{onDevice ? `OGG · ${Number(recording.local_duration || recording.duration_seconds).toFixed(2)} 秒` : "OGG · 本地备份"}</span>
+            {isMemo && <span className="memo-badge">语音备忘录</span>}
+            <span className="file-meta">{onDevice || isMemo ? `OGG · ${Number(recording.local_duration || recording.duration_seconds).toFixed(2)} 秒` : "OGG · 本地备份"}</span>
             <AudioPlayer src={mediaUrl} fallbackDuration={recording.local_duration || recording.duration_seconds} />
+            {recording.markers?.length > 0 && (
+              <div className="recording-markers">
+                {recording.markers.map((marker, index) => (
+                  <span key={`${marker.relative_seconds}-${index}`}>标记 {formatDuration(marker.relative_seconds)}</span>
+                ))}
+              </div>
+            )}
+            {recording.transcription && <p className="memo-transcription">{recording.transcription}</p>}
+            {recording.transcription_error && <p className="memo-transcription-error">转录失败，可稍后重试</p>}
           </>
         ) : (
           <span className="not-downloaded">未下载</span>
@@ -124,8 +136,8 @@ function RecordingRow({ recording, busyFid, busyKind, onDownload, onDelete }) {
         <button
           type="button"
           className={hasBackup ? "text-action delete-action" : "text-action delete-action no-backup"}
-          disabled={busy || !onDevice}
-          title={hasBackup ? "删除设备内录音，本地备份会保留" : onDevice ? "没有本地备份，删除后无法恢复" : "该录音已不在设备内"}
+          disabled={busy || !canDelete}
+          title={isMemo ? "永久删除电脑上的语音备忘录" : hasBackup ? "删除设备内录音，本地备份会保留" : onDevice ? "没有本地备份，删除后无法恢复" : "该录音已不在设备内"}
           onClick={() => onDelete(recording)}
         >
           <TrashIcon /> {busy && busyKind === "delete" ? "删除中" : "删除"}
@@ -137,13 +149,16 @@ function RecordingRow({ recording, busyFid, busyKind, onDownload, onDelete }) {
 
 function DeleteDialog({ recording, busy, onCancel, onConfirm }) {
   if (!recording) return null;
+  const isMemo = recording.kind === "voice_memo";
   const hasBackup = Boolean(recording.local_url && recording.local_dtyj_bytes);
   return (
     <div className="dialog-backdrop" role="presentation">
       <section className="delete-dialog" role="dialog" aria-modal="true" aria-labelledby="delete-title">
         <span className="dialog-kicker">危险操作</span>
-        <h2 id="delete-title">删除设备内录音？</h2>
-        {hasBackup ? (
+        <h2 id="delete-title">{isMemo ? "删除本地语音备忘录？" : "删除设备内录音？"}</h2>
+        {isMemo ? (
+          <p className="no-backup-warning"><strong>这会永久删除电脑上的 Ogg 文件和转录文本。</strong> 删除后当前工具无法恢复。</p>
+        ) : hasBackup ? (
           <p>{formatRecordingTime(recording.fid)} 的录音将从 A1 永久删除，电脑上的 DTYJ 与 OGG 备份会保留。</p>
         ) : (
           <p className="no-backup-warning"><strong>这条录音尚未下载到电脑。</strong> 删除后没有本地副本，当前工具无法恢复或写回 A1。</p>
@@ -253,7 +268,7 @@ export default function App() {
     setBusyFid(recording.fid);
     setBusyKind("delete");
     setError("");
-    addEvent(`请求删除设备内录音 ${recording.fid}`);
+    addEvent(`请求删除${recording.kind === "voice_memo" ? "语音备忘录" : "设备内录音"} ${recording.fid}`);
     try {
       const response = await apiFetch("/api/delete", {
         method: "POST",
@@ -264,7 +279,7 @@ export default function App() {
       if (!response.ok) throw new Error(body.error || "删除失败");
       setState(body.state);
       setPendingDelete(null);
-      addEvent(`设备内录音 ${recording.fid} 已删除；本地备份仍保留`);
+      addEvent(recording.kind === "voice_memo" ? `语音备忘录 ${recording.fid} 已删除` : `设备内录音 ${recording.fid} 已删除；本地备份仍保留`);
     } catch (reason) {
       setError(reason.message);
       addEvent(`删除失败：${reason.message}`);
@@ -276,6 +291,10 @@ export default function App() {
 
   useEffect(() => {
     loadState().catch((reason) => setError(reason.message));
+    const timer = window.setInterval(() => {
+      loadState().catch(() => {});
+    }, 1500);
+    return () => window.clearInterval(timer);
   }, []);
 
   const recordings = useMemo(() => [...state.recordings].sort((a, b) => b.fid - a.fid), [state.recordings]);

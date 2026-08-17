@@ -93,10 +93,47 @@ def local_file_info(fid: int) -> dict:
     output_dir = Path(OPTIONS.output_dir)
     ogg = output_dir / f"a1-{fid}.ogg"
     dtyj = output_dir / f"a1-{fid}.dtyj"
+    metadata_path = output_dir / f"a1-{fid}.json"
+    metadata = {}
+    if metadata_path.exists():
+        try:
+            value = json.loads(metadata_path.read_text(encoding="utf-8"))
+            if isinstance(value, dict):
+                metadata = value
+        except (OSError, json.JSONDecodeError):
+            pass
     return {
         "local_url": f"/recordings/{ogg.name}" if ogg.exists() else None,
         "local_ogg_bytes": ogg.stat().st_size if ogg.exists() else None,
         "local_dtyj_bytes": dtyj.stat().st_size if dtyj.exists() else None,
+        "transcription": metadata.get("transcription"),
+        "transcription_error": metadata.get("transcription_error"),
+        "markers": metadata.get("markers", []),
+    }
+
+
+def local_memo_info(ogg: Path) -> dict:
+    fid = int(ogg.stem.removeprefix("memo-"))
+    metadata_path = ogg.with_suffix(".json")
+    metadata = {}
+    if metadata_path.exists():
+        try:
+            value = json.loads(metadata_path.read_text(encoding="utf-8"))
+            if isinstance(value, dict):
+                metadata = value
+        except (OSError, json.JSONDecodeError):
+            pass
+    return {
+        "fid": fid,
+        "kind": "voice_memo",
+        "duration_seconds": float(metadata.get("duration_seconds") or 0),
+        "local_duration": float(metadata.get("duration_seconds") or 0),
+        "on_device": False,
+        "local_url": f"/recordings/{ogg.name}",
+        "local_ogg_bytes": ogg.stat().st_size,
+        "local_dtyj_bytes": None,
+        "transcription": metadata.get("transcription"),
+        "transcription_error": metadata.get("transcription_error"),
     }
 
 
@@ -139,6 +176,14 @@ def merge_local_files(state: dict) -> dict:
                     **local_file_info(fid),
                 }
             )
+        for ogg in output_dir.glob("memo-*.ogg"):
+            try:
+                memo = local_memo_info(ogg)
+            except (OSError, ValueError):
+                continue
+            if memo["fid"] in known_fids:
+                continue
+            merged.setdefault("recordings", []).append(memo)
     return merged
 
 
@@ -422,6 +467,17 @@ class ConsoleHandler(SimpleHTTPRequestHandler):
                 body = json.loads(self.rfile.read(length) or b"{}")
                 fid = int(body["fid"])
                 known = indexed_device_fids(LAST_STATE)
+                local_memo = Path(OPTIONS.output_dir) / f"memo-{fid}.ogg"
+                if local_memo.exists():
+                    if body.get("confirmed") is not True:
+                        raise ValueError("explicit deletion confirmation is required")
+                    local_metadata = local_memo.with_suffix(".json")
+                    local_memo.unlink()
+                    if local_metadata.exists():
+                        local_metadata.unlink()
+                    LAST_STATE = merge_local_files(LAST_STATE)
+                    self.send_json({"ok": True, "deleted_fid": fid, "local_only": True, "state": LAST_STATE})
+                    return
                 if fid not in known:
                     raise ValueError("fid is not present in the current device index")
                 if body.get("confirmed") is not True:

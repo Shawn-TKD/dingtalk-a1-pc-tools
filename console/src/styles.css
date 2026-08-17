@@ -57,6 +57,11 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(22, 119, 255, .2
 .recording-time { font-weight: 540; }
 .local-file { min-width: 0; display: flex; align-items: center; gap: 16px; }
 .file-meta { min-width: 100px; white-space: nowrap; font-size: 13px; color: #3f454d; }
+.memo-badge { display: inline-flex; align-items: center; width: max-content; padding: 3px 8px; border-radius: 999px; background: #eaf7f0; color: #087a45; font-size: 12px; font-weight: 700; }
+.memo-transcription { flex-basis: 100%; margin: 6px 0 0; color: #20242a; font-size: 14px; line-height: 1.55; }
+.memo-transcription-error { flex-basis: 100%; margin: 6px 0 0; color: #a54534; font-size: 12px; }
+.recording-markers { flex-basis: 100%; display: flex; flex-wrap: wrap; gap: 6px; }
+.recording-markers span { padding: 3px 7px; border-radius: 6px; background: #fff4d7; color: #7a5200; font-size: 12px; font-weight: 650; }
 .not-downloaded { color: var(--muted); }
 .row-actions { display: flex; align-items: center; justify-content: flex-start; gap: 8px; }
 .text-action { min-height: 36px; padding: 0 7px; display: inline-flex; align-items: center; gap: 6px; border: 0; background: transparent; color: var(--blue); font-size: 14px; font-weight: 560; text-decoration: none; cursor: pointer; white-space: nowrap; }

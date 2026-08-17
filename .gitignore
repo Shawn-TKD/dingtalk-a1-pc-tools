@@ -4,6 +4,7 @@
 !.env.example
 .a1-device.json
 .a1-console-token
+.siliconflow-api-key
 *PreferenceUtils*.xml
 extract/
 private/
