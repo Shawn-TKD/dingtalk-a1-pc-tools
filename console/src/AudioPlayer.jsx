@@ -27,6 +27,11 @@ export default function AudioPlayer({ src, fallbackDuration = 0 }) {
     else audio.pause();
   }
 
+  function updateDuration(event) {
+    const nextDuration = event.currentTarget.duration;
+    if (Number.isFinite(nextDuration) && nextDuration > 0) setDuration(nextDuration);
+  }
+
   const ratio = duration ? currentTime / duration : 0;
 
   return (
@@ -39,7 +44,8 @@ export default function AudioPlayer({ src, fallbackDuration = 0 }) {
         onPause={() => setPlaying(false)}
         onEnded={() => setPlaying(false)}
         onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-        onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+        onLoadedMetadata={updateDuration}
+        onDurationChange={updateDuration}
       />
       <button className="play-control" type="button" onClick={toggle} aria-label={playing ? "暂停" : "播放"}>
         {playing ? <PauseIcon size={16} /> : <PlayIcon size={16} filled />}

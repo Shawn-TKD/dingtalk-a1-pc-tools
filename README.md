@@ -10,13 +10,17 @@
 - 使用 `getRandom (0x0008)` 获取随机挑战
 - 使用 `connectDevice (0x0133)` 离线鉴权
 - 读取设备状态和录音索引
-- 只读下载指定录音，不删除设备文件
+- 只读查询灰度配置与电量命令
+- 下载指定录音；设备内录音可在一次确认后删除，未备份时显示不可恢复警告
 - 将 `BABA/DTYJ` 固定帧 Opus 容器转换为 `.ogg`
+- 对实时 `0x0117` Opus 流做短时、仅元数据探测（不保存音频并自动关闭）
+- 常驻接收短按语音备忘录的 `0x0117` Opus 流，自动保存 Ogg、调用可选 ASR，并在网页中播放、下载和删除
 - 解析 Android `PreferenceUtils.xml`，生成仅保存在本机的设备配置
-- 可选的本地网页控制台
+- 扫描官方 H5 包中的 JSAPI/ASR 参数契约，不输出源码片段
+- 可选的本地/局域网页控制台，使用首次启动随机生成并仅保存在本机的访问令牌
 - 支持用标准 HCI/btsnoop 抓包方法复核协议（抓包解析建议使用 Wireshark）
 
-未实现并且有意不提供：恢复出厂、删除录音、解绑、OTA、固件写入、密钥爆破、批量扫描陌生设备。
+未实现并且有意不提供：恢复出厂、解绑、OTA、固件写入、密钥爆破、批量扫描陌生设备。
 
 ## 工作原理
 
@@ -96,7 +100,19 @@ python tools\a1_auth_test.py --config .a1-device.json --inspect
 
 认证工具默认只读取状态和索引，不会删除或修改录音。
 
-### 3. 下载并转换一条录音
+### 3. 验证实时流（可选）
+
+先让 A1 处于正在录音状态，再运行：
+
+```powershell
+python tools\a1_live_stream_probe.py --config .a1-device.json --seconds 3
+```
+
+它只统计推送帧数、84 字节 Opus 单元、TOC 和长度，不把音频写入磁盘；
+设备可能在一次推送中批量携带多个 Opus 单元。实时流会在
+`finally` 中关闭；脚本还要求关闭响应为 `code:200`。最长允许探测 15 秒。
+
+### 4. 下载并转换一条录音
 
 从索引结果选择属于自己的 `fid`：
 
@@ -108,9 +124,33 @@ python tools\dtyj_to_ogg.py recordings\a1-1700000000.dtyj `
   recordings\a1-1700000000.ogg
 ```
 
+### 4.1 常驻接收语音备忘录
+
+```powershell
+$env:SILICONFLOW_API_KEY = "YOUR_API_KEY"
+python tools\a1_memo_capture.py --config .a1-device.json --output-dir recordings
+```
+
+出现 `READY` 后，在 A1 上短按录音即可。结束后会生成 `memo-<fid>.ogg` 和本地 JSON 元数据；网页控制台会自动显示新录音及转录文本。完整协议、Ogg 封装、标记事件与限制见 [语音备忘录实时接收与转录](docs/VOICE-MEMO-LIVE-CAPTURE.md)。
+
+已有的长录音转换成 Ogg 后，可以使用同一个 ASR 接口转录：
+
+```powershell
+python tools\transcribe_audio.py recordings\a1-1700000000.ogg
+```
+
+结果写入 `recordings\a1-1700000000.json`，网页会显示转录文本。若抓到了标记事件，可在 JSON 的 `markers` 数组中保存其相对秒数；标记是时间轴元数据，不改变音频转录方式。
+
 下载器拒绝覆盖已有文件。
 
-### 4. 本地网页控制台
+### 5. 本地网页控制台
+
+Windows 上完成依赖安装和前端构建后，可以直接双击仓库根目录的
+`start-a1-console.cmd`。首次启动会随机生成 `.a1-console-token`，后续重启复用同一
+令牌，并在启动窗口显示电脑和手机访问地址。该文件已被 Git 忽略；删除它再重启即可
+轮换令牌。手机与电脑必须处在同一个可信局域网。
+
+也可以手动启动：
 
 ```powershell
 cd console
@@ -120,7 +160,45 @@ cd ..
 python console\server.py --config .a1-device.json --open
 ```
 
-默认只监听 `127.0.0.1:8765`。不要通过端口转发或 `0.0.0.0` 暴露到局域网/互联网。
+手动启动默认只监听 `127.0.0.1:8765`。局域网模式必须提供至少 24 字符的随机令牌：
+
+```powershell
+python console\server.py --config .a1-device.json --host 0.0.0.0 `
+  --access-token YOUR_RANDOM_TOKEN --open
+```
+
+API 和音频均校验令牌，令牌不会写入配置或请求日志。不要进行路由器端口转发，
+也不要把带令牌的完整链接发给不受信任的人。
+
+设备索引中的录音都可以删除。点击删除后，页面会显示一次确认弹窗；没有备份时会
+明确提示无法恢复，不需要再输入确认码。确认后只删除 A1 内文件；设备删除后，已有
+备份仍列为“仅本地”并支持播放。
+`0x0113` 的字段契约来自官方客户端静态分析，并已在一台自有 A1 上确认返回
+`code:200` 且索引减少一条。
+
+### 6. 核对官方 H5 接口契约（可选）
+
+对自己从客户端研究环境导出的 H5 目录、单个 JS 或 tar 包运行：
+
+```powershell
+python tools\h5_contract_scan.py C:\private\a1-h5-package.tar --json
+```
+
+扫描器只报告 JSAPI/参数名称、出现次数、文件名和 URL 主机，不输出代码片段、
+URL 路径或查询参数。H5 包本身不应提交到仓库。
+
+## 固定上游研究分支
+
+仓库把作者的 `findings/h5-and-processing-architecture` 分支作为固定提交的
+Git 子模块保留，方便逐项复核，同时维持清晰的许可边界：
+
+```powershell
+git clone --recurse-submodules https://github.com/Shawn-TKD/dingtalk-a1-pc-tools.git
+```
+
+已经普通克隆过的仓库可运行 `git submodule update --init`。工具运行不依赖该
+子模块。具体提交、证据等级和未验证项目见
+[docs/VALIDATION-MATRIX.md](docs/VALIDATION-MATRIX.md)。
 
 ## 验证与测试
 
@@ -144,6 +222,8 @@ pnpm build
 - 当前下载路径是 BLE 文件传输。A1 还暴露了开启 Wi‑Fi AP 的命令，但本项目未实现或声称验证其完整传输协议。
 - App 更新或固件更新可能改变路径、字段和命令行为。
 - HCI 日志可能包含账号、设备标识和音频内容，公开前必须脱敏。
+- 实时流探针会短暂修改 `upload_stream` 状态，但会在所有退出路径尝试恢复为关闭；
+  若系统在进程级别强制终止，重新运行一次探针或官方客户端可再次关闭。
 
 ## 资料和致谢
 

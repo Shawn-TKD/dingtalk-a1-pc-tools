@@ -3,6 +3,8 @@
 .env.*
 !.env.example
 .a1-device.json
+.a1-console-token
+.siliconflow-api-key
 *PreferenceUtils*.xml
 extract/
 private/
@@ -28,6 +30,7 @@ outputs/
 
 # Python / Node build products
 .venv/
+.tools/
 __pycache__/
 *.py[cod]
 .pytest_cache/

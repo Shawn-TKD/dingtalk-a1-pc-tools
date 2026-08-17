@@ -1,0 +1,4 @@
+[submodule "upstream/dingtalk-a1-reverse"]
+	path = upstream/dingtalk-a1-reverse
+	url = https://github.com/AwHsR15/dingtalk-a1-reverse.git
+	branch = findings/h5-and-processing-architecture
