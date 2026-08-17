@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT / "console"))
 from a1_auth_test import FrameReceiver, make_frame, make_token, parse_file_index  # noqa: E402
 from a1_live_stream_probe import parse_stream_metadata, stream_control_body  # noqa: E402
 from a1_memo_capture import make_ogg, parse_audio_push  # noqa: E402
-from dtyj_to_ogg import extract_packets  # noqa: E402
+from dtyj_to_ogg import extract_packets, extract_packets_with_markers  # noqa: E402
 from extract_preferences import load_devices, mask, select_device  # noqa: E402
 from h5_contract_scan import scan_paths  # noqa: E402
 import server as console_server  # noqa: E402
@@ -82,6 +82,44 @@ class ProtocolTests(unittest.TestCase):
 
     def test_dtyj_rejects_low_reserved_flag_bits(self):
         records = bytes([0x01, 0, 0, 0]) + bytes([0x4B]) * 80
+        with self.assertRaisesRegex(ValueError, "unexpected record prefix"):
+            extract_packets(self._make_dtyj(records, 84))
+
+    def test_dtyj_extracts_marker_flags_and_extended_index(self):
+        records = b"".join(
+            prefix + bytes([0x4B]) * 80
+            for prefix in (
+                bytes.fromhex("00000000"),
+                bytes.fromhex("a0000000"),
+                bytes.fromhex("80010000"),
+            )
+        )
+        packets, _sample_rate, _version, markers = extract_packets_with_markers(
+            self._make_dtyj(records, 84)
+        )
+        self.assertEqual(len(packets), 3)
+        self.assertEqual(
+            markers,
+            [
+                {
+                    "relative_seconds": 0.02,
+                    "frame_index": 1,
+                    "marker_index": 0,
+                    "flag": "a0000000",
+                    "source": "dtyj_frame_flag",
+                },
+                {
+                    "relative_seconds": 0.04,
+                    "frame_index": 2,
+                    "marker_index": 1,
+                    "flag": "80010000",
+                    "source": "dtyj_frame_flag",
+                },
+            ],
+        )
+
+    def test_dtyj_rejects_extended_index_without_marker_bit(self):
+        records = bytes.fromhex("20010000") + bytes([0x4B]) * 80
         with self.assertRaisesRegex(ValueError, "unexpected record prefix"):
             extract_packets(self._make_dtyj(records, 84))
 
@@ -218,12 +256,17 @@ class ConsoleHttpTests(unittest.TestCase):
         self.original_options = console_server.OPTIONS
         self.original_state = console_server.LAST_STATE
         self.original_delete = console_server.delete_recording
+        self.original_summary = console_server.summarize_sync
+        self.original_api_key = console_server.API_KEY_OVERRIDE
         self.fid = 1700000000
         self.token = "test-access-token-value-1234"
         self.delete_calls = []
         console_server.OPTIONS = SimpleNamespace(
             access_token=self.token,
             output_dir=self.temp_directory.name,
+            api_key_file=str(Path(self.temp_directory.name) / ".api-key"),
+            asr_model="test-asr",
+            summary_model="test-summary",
         )
         console_server.LAST_STATE = {
             "connected": True,
@@ -249,6 +292,8 @@ class ConsoleHttpTests(unittest.TestCase):
         console_server.OPTIONS = self.original_options
         console_server.LAST_STATE = self.original_state
         console_server.delete_recording = self.original_delete
+        console_server.summarize_sync = self.original_summary
+        console_server.API_KEY_OVERRIDE = self.original_api_key
         self.temp_directory.cleanup()
 
     def request(self, method, path, body=None, token=None):
@@ -326,6 +371,85 @@ class ConsoleHttpTests(unittest.TestCase):
         self.assertTrue(payload["local_only"])
         self.assertFalse(ogg.exists())
         self.assertFalse(metadata.exists())
+
+    def test_existing_memo_state_keeps_its_local_audio_url(self):
+        fid = self.fid + 2
+        output_dir = Path(self.temp_directory.name)
+        ogg = output_dir / f"memo-{fid}.ogg"
+        metadata = output_dir / f"memo-{fid}.json"
+        ogg.write_bytes(b"OggS memo")
+        metadata.write_text(
+            json.dumps({"duration_seconds": 3.2, "transcription": "稍后处理"}),
+            encoding="utf-8",
+        )
+        console_server.LAST_STATE["recordings"].append(
+            {"fid": fid, "kind": "voice_memo", "duration_seconds": 3.2, "on_device": False}
+        )
+
+        status, state = self.request("GET", "/api/state", token=self.token)
+
+        self.assertEqual(status, 200)
+        memo = next(item for item in state["recordings"] if item["fid"] == fid)
+        self.assertTrue(memo["local_url"].endswith(f"memo-{fid}.ogg"))
+        self.assertEqual(memo["transcription"], "稍后处理")
+
+    def test_delete_local_copy_preserves_device_record(self):
+        output_dir = Path(self.temp_directory.name)
+        paths = [output_dir / f"a1-{self.fid}{suffix}" for suffix in (".dtyj", ".ogg", ".json")]
+        for path in paths:
+            path.write_bytes(b"{}" if path.suffix == ".json" else b"local copy")
+        status, payload = self.request(
+            "POST",
+            "/api/delete-local",
+            {"fid": self.fid, "kind": "recording", "confirmed": True},
+            self.token,
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(len(payload["removed_files"]), 3)
+        self.assertTrue(all(not path.exists() for path in paths))
+        item = next(record for record in payload["state"]["recordings"] if record["fid"] == self.fid)
+        self.assertTrue(item["on_device"])
+        self.assertIsNone(item["local_url"])
+
+    def test_delete_local_only_record_removes_it_from_state(self):
+        console_server.LAST_STATE = {"connected": False, "device": None, "recordings": []}
+        output_dir = Path(self.temp_directory.name)
+        (output_dir / f"a1-{self.fid}.ogg").write_bytes(b"OggS local")
+        status, state = self.request("GET", "/api/state", token=self.token)
+        self.assertEqual(status, 200)
+        self.assertEqual([item["fid"] for item in state["recordings"]], [self.fid])
+        status, payload = self.request(
+            "POST",
+            "/api/delete-local",
+            {"fid": self.fid, "kind": "recording", "confirmed": True},
+            self.token,
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["state"]["recordings"], [])
+
+    def test_api_key_stays_private_and_summary_is_saved(self):
+        output_dir = Path(self.temp_directory.name)
+        (output_dir / f"a1-{self.fid}.ogg").write_bytes(b"OggS test")
+        (output_dir / f"a1-{self.fid}.json").write_text(
+            json.dumps({"transcription": "明天下午提交设计稿。"}), encoding="utf-8"
+        )
+        secret = "sk-this-key-must-never-be-returned"
+        status, payload = self.request(
+            "POST", "/api/settings/api-key", {"api_key": secret}, self.token
+        )
+        self.assertEqual(status, 200)
+        self.assertTrue(payload["ai_key_configured"])
+        self.assertNotIn(secret, json.dumps(payload))
+
+        console_server.summarize_sync = lambda text, key, model: "## 摘要\n设计稿待提交"
+        status, payload = self.request(
+            "POST", "/api/summarize", {"fid": self.fid}, self.token
+        )
+        self.assertEqual(status, 200)
+        self.assertEqual(payload["summary"], "## 摘要\n设计稿待提交")
+        self.assertNotIn(secret, json.dumps(payload))
+        metadata = json.loads((output_dir / f"a1-{self.fid}.json").read_text(encoding="utf-8"))
+        self.assertEqual(metadata["summary_model"], "test-summary")
 
 
 if __name__ == "__main__":

@@ -131,7 +131,9 @@ async def save_capture(capture: Capture, output_dir: Path, args) -> None:
         f"packets={len(capture.packets)} file={ogg_path}",
         flush=True,
     )
-    api_key = read_api_key(args.api_key_file)
+    # The web console keeps a user-entered key in process memory. The CLI still
+    # supports its environment/file lookup without duplicating either path.
+    api_key = getattr(args, "api_key", "") or read_api_key(args.api_key_file)
     if not args.transcribe or not api_key:
         return
     try:
