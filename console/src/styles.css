@@ -99,11 +99,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid rgba(22, 119, 255, .2
 .delete-dialog p { margin: 0 0 22px; color: var(--muted); font-size: 14px; line-height: 1.65; }
 .delete-dialog .no-backup-warning { padding: 12px 14px; border-left: 3px solid #c43d32; color: #7d2923; background: #fff3f1; }
 .no-backup-warning strong { display: block; margin-bottom: 2px; }
-.delete-dialog label { display: block; margin-bottom: 9px; color: #454b54; font-size: 13px; }
-.delete-dialog label strong { color: var(--text); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
-.delete-dialog input { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--line-strong); border-radius: 9px; color: var(--text); background: #fff; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
-.delete-dialog input:focus { border-color: #a9b3bf; outline: 3px solid rgba(22, 119, 255, .14); }
-.dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 24px; }
+.dialog-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }
 .dialog-actions button { min-height: 42px; padding: 0 16px; border-radius: 9px; font-size: 14px; font-weight: 650; cursor: pointer; }
 .dialog-cancel { border: 1px solid var(--line-strong); color: var(--text); background: #fff; }
 .dialog-delete { border: 1px solid #bc332a; color: #fff; background: #c43d32; }

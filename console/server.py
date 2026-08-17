@@ -105,11 +105,6 @@ def backup_exists(fid: int) -> bool:
     return bool(info["local_ogg_bytes"] and info["local_dtyj_bytes"])
 
 
-def deletion_confirmation(fid: int, has_backup: bool) -> str:
-    prefix = "DELETE" if has_backup else "DELETE-NOBACKUP"
-    return f"{prefix}-{fid}"
-
-
 def delete_request_body(did: str, fid: int) -> dict:
     """Match the official sendFileDelete(String did, String fid) JSON contract."""
     return {"did": did, "fid": str(fid)}
@@ -429,9 +424,8 @@ class ConsoleHandler(SimpleHTTPRequestHandler):
                 known = indexed_device_fids(LAST_STATE)
                 if fid not in known:
                     raise ValueError("fid is not present in the current device index")
-                has_backup = backup_exists(fid)
-                if body.get("confirmation") != deletion_confirmation(fid, has_backup):
-                    raise ValueError("exact deletion confirmation is required")
+                if body.get("confirmed") is not True:
+                    raise ValueError("explicit deletion confirmation is required")
                 if not DEVICE_OPERATION_LOCK.acquire(blocking=False):
                     self.send_json({"error": "另一项 A1 操作正在进行"}, status=HTTPStatus.CONFLICT)
                     return

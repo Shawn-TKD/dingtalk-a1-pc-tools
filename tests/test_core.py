@@ -24,7 +24,6 @@ import server as console_server  # noqa: E402
 from server import (  # noqa: E402
     access_token_matches,
     delete_request_body,
-    deletion_confirmation,
     parse_byte_range,
 )
 
@@ -191,14 +190,6 @@ class ConsoleTests(unittest.TestCase):
         self.assertFalse(access_token_matches(token, "wrong-token"))
         self.assertTrue(access_token_matches("", ""))
 
-    def test_unbacked_delete_uses_stronger_confirmation(self):
-        self.assertEqual(deletion_confirmation(1700000000, True), "DELETE-1700000000")
-        self.assertEqual(
-            deletion_confirmation(1700000000, False),
-            "DELETE-NOBACKUP-1700000000",
-        )
-
-
 class ConsoleHttpTests(unittest.TestCase):
     def setUp(self):
         self.temp_directory = tempfile.TemporaryDirectory()
@@ -257,14 +248,13 @@ class ConsoleHttpTests(unittest.TestCase):
         self.assertEqual(status, 401)
         self.assertIn("访问令牌", payload["error"])
 
-    def test_delete_without_backup_requires_nobackup_confirmation(self):
-        weak_body = {"fid": self.fid, "confirmation": f"DELETE-{self.fid}"}
-        status, payload = self.request("POST", "/api/delete", weak_body, self.token)
+    def test_delete_without_backup_requires_explicit_confirmation(self):
+        status, payload = self.request("POST", "/api/delete", {"fid": self.fid}, self.token)
         self.assertEqual(status, 500)
         self.assertIn("confirmation", payload["error"])
         self.assertEqual(self.delete_calls, [])
 
-        request_body = {"fid": self.fid, "confirmation": f"DELETE-NOBACKUP-{self.fid}"}
+        request_body = {"fid": self.fid, "confirmed": True}
         status, payload = self.request("POST", "/api/delete", request_body, self.token)
         self.assertEqual(status, 200)
         self.assertEqual(payload["deleted_fid"], self.fid)
@@ -277,7 +267,7 @@ class ConsoleHttpTests(unittest.TestCase):
         ogg = output_dir / f"a1-{self.fid}.ogg"
         dtyj.write_bytes(b"DTYJ backup")
         ogg.write_bytes(b"OggS backup")
-        request_body = {"fid": self.fid, "confirmation": f"DELETE-{self.fid}"}
+        request_body = {"fid": self.fid, "confirmed": True}
         status, payload = self.request("POST", "/api/delete", request_body, self.token)
         self.assertEqual(status, 200)
         self.assertEqual(payload["deleted_fid"], self.fid)

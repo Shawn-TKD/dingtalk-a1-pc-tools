@@ -135,10 +135,9 @@ function RecordingRow({ recording, busyFid, busyKind, onDownload, onDelete }) {
   );
 }
 
-function DeleteDialog({ recording, confirmation, busy, onConfirmation, onCancel, onConfirm }) {
+function DeleteDialog({ recording, busy, onCancel, onConfirm }) {
   if (!recording) return null;
   const hasBackup = Boolean(recording.local_url && recording.local_dtyj_bytes);
-  const required = `${hasBackup ? "DELETE" : "DELETE-NOBACKUP"}-${recording.fid}`;
   return (
     <div className="dialog-backdrop" role="presentation">
       <section className="delete-dialog" role="dialog" aria-modal="true" aria-labelledby="delete-title">
@@ -149,19 +148,10 @@ function DeleteDialog({ recording, confirmation, busy, onConfirmation, onCancel,
         ) : (
           <p className="no-backup-warning"><strong>这条录音尚未下载到电脑。</strong> 删除后没有本地副本，当前工具无法恢复或写回 A1。</p>
         )}
-        <label htmlFor="delete-confirmation">输入确认码 <strong>{required}</strong></label>
-        <input
-          id="delete-confirmation"
-          value={confirmation}
-          autoComplete="off"
-          spellCheck="false"
-          onChange={(event) => onConfirmation(event.target.value)}
-          placeholder={required}
-        />
         <div className="dialog-actions">
           <button type="button" className="dialog-cancel" disabled={busy} onClick={onCancel}>取消</button>
-          <button type="button" className="dialog-delete" disabled={busy || confirmation !== required} onClick={onConfirm}>
-            {busy ? "正在删除" : "永久删除设备内录音"}
+          <button type="button" className="dialog-delete" disabled={busy} onClick={onConfirm}>
+            {busy ? "正在删除" : "确认永久删除"}
           </button>
         </div>
       </section>
@@ -198,7 +188,6 @@ export default function App() {
   const [events, setEvents] = useState([]);
   const [logOpen, setLogOpen] = useState(true);
   const [pendingDelete, setPendingDelete] = useState(null);
-  const [deleteConfirmation, setDeleteConfirmation] = useState("");
 
   function addEvent(message) {
     setEvents((current) => [...current, { time: new Date().toLocaleTimeString("zh-CN", { hour12: false }), message }]);
@@ -255,7 +244,6 @@ export default function App() {
   }
 
   function requestDelete(recording) {
-    setDeleteConfirmation("");
     setPendingDelete(recording);
   }
 
@@ -270,13 +258,12 @@ export default function App() {
       const response = await apiFetch("/api/delete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fid: recording.fid, confirmation: deleteConfirmation }),
+        body: JSON.stringify({ fid: recording.fid, confirmed: true }),
       });
       const body = await response.json();
       if (!response.ok) throw new Error(body.error || "删除失败");
       setState(body.state);
       setPendingDelete(null);
-      setDeleteConfirmation("");
       addEvent(`设备内录音 ${recording.fid} 已删除；本地备份仍保留`);
     } catch (reason) {
       setError(reason.message);
@@ -338,13 +325,11 @@ export default function App() {
         </div>
       </section>
 
-      <div className="safety-note"><InfoIcon /> 设备内录音均可删除；没有本地备份时会使用更严格的 NOBACKUP 确认码。已有本地备份不会被删除。</div>
+      <div className="safety-note"><InfoIcon /> 设备内录音均可在一次确认后删除；没有本地备份时会明确提示无法恢复。已有本地备份不会被删除。</div>
       <EventLog events={events} open={logOpen} onToggle={() => setLogOpen((value) => !value)} onClear={() => setEvents([])} />
       <DeleteDialog
         recording={pendingDelete}
-        confirmation={deleteConfirmation}
         busy={busyKind === "delete"}
-        onConfirmation={setDeleteConfirmation}
         onCancel={() => setPendingDelete(null)}
         onConfirm={deleteRecording}
       />

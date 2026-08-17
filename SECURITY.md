@@ -5,9 +5,9 @@
 Use this project only with an A1 device and DingTalk account you own or are
 explicitly authorized to test. The tools deliberately omit reset, unbind,
 OTA, firmware-write, and credential-guessing operations. Single-recording
-deletion is limited to one currently indexed recording and requires an exact
-typed confirmation. Unbacked recordings use a visibly stronger `NOBACKUP`
-confirmation because the toolkit cannot restore or upload them afterward.
+deletion is limited to one currently indexed recording and requires an
+explicit confirmation dialog. Unbacked recordings show a visibly stronger
+irreversible-loss warning because the toolkit cannot restore or upload them afterward.
 
 ## Protect `deviceSecret`
 
