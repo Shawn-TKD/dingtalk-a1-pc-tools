@@ -1,0 +1,399 @@
+address	status	summary	evidence
+103c7d84	modeled	Timed blocking motor vibration	Thumb call shape, literal strings, compatible runtime HAL
+103c7dc0	reviewed	One-time vibration initialization guard	Pseudocode and literal strings
+103c7df0	modeled	Default 300 ms vibration wrapper	Pseudocode, bind callback, compatible button policy
+103c8290	modeled	Open Wi-Fi AP for product transfer	Pseudocode and compatible Wi-Fi lifecycle
+103c83fc	modeled	Close Wi-Fi AP and release performance lock	Pseudocode and compatible Wi-Fi lifecycle
+103c902e	modeled	DJB2-like byte hash used for token comparison	Pseudocode and compatible authentication code
+103ca73c	modeled	Raw path read request entry	Pseudocode, protocol trace, compatible raw-transfer model
+103cb4a4	modeled	Permit file lists for SDK >=1.6.88 or an explicitly enabled legacy force-sync path	Pseudocode, persistent-key literals, compatible policy model
+103ccb58	modeled	Logical BLE connect and token verification	Pseudocode, owner trace, compatible session model
+103ccfc8	modeled	Logical BLE disconnect with DID validation	Pseudocode and compatible session model
+103cd098	modeled	Wi-Fi request dispatch and mode selection	Pseudocode and compatible Wi-Fi model
+103cd510	reviewed	System-control key dispatch	Pseudocode; destructive handler intentionally pending
+103cdc30	modeled	Parse set/get scheduled-recording requests, validate all entries, clear or persist atomically	Pseudocode, exact JSON fields/codes, compatible schedule model
+103ce7b8	modeled	BLE frame receive and 27-command dispatch	Pseudocode, owner trace, compatible frame/router code
+103d42d4	reviewed	Monotonic recording filename generation	Embedded identifier and path formatting
+103d49b4	reviewed	Open or migrate aggregate voice-memo container and start capture	Pseudocode, strings, owner-read container
+103d4d40	reviewed	Flush and finalize one aggregate voice-memo entry	Pseudocode, strings, owner-read container
+103d4f38	reviewed	Safely delete aggregate voice-memo file	Pseudocode and strings
+103d54fc	reviewed	Create or switch ordinary recording file	Embedded identifier and file lifecycle logs
+103d6e70	modeled	Derive audio state 0..4 from recording/streaming/pause flags	Embedded identifier and compatible state model
+103d6ee4	modeled	Pause ordinary recording and update state/UI	Embedded identifier and compatible audio action
+103d6f78	modeled	Resume ordinary recording and update state/UI	Embedded identifier and compatible audio action
+103d700c	modeled	Stop recording and notify schedule owner	Embedded identifier and compatible audio action
+103d712c	reviewed	Create stream path and send current audio header	Embedded identifier and pseudocode
+103d7360	modeled	Stop chat stream and restore pre-chat recording state	Embedded identifier and compatible button/runtime boundary
+103d7554	modeled	Queue button HAL events and interrupt shutdown confirmation on release	Pseudocode and compatible button policy
+103d7714	reviewed	Start translation/upload stream through shared stream path	Embedded identifier and pseudocode
+103d77b0	modeled	Start ordinary recording and optional authenticated upload	Embedded identifier and compatible audio action
+103d7970	modeled	Start chat recording/stream and save prior audio state	Embedded identifier and compatible live-stream boundary
+103d7d78	reviewed	Start scheduled recording with schedule id	Embedded identifier and pseudocode
+103d809c	reviewed	Full audio event/action/setting callback	Pseudocode, strings, call graph; false inner candidate removed
+103d896c	modeled	Two-button events, timing thresholds, marker, live/memo and shutdown policy	Thumb assembly and compatible button policy tests
+103db2e8	reviewed	Build product/device capability information response	Embedded identifier and JSON field construction
+103db4c4	reviewed	Apply bind/unbind display, vibration, analytics and HID side effects	Embedded identifier and pseudocode
+103dc024	reviewed	Slice outgoing BLE notifications by negotiated MTU	Embedded identifier and pseudocode
+103dc910	reviewed	Update voice-memo display hint and trigger refresh	Embedded identifier and pseudocode
+103e02c8	modeled	Diagnostic iterator exposing the stock display-state ID/name table	Pseudocode, raw table bytes, compatible display enum
+103e477c	modeled	Read and emit the next 8000-byte raw file block with sequence and CRC	Pseudocode, exact buffer layout, compatible raw-transfer model
+103e4964	modeled	Rewind the raw file offset and sequence for a nominally bounded resend	Pseudocode, state offsets, compatible bounded-retry correction
+103e4bd0	modeled	Authenticate and open a known path at an offset, report geometry and start raw BLE transfer	Pseudocode, exact JSON fields/codes, compatible C and Python SDK models
+103e5060	modeled	Advance raw transfer on 200, request resend on 0x0193, or terminate on other responses	Pseudocode, exact codes/call graph, compatible bounded-retry model
+103cb554	reviewed	Validate DID, s_fid, e_fid and optional recently then queue a recording-list request	Pseudocode, exact JSON fields and response codes
+103cb720	reviewed	Send a file-transfer response containing decimal fid and numeric code	Pseudocode and resolved JSON literals
+103cb7d8	reviewed	Send a response containing transfer type and code	Pseudocode and resolved JSON literals
+103cb888	reviewed	Validate DID/fid/offset/progress and start ordinary recording synchronization	Pseudocode, exact fields and response-code paths
+103cba0c	reviewed	Authenticate and cancel the current ordinary file synchronization	Pseudocode and file-transfer event call
+103cba84	reviewed	Acknowledge a validated FID before asynchronously deleting its recording	Pseudocode and exact response-before-delete ordering
+103cbb78	modeled	Validate OTA or user-image upload header fields and initialize the matching receiver	Pseudocode, attrs/version/size/verify_code literals, response mapping and isolated compatible staging service
+103cbe58	modeled	Decode an inbound file block, validate CRC and route it to image or OTA storage	Pseudocode, big-endian field reads, code 0x193 path and compatible staging state
+103cbf30	reviewed	Translate a 0x0115 response into ordinary transfer advance or resend events	Pseudocode, response parser and event mapping
+103cbf54	reviewed	Translate stream-packet acknowledgement into audio success or failure events	Pseudocode, response parser and event mapping
+103cbf8c	reviewed	Dispatch BLE responses for file header/block, stream setup/data and raw transfer	Pseudocode and complete response-command switch
+103dc798	reviewed	Compare parsed peer SDK major/minor/patch against a 1.6.x patch threshold	Thumb pseudocode and three threshold wrappers
+103dc7cc	reviewed	Parse a three-component Dinger SDK version into shared state	Pseudocode and sscanf-style call shape
+103dc834	reviewed	Report the peer capability introduced at SDK 1.6.80	Wrapper constant and shared version comparator
+103dc840	reviewed	Report the peer capability introduced at SDK 1.6.82	Wrapper constant and shared version comparator
+103dc84c	modeled	Report incognito-mode support introduced at SDK 1.6.88	Wrapper constant, file-list caller and compatible policy model
+103e1230	reviewed	Build and send ordinary file header JSON with fid, size and audio or voice attrs	Pseudocode, exact field and format strings
+103e1374	modeled	Read up to 48000 bytes and emit an ordinary file block with FID, sequence and CRC	Pseudocode, exact buffer layout and compatible sender/codec model
+103e1688	modeled	Resend the previous ordinary file block while preserving a three-attempt limit	Pseudocode, retry state and compatible sender model
+103e17b0	modeled	Query up to 300 recording index rows and append truncation metadata plus ZZZZ	Pseudocode, exact response layout and compatible list codec
+103e19fc	reviewed	Set the ordinary transfer cancellation flag and close its open file	Pseudocode and async queue type seven
+103e1a78	reviewed	Delete database entry and /emmc/audio/%014llu for one FID	Pseudocode and exact async worker side effects
+103e1af4	reviewed	Verify a received user image then publish usrinfo.tmp as usrinfo.bmp	Pseudocode, digest/hash comparison and exact paths
+103e1bf4	reviewed	Queue the ordinary file-header worker as async request type four	Pseudocode and recovered callback literal
+103e1c44	reviewed	Queue the next ordinary file-block worker as async request type five	Pseudocode and recovered callback literal
+103e1c94	reviewed	Queue the ordinary file-resend worker as async request type five	Pseudocode and recovered callback literal
+103e1ce4	reviewed	Allocate the ordinary transfer state, mutex and asynchronous service	Pseudocode and state allocation size
+103e1d64	reviewed	Copy recording-list bounds and limit into async request type two	Pseudocode and worker argument layout
+103e1df4	reviewed	Resolve FID to /emmc/audio path, validate offset and prepare a 48000-byte sync slice	Pseudocode, database/stat/open calls and exact path
+103e1fbc	reviewed	Close and clear ordinary synchronization state and publish completion telemetry	Pseudocode, timing calculation and state reset
+103e20c0	reviewed	Queue ordinary synchronization cancellation as async request type seven	Pseudocode and recovered callback literal
+103e2104	reviewed	Return ordinary sync setup status, enforce idle-or-paused audio state and send header	Pseudocode, state mask and response-code construction
+103e2250	reviewed	Mark ordinary synchronization cancelled without taking its mutex	Pseudocode and exact state writes
+103e2280	reviewed	Queue one recording deletion as async request type six	Pseudocode and recovered delete worker
+103e22cc	reviewed	Parse image@format@type@dimensions attributes and open usrinfo.tmp for reception	Pseudocode, delimiter/tokens and exact temporary path
+103e253c	reviewed	Route inbound file headers to OTA type zero or user-image type one	Pseudocode and two-way type switch
+103e2580	reviewed	Queue completed inbound file verification as async request type eleven	Pseudocode and recovered callback literal
+103e25cc	reviewed	Write and flush inbound image blocks, then queue digest verification at exact size	Pseudocode, size bounds and completion path
+103e2750	modeled	Reduce ordinary send start, advance, resend and cancel events	Pseudocode, three-retry limit and compatible sender state model
+103e287c	reviewed	Delete the oldest recording database row and matching /emmc/audio file	Pseudocode and exact path construction
+103e4a10	modeled	Allocate raw-transfer state with an 8000-byte block size and mutex	Pseudocode and compatible raw-transfer initialization
+103e4a9c	modeled	Authenticate and cancel an active raw file transfer	Pseudocode, DID gate and compatible cancellation model
+103e4b7c	reviewed	Queue the next raw block using async request type thirteen	Pseudocode and recovered worker literal
+103e5010	reviewed	Queue a raw-block resend using async request type thirteen	Pseudocode and recovered resend worker literal
+103ca094	reviewed	Log physical BLE connection state changes and clear the pending transport marker	Pseudocode and connected/disconnected strings
+103ca0e4	reviewed	Normalize bind-service connection state notifications for connected, disconnected or invalid values	Pseudocode and state branches
+103ca120	modeled	Build, pack and transmit a BLE response below the 60000-byte payload limit under the protocol mutex	Pseudocode, protocol vtable calls and compatible frame codec
+103ca240	modeled	Validate request DID by comparing its hash and parse status with the connected session identity	Pseudocode, DID field literal and compatible session model
+103ca2f0	reviewed	Parse a numeric code field from a JSON response object	Pseudocode and exact field/type check
+103ca34c	modeled	Format a code-only JSON response, transmit it and record transport telemetry	Pseudocode, exact JSON format and compatible router responses
+103ca49c	reviewed	Convert a prepared packet into a response for a specific BLE address and transmit it	Pseudocode, frame header writes and addressed notifier
+103ca538	modeled	Allocate and send a request with an incrementing one-byte message ID and 60000-byte limit	Pseudocode, sequence wrap and compatible frame/session codec
+103ca5ec	modeled	Allocate and send a notification with an incrementing one-byte message ID and 60000-byte limit	Pseudocode, sequence wrap and compatible frame codec
+103ca6a0	modeled	Finalize and send a prepared ordinary file block as request command 0x0115	Pseudocode, exact frame bytes and compatible file-block codec
+103ce2c0	reviewed	Construct the 19-byte bind advertisement from product type, version, bind state and capability bits	Pseudocode, product callbacks and big-endian field writes
+103ce3c0	reviewed	Encode the bind advertisement into a 22-byte advertising payload and start advertising	Pseudocode, exact lengths and HAL callback
+103ce420	reviewed	Register bind-service callbacks, start advertising and increment its advertising counter	Pseudocode and service callback table
+103ce494	reviewed	Render the current 22-byte bind advertisement for diagnostics	Pseudocode and shared advertisement builder
+103ce528	reviewed	Allocate bind-service callbacks, create its mutex and initialize connection hashes	Pseudocode, exact object layout and persistent BLE switch
+103cebac	reviewed	Forward an advertising request to the registered BLE HAL callback	Pseudocode and null callback guard
+103cec74	modeled	Pack a request or response/notification frame and send it through the characteristic callback	Pseudocode, kind-dependent packers and compatible frame codec
+103ced50	reviewed	Register the callback that consumes a completed received protocol packet	Pseudocode and callback slot write
+103cedd8	reviewed	Validate and copy the five required BLE HAL callbacks into global protocol state	Pseudocode and callback validation
+103ceed4	reviewed	Free and clear the accumulated BLE receive buffer	Pseudocode and global buffer ownership
+103cef04	modeled	Accumulate at most 40000 bytes and decode one big-endian request or response frame	Pseudocode, exact header layout/limits and compatible streaming decoder
+103cf0ac	modeled	Serialize the internal BLE packet as kind, command, message ID, big-endian length and body	Pseudocode and compatible frame encoder
+103cf11c	modeled	Allocate a response packet of kind 0x31 and copy its owned payload	Pseudocode and compatible response construction
+103cf188	modeled	Allocate a request packet of kind 0x13 and copy its owned payload	Pseudocode and compatible request construction
+103cf238	modeled	Allocate a notification packet of kind 0x14 and copy its owned payload	Pseudocode and compatible notification construction
+103cf2ac	reviewed	Construct, register and enqueue a v2 response packet against a connection context	Pseudocode and protocol object lifecycle
+103e6794	reviewed	Translate HAL BLE state, update bind service, display reconnect state and power alarm policy	Pseudocode, state callbacks and display/alarm calls
+103db04c	reviewed	Initialize BLE async queue, mutex and worker thread	Pseudocode and allocation/thread parameters
+103db0b8	reviewed	Allocate a 32-byte async request and assign a mutex-protected monotonically increasing ID	Pseudocode and request object writes
+103db0fc	reviewed	Validate and enqueue one BLE async request	Pseudocode and message-queue call
+103dafce	reviewed	Run the BLE async worker loop, invoke each request callback and release its owned object	Pseudocode and queue/callback lifecycle
+103dc320	reviewed	Initialize bind, ordinary file, raw file and stream transfer subsystems plus callback bridges	Pseudocode and complete subsystem call sequence
+103e5514	modeled	Serve Wi-Fi TCP file blocks on port 5922	Pseudocode and compatible Wi-Fi/raw-transfer model
+103e57a0	modeled	CRC-32/BZIP2 update routine	Pseudocode, polynomial literal, known vector test
+103e57f4	modeled	CRC-32/BZIP2 full-buffer wrapper	Pseudocode and compatible CRC implementation
+103e8f70	reviewed	Initialize vendor HID transport and receive task	Embedded identifier and pseudocode
+103e8ff8	reviewed	Deinitialize vendor HID transport	Embedded identifier and pseudocode
+103e914c	modeled	Write up to 127 bytes to vendor HID device	Embedded identifier, owner USB trace, compatible HID segmentation
+103c500c	modeled	Read PMU battery percentage and clamp values above 100	Pseudocode, BLE/USB/debug callers, compatible typed status model
+103c85cc	modeled	Read /emmc statvfs total and available space in MiB	Pseudocode, NuttX statvfs layout, compatible block conversion
+103d4898	modeled	Parse the positive numeric FID from the current audio path	Thumb assembly, audio-status response, compatible optional-FID model
+103d6bf8	modeled	Compute active recording/stream duration in milliseconds	Pseudocode, debug-unit string, compatible typed status model
+103d7e50	modeled	Return normalized locked audio state 0..4	Pseudocode, stock state-string table, compatible five-state enum
+103dc618	modeled	Select hardware product key for A1/A2 identity response	Pseudocode, two fixed product-key strings, compatible identity model
+103dc640	modeled	Return runtime device-name/SN buffer	BLE and USB information-response callers, compatible identity model
+103dc64c	modeled	Return runtime Wi-Fi MAC buffer	USB information-response caller, compatible identity model
+103cc040	modeled	Parse start/stop/pause/resume/get/set audio requests and setting arrays	Pseudocode, exact action strings, setting validation, compatible audio model
+103cc464	reviewed	Start or stop the voiceprint capture mode and return stock result codes	Pseudocode and action strings
+103cc950	modeled	Build authenticated audio/device status response for command 0x0132	Pseudocode, state-name table, unit strings, compatible typed status model
+103cd64c	reviewed	Parse authenticated system-control key/value request and dispatch it	Pseudocode, exact JSON keys and response codes
+103ce138	reviewed	Handle app-side remark acknowledgement and display feedback	Pseudocode, exact fid/ts/type fields, marker call graph
+103ce610	modeled	Compare proposed firmware version and return upgrade/current-version/offset fields	Pseudocode, OTA parser call graph, exact JSON fields, compatible query service
+103d9c00	reviewed	Enable marker/remark flow only for supported peer SDK and persistent switch	Pseudocode, persistent key and call graph
+103d9fac	reviewed	Send device marker event with decimal ts/fid strings and type zero	Pseudocode, command 0x0102 call, exact JSON fields
+103ddc00	reviewed	Render state-driven LVGL content, activation QR, charging, listening, boot and type-7 image UIs	Complete 7544-byte decompile, embedded helper names, string xrefs and sole caller
+103dfedc	reviewed	Range-check display states 0..44 before refreshing content	Pseudocode and sole call to update_display_content
+103e0598	modeled	Initialize and run display loop, polling Bluetooth/charging/PM and auto-returning transient states	Pseudocode, polling delays, state mask, compatible display policy
+103d6a78	reviewed	Read audio frames, embed pending marker bits, emit BLE remark, and forward audio data	Pseudocode, frame-header/remark calls, exact timing conversion
+103d9be0	reviewed	Check whether the resolved remark mode equals enabled state two	Pseudocode and dt_audio_remark_enabled wrapper
+103d9bf4	modeled	Expose the remark-enabled predicate used by button, audio, and BLE request paths	Caller diagnostics, assembly return preservation, compatible remark model
+103d9c5c	modeled	Replace the pending 64-bit remark timestamp under mutex	Pseudocode and compatible tracker
+103d9c84	modeled	Debounce ordinary-record marker presses to one per three seconds	Thumb assembly, warning string, compatible tracker
+103d9cc8	modeled	Debounce streamed-frame marker presses to one per three seconds	Thumb assembly, warning string, compatible tracker
+103d9d0c	modeled	Atomically consume and clear the pending marker timestamp	Pseudocode and compatible tracker
+103d9d40	reviewed	Normalize audio-frame header bits before remark injection	Pseudocode and frame-header caller
+103d9d84	reviewed	Embed the pending marker value into configured header bits and decode it back for verification	Pseudocode, embedded helper identifiers and audio-thread caller
+103da090	modeled	Validate nonzero schedule start strictly before end	Thumb assembly and compatible schedule model
+103da0b4	modeled	Detect whether any valid schedule has not yet expired	Thumb assembly and compatible schedule model
+103da0fc	modeled	Select the earliest valid schedule start strictly after now	Thumb assembly and compatible schedule model
+103da174	reviewed	Create /emmc/schedule directory when absent	Pseudocode and storage-path literals
+103da1c8	reviewed	Delete /emmc/schedule/schedule.dat when present	Pseudocode and storage-path literals
+103da214	modeled	Load and verify SCHE version-one schedule storage	Thumb assembly, raw bytes across M55 LE instruction, compatible codec
+103da3c8	reviewed	Initialize persisted schedule state and choose coarse or precise timer	Pseudocode and 120-second threshold assembly
+103da500	modeled	Persist SCHE schedule header, entries and additive byte checksum	Thumb assembly, raw bytes across M55 DLS/LE instructions, compatible codec
+103da754	modeled	Clear in-memory and persisted schedule state	Pseudocode and compatible empty-set semantics
+103da7d0	reviewed	Merge overlapping active intervals and coordinate scheduled recording lifecycle	Pseudocode and call graph; exact interval-union port pending
+103dade8	reviewed	Mark an externally initiated recording as active during schedule handling	Pseudocode and shared scheduler state
+103dae20	reviewed	Re-evaluate timers and schedule state after recording stops	Pseudocode and timer call graph
+103c3cd8	modeled	Derive printable deviceSecret from hardware UID as hex MD5 of UID hex	Pseudocode, embedded function name, compatible fixed-input MD5 implementation
+103c8570	reviewed	Write a fixed-offset DTIOT record through the flash HAL	Thin wrapper and all product-info callers
+103c857c	reviewed	Read a fixed-offset DTIOT record and invoke recovery on failure	Pseudocode and flash-HAL caller
+103ca86c	modeled	Derive BLE authentication token hash from hardware UID, random challenge and AES	Pseudocode, compatible deviceSecret/auth implementation
+103ca9e0	modeled	Return BLE random challenge and cache expected token hash	Pseudocode, exact random/JSON call chain, compatible auth implementation
+103cb13c	reviewed	Authenticate BLE binding response against the hardware-derived AES token	Pseudocode, exact 64-hex comparison and response codes
+103cf47c	reviewed	Dump product key/secret and device SN/MAC/secret/id fields	Pseudocode and field-label strings
+103cf5d8	reviewed	Persist generated DTIOT binding secret in 64-byte slot zero	Pseudocode and flash-write wrapper
+103cf6c4	reviewed	Unbind by clearing bind state and five DTIOT data slots	Pseudocode and exact offsets 0/0x100/0x200/0x300/0x500
+103cf770	reviewed	Load generated DTIOT binding secret from slot zero	Pseudocode and data-read wrapper
+103cf7dc	reviewed	Notify registered callback of current binding status	Pseudocode and callback offset
+103cf838	reviewed	Encode a 16-bit integer in big-endian order	Thumb pseudocode
+103cf844	reviewed	Encode a 32-bit integer in big-endian order	Thumb pseudocode
+103cf85a	reviewed	Persist four-byte bind-method value at DTIOT offset 0x200	Pseudocode and endian helper
+103cf886	reviewed	Persist supported bind status zero or two at DTIOT offset 0x300	Pseudocode, state constraint and endian helper
+103cf8bc	reviewed	Decode a four-byte big-endian binding field	Pseudocode and binding-field callers
+103cf8ca	reviewed	Load bind method from DTIOT offset 0x200	Pseudocode and endian helper
+103cf8f4	reviewed	Load bind status from offset 0x300 and normalize all values except two to unbound	Pseudocode and exact status branch
+103cf954	reviewed	Generate 16 random bytes, render 32 lowercase hex chars and persist the raw DTIOT binding secret	Pseudocode, format string and storage caller
+103cf9e8	reviewed	Validate product/device metadata, initialize runtime identity and load or generate binding secret	Pseudocode, validation ranges and labeled logs
+103d176c	modeled	Compute an MD5 digest through init/update/final and clear its context	Pseudocode, caller identifiers and compatible fixed-input MD5
+103dc3bc	reviewed	Require activation state two before exposing the hardware-derived deviceSecret	Pseudocode and dt_get_device_secret caller
+103dc658	modeled	Derive 32-character deviceSecret from the 16-byte hardware UID	Pseudocode, MD5 call chain, compatible derivation and known-vector test
+103e3214	modeled	Derive HID authentication token hash with the same hardware identity and AES construction	Pseudocode and compatible auth implementation
+103e9498	reviewed	Initialize factory section, DTIOT data area and security engine once	Pseudocode and subsystem call chain
+103e9548	reviewed	Close security engine and clear HAL initialization state	Pseudocode
+103e95a4	reviewed	Bounds-check and write within the 64-KiB DTIOT factory data area	Pseudocode and exact 0x10000 bound
+103e968c	reviewed	Bounds-check and read within the 64-KiB DTIOT factory data area	Pseudocode and exact 0x10000 bound
+103e9778	reviewed	Validate and persist a serial number of 1..31 bytes in factory section	Pseudocode and factory-section setter
+103e982c	reviewed	Lazy-load and cache up to 31 serial-number bytes from factory section	Pseudocode and factory-section getter
+103e98dc	reviewed	Parse and persist a Wi-Fi MAC string of at most 17 bytes	Pseudocode and factory-section setter
+103e9990	reviewed	Read factory Wi-Fi MAC and render canonical text	Pseudocode and six-byte format call
+103e9a38	reviewed	Read BT/BLE/Wi-Fi MAC by type and render canonical text	Pseudocode and factory getters
+103e9b10	reviewed	Parse and persist BT/BLE/Wi-Fi MAC by type	Pseudocode and factory setters
+103e9bdc	reviewed	Read and cache BT or BLE name by type	Pseudocode and factory getters
+103e9c70	reviewed	Validate and persist BT or BLE name of 1..62 bytes	Pseudocode and factory setters
+103e9d00	modeled	Read 1..64 cryptographic random bytes from security engine	Pseudocode and compatible random HAL
+103e9d7c	modeled	Validate and run AES-128/256 on whole 16-byte blocks	Pseudocode and compatible AES HAL boundary
+103ca1b8	reviewed	Send gray-control response containing requested key and code zero	Pseudocode, resolved JSON field literals and transport log call
+103ca3f8	modeled	Plan authenticated gray-control reboot, shutdown, shell, acknowledgement and oldest-file actions	Pseudocode, resolved shutdown literal, command runner call, compatible non-executing plan
+103cd7c8	modeled	Get/set gray feature flags or dispatch authenticated control keys	Pseudocode, exact action/params/field literals, compatible flag state and control plan
+103e28e8	reviewed	Log HID transport connection without changing product state	Pseudocode and sole logging side effect
+103e2928	reviewed	Free an unfinished HID frame and clear the 24-byte receive state	Pseudocode and receive-state global layout
+103e2970	modeled	Reassemble request-only HID frames with a 1,024-byte cap and five-second whole-frame timeout	Pseudocode, exact limits and compatible timed decoder
+103e2c1c	reviewed	Report USB as connecting while the underlying state is one through three	Pseudocode and unsigned state-range comparison
+103e2c64	reviewed	Run the HID mode worker that starts ADB, updates display and disconnects BLE	Pseudocode, semaphore loop and recovered ADB log strings
+103e2d48	reviewed	Stop and join the HID packet worker and release pending buffers and synchronization objects	Pseudocode and teardown call order
+103e2db0	modeled	Serialize little-endian HID responses and send 127-byte fragments one millisecond apart	Pseudocode, exact fragment limit and compatible report encoder
+103e2ecc	reviewed	Clear the ADB-running flag and wake its worker when HID disconnects	Pseudocode and exact state writes
+103e2f14	reviewed	Publish bind-state changes to HID and force a host notification when binding over USB	Pseudocode and reconnect diagnostic strings
+103e2fb4	reviewed	Initialize HID HAL callbacks, packet synchronization and packet/ADB worker threads	Pseudocode, exact stack sizes and failure teardown
+103e3380	modeled	Return a 16-byte random HID challenge and cache the expected token hash when DID is present	Pseudocode, JSON fields and compatible challenge calculation
+103e34e8	modeled	Dispatch USB commands 400 through 403 for device info, owner authentication and ADB mode selection	Pseudocode, resolved JSON schema, response codes and owner hardware validation
+103d28d4	reviewed	Dump the active audio-database segment descriptor and its packed records for diagnostics	Pseudocode, 24-byte segment stride and hexdump call
+103d2950	reviewed	Initialize the segmented audio index, recover alternating database files and rebuild up to 100 segment descriptors	Pseudocode, exact file-header and 1,000-record segment arithmetic
+103d2ff0	reviewed	Open the separate mock audio database handle for diagnostic file generation	Pseudocode and distinct mock database descriptor
+103d3074	reviewed	Append a valid monotonically increasing audio record and update its cached segment	Pseudocode, eight-byte record writes, 100 segments and 1,000 records per segment
+103d331c	reviewed	Replace the newest audio record only when its FID matches the cached maximum	Pseudocode, end-relative eight-byte rewrite and segment-cache update
+103d34fc	reviewed	Generate a synthetic BABA/DTYJ audio file and append it to the mock database	Pseudocode, exact 80-byte header and 1,024-byte zero-block writes
+103d387c	reviewed	Find one audio database record by FID through its segment cache	Pseudocode, segment lookup and packed-record decode
+103d395c	reviewed	Map a requested FID range to start/end segment and record indexes with binary search	Pseudocode and four-index output layout
+103d3bac	reviewed	Return newest-first FIDs from a mapped database range with a 300-item cap	Pseudocode, segment traversal and deleted-record filtering
+103d3d5c	reviewed	Tombstone one matching audio database record and decrement the live count	Pseudocode, sign-bit tombstone and header count update
+103d3e80	reviewed	Validate that a recording timestamp fits the firmware-supported FID range	Pseudocode and 64-bit bound comparison
+103d3f54	reviewed	Find and tombstone the oldest live audio database record	Pseudocode, ascending segment scan and optional record return
+103d435c	modeled	Flush voice-memo cache in 1,024-byte chunks and patch duration and 24-bit payload length in its entry header	Pseudocode, exact offsets and compatible memo-container codec
+103d44fc	reviewed	Initialize audio mutexes, worker thread, hardware-derived encryption material and AES context	Pseudocode, exact stack size and crypto initialization chain
+103d4790	modeled	Resume capture and accumulate paused duration into ordinary and stream timing counters	Pseudocode and compatible pause/resume state model
+103d48e0	reviewed	Assemble the current 32-byte recording metadata from FID, codec, mode and persistent switches	Pseudocode, field offsets and persistent-key reads
+103d5444	modeled	Pause capture after flushing ordinary audio cache and save the pause timestamp	Pseudocode and compatible pause state model
+103d60a0	reviewed	Route captured frames through warm-up, voice-memo buffering, stream callbacks, AES and ordinary file buffering	Pseudocode, three-frame warm-up and exact cache thresholds
+103d66a0	reviewed	Finalize capture, patch its file header, discard undersized recordings and add or update the audio index	Pseudocode, HAL shutdown, duration/size gates and database calls
+103d6c8c	reviewed	Read and validate an 80-byte recording header by FID or synthesize live-stream FID zero metadata	Pseudocode, exact path and BABA/DTYJ marker checks
+103d6dec	reviewed	Show OTA display state and restore the prior screen on terminal OTA events	Pseudocode, event switch and display-state IDs
+103d7b30	reviewed	Initialize audio-control synchronization and clear its fixed callback slots	Pseudocode and global state layout
+103d9554	reviewed	Bridge recording-start events and results to command 0x0100 BLE JSON and telemetry	Pseudocode, request/result branches and timestamp validation
+103d96f8	reviewed	Bridge pause or resume results to command 0x0100 BLE JSON and telemetry	Pseudocode, action encoding and result codes 200/541
+103d9880	reviewed	Bridge recording-stop events and results to command 0x0100 BLE JSON and telemetry	Pseudocode, stream-state lookup and action/result encoding
+103d9a08	reviewed	Serialize supported audio configuration key/value pairs into a command 0x0100 response	Pseudocode, accepted key switch and JSON array construction
+103dcb94	reviewed	Expire the delayed audio-tag timer and restore display state 24 when appropriate	Pseudocode, mutex and timer cleanup
+103e687c	reviewed	Create and configure the vendor audio input using recovered codec parameters	Pseudocode and vendor HAL open/configure calls
+103e6940	reviewed	Close the vendor audio handle and clear HAL state	Pseudocode and exact state reset
+103e697c	reviewed	Start vendor capture and acquire the audio power/resource request when configured	Pseudocode, vendor start call and resource key nine
+103e6a44	reviewed	Release the audio resource request and stop vendor capture	Pseudocode and error propagation
+103e6ac8	reviewed	Release the 32-kHz audio clock or power request	Pseudocode and resource-control call
+103e6af4	reviewed	Fill a requested audio buffer with bounded retries on empty vendor reads	Pseudocode, 100 empty-read limit and microsecond delays
+103e6bd8	reviewed	Select among eight stock microphone and codec algorithm modes	Pseudocode and DEFAULT/KEY/DOA/lossless/conference/face-to-face/interview strings
+103c81f8	modeled	Initialize Wi-Fi HAL and the port-5922 binary transfer server	Pseudocode, exact port and compatible Wi-Fi lifecycle
+103c84ac	reviewed	Find a non-loopback IPv4 interface address and copy its printable form	Pseudocode, interface traversal and address-family checks
+103ebb20	reviewed	Create the stock access point from supplied or SN-derived credentials and wait for readiness	Pseudocode, password bounds and 50-poll readiness loop
+103ebdd4	reviewed	Destroy the access point and wait for the driver to leave AP state	Pseudocode and 50-poll shutdown loop
+103eb9c8	reviewed	Connect to a station network with bounded credential validation and driver callbacks	Pseudocode, SSID/password ioctl sequence and connect result
+103eb6bc	reviewed	Disconnect station mode and release the Wi-Fi driver handle	Pseudocode and driver teardown calls
+103eb67c	reviewed	Accept the compatibility work-mode setter as a no-op HAL stub	Pseudocode and sole logging/zero-return behavior
+103eb708	reviewed	Scan Wi-Fi networks into fixed 52-byte result records and publish a completion callback	Pseudocode, 25-poll loop and 5,200-byte result allocation
+103ebe88	reviewed	Read station RSSI with minus-128 as the unavailable sentinel	Pseudocode and driver query
+103eb698	reviewed	Register the single Wi-Fi connection-response callback	Pseudocode and callback global write
+103eb90c	reviewed	Register the single Wi-Fi scan-response callback	Pseudocode and callback global write
+1030e18c	reviewed	Expose AP destruction through the diagnostic shell command	Pseudocode and argument-count gate
+1030e234	reviewed	Expose default or supplied station credentials through the diagnostic shell command	Pseudocode and 32/64-byte credential bounds
+1030e2ec	reviewed	Expose Wi-Fi disconnection through the diagnostic shell command	Pseudocode and direct HAL call
+103c8a44	reviewed	Read a requested stdio byte count until full, EOF or stream error	Pseudocode and retry loop
+103c8ab4	reviewed	Read exactly from a file descriptor while retrying interrupted system calls	Pseudocode and errno-four branch
+103c8b14	reviewed	Read up to a requested file-descriptor length and return the actual byte count	Pseudocode, EOF handling and interrupted-call retry
+103c8b7c	reviewed	Write a complete stdio buffer while waiting through zero-progress writes	Pseudocode and stream-error handling
+103c8bd8	reviewed	Write a complete file-descriptor buffer while retrying interruption and zero progress	Pseudocode and errno-four branch
+103c8c38	reviewed	Flush one valid file descriptor to storage	Pseudocode and fsync wrapper
+103c8c6c	reviewed	Open a non-null path with stock mode flags and permissions 0666	Pseudocode and exact permission literal
+103c8ca0	reviewed	Close one valid file descriptor and normalize its error result	Pseudocode and close wrapper
+103c8d40	reviewed	Copy a file using a 4,096-byte buffer and flush the destination	Pseudocode, 63-byte path limit and no end-to-end checksum
+103c8f0c	reviewed	Recursively remove directory contents while preserving dot entries	Pseudocode, stat-based recursion and unlink/rmdir calls
+103c5dbc	reviewed	Calculate lowercase MD5 text for a file using the software hash context	Pseudocode, 32-character output and observed four-byte read chunks
+103c5bb4	reviewed	Start installation only when /emmc/ota.zip exists, then clear OTA-active state	Pseudocode, exact path and upgrade HAL call
+103c5c68	modeled	Parse a four-part firmware version and decide whether it is newer than V1.6.88 build threshold	Pseudocode, component-wise comparisons and compatible version policy
+103c5d20	reviewed	Resume an OTA only when its verification identity matches the current transfer	Pseudocode, saved state, temporary path and file-size lookup
+103c5f80	reviewed	Queue completed OTA verification or installation as asynchronous request type eight	Pseudocode and async request layout
+103c5fcc	modeled	Initialize or resume /emmc/ota.zip reception and persist the target firmware version	Pseudocode, exact path, offset bounds, completion shortcut and staging HAL
+103c60f4	modeled	Append bounded OTA blocks, flush every block and queue completion at exact size	Pseudocode, length accounting, failure cleanup and compatible receive state
+103e9ee8	reviewed	Calculate MD5 with the initialized NuttX security engine	Pseudocode and hash init/update/final chain
+103e9fc4	reviewed	Factory-recover by formatting /dev/mmcsd1 as FAT at /emmc and erasing the 64-KiB DTIOT section	Pseudocode, exact device/path and destructive operation log
+103ea1d4	reviewed	Flush /emmc/ota.zip and all filesystems before requesting board reset mode four	Pseudocode, three global syncs and two-second reboot delay
+103ea37c	reviewed	Put SD/MMC card zero into sleep and classify controller error codes	Pseudocode and hal_sdmmc_sleep_card call
+103ea430	reviewed	Wake SD/MMC card zero and classify controller error codes	Pseudocode and hal_sdmmc_awake_card call
+103ea4e4	reviewed	Enable the low-level debug serial switch	Pseudocode and boolean-one driver call
+103ea500	reviewed	Disable the low-level debug serial switch	Pseudocode and boolean-zero driver call
+103c5276	reviewed	Drain queued 32-byte light events and invoke each event callback on the UI thread	Pseudocode, queue loop and event ownership
+103c5348	reviewed	Initialize the light-event queue, mutex and 8-KiB worker thread	Pseudocode and exact thread parameters
+103c53b0	reviewed	Filter light events against alarm/audio/activation state and enqueue accepted events	Pseudocode, event-specific debounce and queue record layout
+103c54f0	reviewed	Translate light event IDs into LED channels, blink timing and activation-dependent feedback	Pseudocode, full switch and driver calls
+103dd654	modeled	Start the recording display timer and clear accumulated seconds	Pseudocode and compatible display state
+103dd6b4	modeled	Stop the recording display timer and finalize elapsed whole seconds	Pseudocode and compatible display state
+103dd714	modeled	Pause the recording display timer and add its elapsed whole seconds	Pseudocode and compatible display state
+103dd76c	modeled	Resume the recording display timer from a new monotonic timestamp	Pseudocode and compatible display state
+103ddac8	reviewed	Prepare a missing diagnostic display bitmap from one of three built-in test-image definitions	Pseudocode, three-path loop and 12-KiB image buffer
+103e04f0	reviewed	Request the private-status icon while preserving the previously displayed state	Pseudocode, mutex and pending-state fields
+101c3f20	reviewed	Erase, write and read-back-verify one 4-KiB primary or backup factory section	Pseudocode, section IDs nine/ten and exact size
+101c3ff0	reviewed	Copy the in-memory primary factory section to backup flash	Pseudocode, IRQ-protected 4-KiB copy and section-ten write
+101c406c	reviewed	Copy the in-memory backup factory section to primary flash	Pseudocode, IRQ-protected 4-KiB copy and section-nine write
+101c411c	reviewed	Validate factory-section magic, version and CRC and select the usable primary or backup image	Pseudocode, v1/v2 layouts and fallback selection
+101c456c	reviewed	Build default factory calibration data and persist identical primary and backup copies	Pseudocode, default field writes and dual-section save
+101c5244	reviewed	Register factory partitions, align the 64-KiB DTIOT area and repair mirrored factory data	Pseudocode, section IDs nine through eleven and recovery branches
+1022687c	reviewed	Update one of nine factory calibration field groups, recompute CRC and persist primary flash	Pseudocode, field switch zero through eight and section-nine write
+103cc598	reviewed	Return corp-authorized transport provisioning as AES-encrypted device identity JSON	Pseudocode, corpId gate, devkey/SN/secret plaintext and code/info/mac/dev_serv_id response fields
+103d241a	modeled	Pack a live database record as flags, 40-bit big-endian FID and 16-bit big-endian duration	Pseudocode and compatible audio-index codec
+103d2454	modeled	Decode flags, 40-bit FID and duration from one eight-byte database record	Pseudocode and compatible audio-index codec
+103d2492	modeled	Extract the 40-bit FID from one packed database record	Pseudocode and compatible audio-index codec
+103d24c4	modeled	Tombstone a live database record by setting its high flag bit	Pseudocode and compatible audio-index codec
+103d24d8	reviewed	Find the cached segment whose FID range contains a target	Pseudocode and binary-search bounds
+103d2544	reviewed	Find a target FID inside one ascending packed-record segment	Pseudocode and 40-bit comparison
+103d2594	reviewed	Read and decode the FID of one record at a database file offset	Pseudocode and eight-byte read
+103d25e8	reviewed	Write and flush one packed record at a database file offset	Pseudocode and eight-byte write
+103d2640	modeled	Load and cache one 8,000-byte audio-index segment on demand	Pseudocode and compatible segment geometry
+103d2700	modeled	Request index compaction above 10,000 physical rows when tombstones exceed live rows	Pseudocode and compatible compaction predicate
+103d27e8	modeled	Persist the big-endian live-record count and opaque four-byte database format marker	Pseudocode and compatible audio-index header codec
+103d283c	reviewed	Print the packed and decoded contents of an audio-index segment	Pseudocode and diagnostic output loop
+103ca7d8	reviewed	Return registered device information during binding and advance initial bind state when appropriate	Pseudocode, device-info callback and bind-state transition
+103cab40	reviewed	Build activation provisioning from devkey, serial number and secret, AES-encrypt it, and return info, MAC and service ID	Pseudocode, plaintext field names, encryption call and response schema
+103cae14	reviewed	Accept activation identity fields, persist them through device-service callbacks and initialize the activated device	Pseudocode, devId/encUid/corpId/time/activeCode fields and state transition
+103cb068	reviewed	Perform privileged binding reset by clearing identity state, acknowledging, recovering storage and rebooting	Pseudocode, authorization branch, response ordering and recovery calls
+103cb108	reviewed	Forward the BLE authentication result to the registered binding callback	Pseudocode and single callback dispatch
+103cd44c	reviewed	Validate the connected DID and close the Wi-Fi access point for a BLE close-AP request	Pseudocode, DID check, AP destroy call and response codes
+103ce4f4	reviewed	Stop the BLE binding service and update advertising lifecycle counters	Pseudocode, service stop call and counter update
+103cf594	reviewed	Validate and store a device name shorter than 32 bytes	Pseudocode and fixed-size destination boundary
+103cfbf4	reviewed	Allocate and populate the device-service module object and callback table	Pseudocode, 0xC4-byte allocation and vtable assignments
+103cfdd4	reviewed	Initialize the device service exactly once through its first module callback	Pseudocode and one-shot initialization guard
+103dba08	reviewed	Disconnect the currently cached BLE connection through the HAL	Pseudocode, connection-info lookup and HAL disconnect call
+103dbe24	reviewed	Maintain the single BLE connection record, UI and audio state across connect and disconnect events	Pseudocode, 56-byte connection cache, AP teardown, sync cancellation and advertising restart
+103db5ec	reviewed	Update BLE advertising success and failure counters under the transport mutex	Pseudocode and counter branches
+103db654	reviewed	Log the four BLE advertising lifecycle counters	Pseudocode and diagnostic format
+103db864	reviewed	Return the one cached 56-byte BLE connection record when connected	Pseudocode and cached-record copy
+103db90c	reviewed	Classify phone model prefixes and select model-specific BLE connection tuning	Pseudocode, prefix comparisons and parameter-adjust call
+103dc3d4	reviewed	Select and apply BLE connection parameters from phone class, automatic-tuning policy and current link values	Pseudocode and parameter-update jump table
+103dc514	reviewed	Report current BLE peer address, interval, latency and supervision timeout	Pseudocode and connection diagnostic fields
+103dc5a8	reviewed	Cache the device serial number and MAC once with 32- and 18-byte limits	Pseudocode, one-shot guard and bounded copies
+103e516c	reviewed	Accept Wi-Fi TCP clients and start one 8-KiB worker thread for each connection	Pseudocode, accept loop and client-thread creation
+103e5286	reviewed	Read complete shared-protocol frames from a TCP client and dispatch only commands 0x0114 and 0x0115	Pseudocode, eight-byte header, 40-KiB receive buffer and dispatch switch
+103e5574	reviewed	Create, bind and listen on the configured IPv4 TCP transfer port with backlog three	Pseudocode, socket lifecycle and server-thread start
+103e56f4	reviewed	Stop the TCP transfer listener, signal its worker and release server state	Pseudocode, socket close, stop flag and thread cleanup
+103e6d10	reviewed	Encode a response with the shared BLE frame codec and send the complete packet over TCP	Pseudocode, protocol-vtable calls and partial-send loop
+103e6dc8	reviewed	Build a JSON response containing type and code and send it through the TCP response path	Pseudocode and JSON numeric fields
+103e6e4c	modeled	Validate an OTA file header on TCP command 0x0114 and initialize resumable reception	Pseudocode, size/verify_code/attrs/version fields, ota@bin gate, error mapping and compatible staging service
+103e7088	modeled	Validate a TCP 0x0115 OTA block header and CRC before appending its data	Pseudocode, four big-endian fields, CRC-32/BZIP2 call, type-zero gate and compatible decoder
+103c6684	reviewed	Send the live-stream metadata header with FID, attrs, stream type, format version and optional sync/encryption fields	Pseudocode, exact JSON field literals and command 0x0116
+103c688c	reviewed	Queue live audio fragments up to 200 bytes, timestamp them and drop the oldest entry above 50 queued frames	Pseudocode, 0xC8 length boundary, 50-entry ring and drop accounting
+103c6b04	reviewed	Pack queued live-audio fragments into the binary 0x0117 body and append sequence metadata plus four-byte Z terminator	Pseudocode, byte writes, accumulated length and command send
+103c6c4c	reviewed	Drain and batch live-audio fragments into requests, flushing at 10,000 bytes, 50 frames or frame-type boundaries	Pseudocode, queue loop and batching conditions
+103c6d60	reviewed	Allocate the live-stream transport, queue, semaphore and 8-KiB sender thread	Pseudocode, 0x54C0-byte state and worker construction
+103c6ab0	reviewed	Report live-stream FID, received/sent byte totals, dropped frames and current sequence	Pseudocode and diagnostic format
+103d51d4	reviewed	Flush the recording cache in 1,024-byte writes, sync it, patch the container header and add or update the audio index	Pseudocode, chunk loop, fsync, header patch and five-second database threshold
+103d5b58	reviewed	Start audio capture using the persisted algorithm mode, space policy and file-or-stream routing	Pseudocode, eight mode branches, 512-MiB cleanup threshold and 768-MiB minimum
+103d7f3c	reviewed	Start voiceprint chat streaming only on a fully connected BLE session and when no conflicting feature runs	Pseudocode, connection-state five gate and conflict bit mask
+103d8028	reviewed	Stop voiceprint chat streaming idempotently and publish the stopped state	Pseudocode, active flag, stop call and event notification
+10233974	modeled	Queue an RMT IPC send record, publish the first list to the peer and retain later records on the pending list	Pseudocode, shared-list writes, peer doorbell call and compatible rmt_ipc channel
+1024e470	modeled	Handle an RMT IPC RX interrupt, consume the peer send list, preserve a partially consumed message and complete receive flow control	Pseudocode, RX callback direction, peer list traversal and compatible rmt_ipc channel
+1024e5d8	modeled	Handle an RMT IPC TX-complete interrupt, release active send slots and promote the pending list	Pseudocode, TX callback direction, send-slot lifecycle and compatible rmt_ipc channel
+1024e6c8	modeled	Validate and open an RMT IPC channel, initialize shared state, install RX/TX vectors and enable TX-complete IRQ	Pseudocode, exact config offsets, diagnostic strings and compatible rmt_ipc open
+1024eb68	modeled	Close an RMT IPC channel, disable both IRQs, clear local state and release its wake lock	Pseudocode, config callback use and compatible rmt_ipc close
+1024ec38	modeled	Start RMT IPC receive IRQ delivery and resume a previously partial receive	Pseudocode, RX IRQ table access and compatible rmt_ipc start_receive
+1024ecb0	modeled	Stop RMT IPC receive IRQ delivery while leaving the channel open	Pseudocode, RX IRQ table access and compatible rmt_ipc stop_receive
+10241c6c	reviewed	Initialize the AP-to-M55C1 IPC doorbell bits for one channel	Exact same-chip hal_m55c0_2_m55c1 object match: hal_mcu2cp_irq_init
+10241c8a	reviewed	Set the AP-to-M55C1 peer SEND_IND doorbell	Exact same-chip hal_m55c0_2_m55c1 object match: hal_mcu2cp_peer_tx_irq_set
+10241d18	reviewed	Clear the local M55C1 RECV_DONE interrupt	MMIO writes, TX-complete handler caller and config slot 14
+10241cba	reviewed	Acknowledge completion of an M55C1-to-AP receive	Exact same-chip hal_m55c0_2_m55c1 object match: hal_mcu2cp_rx_done_id32
+10241cd2	reviewed	Read M55C1 IPC masked interrupt status for SEND_IND or RECV_DONE	Exact same-chip hal_m55c0_2_m55c1 object match: hal_mcu2cp_irq_active
+10241d38	reviewed	Suspend the local M55C1 receive interrupt mask	MMIO clear write, RX handler entry and config slot 17
+10241ca2	reviewed	Resume or retrigger the local M55C1 receive interrupt mask	MMIO set write, start-receive pending path and config slot 18
+10241d0c	reviewed	Dispatch the M55C1 RX IRQ across enabled channels	NVIC enabled-bit scan and generic RX-handler call
+10241d00	reviewed	Dispatch the M55C1 TX-complete IRQ across enabled channels	NVIC enabled-bit scan and generic TX-handler call
+10241d58	reviewed	Initialize the AP-to-DSPC0 IPC doorbell bits for one channel	Exact same-chip hal_m55c0_2_dspc0 object match: hal_mcu2cp_irq_init
+10241d72	reviewed	Set the AP-to-DSPC0 peer SEND_IND doorbell	Exact same-chip hal_m55c0_2_dspc0 object match: hal_mcu2cp_peer_tx_irq_set
+10241df4	reviewed	Clear the local DSPC0 RECV_DONE interrupt	MMIO writes, TX-complete handler caller and config slot 14
+10241d9e	reviewed	Acknowledge completion of a DSPC0-to-AP receive	Exact same-chip hal_m55c0_2_dspc0 object match: hal_mcu2cp_rx_done_id32
+10241db2	reviewed	Read DSPC0 IPC masked interrupt status for SEND_IND or RECV_DONE	Exact same-chip hal_m55c0_2_dspc0 object match: hal_mcu2cp_irq_active
+10241e10	reviewed	Suspend the local DSPC0 receive interrupt mask	MMIO clear write, RX handler entry and config slot 17
+10241d86	reviewed	Resume or retrigger the local DSPC0 receive interrupt mask	MMIO set write, start-receive pending path and config slot 18
+10241de8	reviewed	Dispatch the DSPC0 RX IRQ across enabled channels	NVIC enabled-bit scan and generic RX-handler call
+10241ddc	reviewed	Dispatch the DSPC0 TX-complete IRQ across enabled channels	NVIC enabled-bit scan and generic TX-handler call
+10241f76	reviewed	Initialize the AP-to-BTHC0 IPC doorbell and mask bits for one channel	Exact same-chip hal_m55c0_2_bthc0 object match: hal_sys2bth_irq_init
+10241fae	reviewed	Set the AP-to-BTHC0 peer SEND_IND doorbell	Exact same-chip hal_m55c0_2_bthc0 object match: hal_sys2bth_peer_tx_irq_set
+10242086	reviewed	Clear the local BTHC0 RECV_DONE interrupt	MMIO writes, TX-complete handler caller and config slot 14
+10242058	reviewed	Acknowledge completion of a BTHC0-to-AP receive	Dual-domain MMIO writes, RX handler terminal path and config slot 15
+10241fda	reviewed	Read BTHC0 IPC masked interrupt status for SEND_IND or RECV_DONE	Exact same-chip hal_m55c0_2_bthc0 object match: hal_sys2bth_irq_active
+1024203c	reviewed	Suspend the local BTHC0 receive interrupt mask	Exact same-chip hal_m55c0_2_bthc0 object match: hal_sys2bth_rx_irq_suspend
+10241fc6	reviewed	Resume or retrigger the local BTHC0 receive interrupt mask	Exact same-chip hal_m55c0_2_bthc0 object match: hal_sys2bth_rx_irq_resume
+10242010	reviewed	Dispatch the BTHC0 RX IRQ across enabled channels	NVIC enabled-bit scan and generic RX-handler call
+10242004	reviewed	Dispatch the BTHC0 TX-complete IRQ across enabled channels	NVIC enabled-bit scan and generic TX-handler call
+10240764	reviewed	Select the BEST1700 RMT IPC configuration table for a validated core/channel	Exact same-chip object match: hal_rmt_ipc_get_cfg
+1024e43c	reviewed	Report whether a selected RMT IPC channel has active or pending transmit work	Exact same-chip object match: _rmt_ipc_tx_busy
+1024ee40	reviewed	Return the peer-advertised RPTUN resource-table range after validating the RMT endpoint	Exact same-chip object match: hal_rmt_ipc_get_rsc_table
+1024c11c	reviewed	Enable the GPIO-key interrupt edge selected by the current debounced key state	Exact same-chip object match: hal_gpiokey_enable_irq
+10256e28	reviewed	Restore USB device clocks and PHY state from the wake path	Exact same-chip object match: hal_usb_wakeup
+10256ec0	reviewed	Reset all active USB endpoint transfer bookkeeping	Exact same-chip object match: hal_usb_reset_all_transfers
+10256ef4	reviewed	Program an endpoint-zero IN transfer for USB control responses	Exact same-chip object match: hal_usb_send_ep0
+1025703c	reviewed	Program an endpoint-zero OUT transfer for USB control requests	Exact same-chip object match: hal_usb_recv_ep0
+1025843c	reviewed	Disable USB IRQ and PHY/controller state during device close	Exact same-chip object match: hal_usb_close

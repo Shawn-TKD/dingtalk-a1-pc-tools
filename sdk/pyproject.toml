@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dingtalk-a1-sdk"
+version = "0.1.0"
+description = "Independent, firmware-preserving DingTalk A1 BLE and USB SDK"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = ["cryptography>=42"]
+
+[project.optional-dependencies]
+ble = ["bleak>=0.22,<4"]
+usb = ["hidapi>=0.14,<1"]
+audio = ["av>=12,<19"]
+all = ["bleak>=0.22,<4", "hidapi>=0.14,<1", "av>=12,<19"]
+
+[project.scripts]
+a1 = "dingtalk_a1.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+dingtalk_a1 = ["py.typed"]

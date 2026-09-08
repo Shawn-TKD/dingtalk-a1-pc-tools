@@ -1,0 +1,16 @@
+CAPABILITIES = [
+    {"name": "ble.auth_status", "api": "A1Client.connect/status", "evidence": "legacy_hardware_verified"},
+    {"name": "ble.recordings", "api": "A1Client.recordings/download/delete_recording", "evidence": "legacy_hardware_verified"},
+    {"name": "ble.live_audio", "api": "A1Client.subscribe + LiveRecorder", "evidence": "legacy_hardware_verified"},
+    {"name": "ble.markers", "api": "LiveRecorder marker/telemetry_marker events", "evidence": "legacy_android_verified"},
+    {"name": "ble.recording_control", "api": "A1Client.recording_control", "evidence": "firmware_recovered_needs_sdk_hardware_retest"},
+    {"name": "usb.files", "api": "A1USB + USBStorage", "evidence": "legacy_hardware_verified", "interrupts_ble_recording": True},
+    {"name": "usb.motor_test", "api": "USBStorage.motor_test", "evidence": "legacy_hardware_verified_fixed_sequence"},
+    {"name": "audio.containers", "api": "convert_dtyj/export_memos", "evidence": "legacy_real_file_decode_verified"},
+    {"name": "experimental.wifi", "api": "experimental.open_wifi + wifi_download", "evidence": "firmware_static_only"},
+    {"name": "experimental.schedules", "api": "experimental.schedules/replace_schedules", "evidence": "firmware_static_only"},
+    {"name": "experimental.app_marker", "api": "experimental.send_marker", "evidence": "firmware_static_only"},
+    {"name": "research.raw_ble_file", "api": "experimental.download_raw_file", "evidence": "firmware_static_only"},
+    {"name": "ble.vibrate", "api": None, "evidence": "no_verified_external_command"},
+    {"name": "firmware.flash_reset", "api": None, "evidence": "intentionally_not_provided"},
+]

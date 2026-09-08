@@ -1,0 +1,259 @@
+offsets	literal	sources
+0x002ceb1b	           	arch/arm/src/at32/at32_serial.c|arch/arm/src/stm32/stm32_hciuart.c|arch/arm/src/stm32/stm32_serial.c|arch/arm/src/stm32f0l0g0/stm32_serial_v1.c|arch/arm/src/stm32f0l0g0/stm32_serial_v2.c|arch/arm/src/stm32f7/stm32_serial.c|arch/arm/src/stm32h7/stm32_serial.c|arch/arm/src/stm32l4/stm32l4_serial.c|arch/arm/src/stm32l5/stm32l5_serial.c|arch/arm/src/stm32u5/stm32_serial.c|arch/arm/src/stm32wb/stm32wb_serial.c|arch/arm/src/stm32wl5/stm32wl5_serial.c|drivers/net/enc28j60.h|net/procfs/net_statistics.c
+0x002cea75	              RST: %04x  %04x	net/procfs/net_statistics.c
+0x00297b95	       %s -h	tools/incdir.c
+0x0028c9c2	      %s buffer %p hold by %s	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0028c99d	    %s buffer, total %d, pending %d	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0028ca5f	    ept %s	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x00293597	  %s type %s	fs/mount/fs_procfs_mount.c
+0x00293514	  Block    Number	fs/mount/fs_procfs_mount.c
+0x002ceab9	  Checksum 	net/procfs/net_statistics.c
+0x002934b7	  Filesystem      Size      Used  Available Mounted on	fs/mount/fs_procfs_mount.c
+0x002ceb4a	  ICMPv6	net/procfs/net_statistics.c
+0x002ceade	  IPv4        VHL: %04x   Frg: %04x	net/procfs/net_statistics.c
+0x002ceac5	  IPv6        VHL: %04x	net/procfs/net_statistics.c
+0x002cea43	  Rexmit   	net/procfs/net_statistics.c
+0x00293527	  Size     Blocks       Used   Available Mounted on	fs/mount/fs_procfs_mount.c
+0x002962f2	  Start    Size   MTD	drivers/mtd/mtd_partition.c
+0x002cea94	  TCP         ACK: %04x   SYN: %04x	net/procfs/net_statistics.c
+0x002cea69	  Type     	net/procfs/net_statistics.c
+0x0028ca6b	  rpmsg buffer list:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0028ca4c	  rpmsg ept list:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x00292d80	%-12s%.18s	fs/procfs/fs_procfsproc.c
+0x00292e40	%-12s%ld	fs/procfs/fs_procfsproc.c
+0x00292e0b	%-12s%zu	fs/procfs/fs_procfsproc.c
+0x00292e68	%-12s0x%02x	fs/procfs/fs_procfsproc.c
+0x002f52e9	%.3s %.3s%3d %.2d:%.2d:%.2d %d	libs/libc/time/lib_asctimer.c
+0x00296ba6	%02d/%02d/%04d	libs/libc/time/lib_strftime.c
+0x00296b90	%02d:%02d:%02d %s	libs/libc/time/lib_strftime.c
+0x002b72cc	%02x:%02x:%02x:%02x:%02x:%02x	libs/libc/net/lib_etherntoa.c
+0x0028284d	%02x:%02x:%02x:%02x:%02x:%02x 	drivers/wireless/ieee80211/bcm43xxx/bcmf_driver.c
+0x00296b81	%04d-%02d-%02d	libs/libc/time/lib_strftime.c
+0x0028cd87	%04x  %s	libs/libc/misc/lib_dumpvbuffer.c
+0x00292aa6	%10d%10d%10d%10d	fs/procfs/fs_procfsiobinfo.c
+0x00292a84	%10s%10s%10s%10s	fs/procfs/fs_procfsiobinfo.c
+0x0028d46e	%12d%12d	mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0028d464	%12s%12s	mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0028d135	%12s:%11lu%9lu%9lu%9lu%9lu%9lu	mm/mempool/mempool_procfs.c
+0x0028d34f	%12zu%*p	mm/mempool/mempool.c|mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0028d107	%13s%11s%9s%9s%9s%9s%9s	mm/mempool/mempool_procfs.c
+0x002cf0e3	%2.2X:%2.2X:%2.2X:%2.2X:%2.2X:%2.2X	include/nuttx/wireless/bluetooth/bt_core.h
+0x0029632c	%7ju %7ju   %s	drivers/mtd/mtd_partition.c
+0x00292deb	%lu.%09lu,%lu.%09lu	fs/procfs/fs_procfsproc.c
+0x0028cd7d	%s (%p):	libs/libc/misc/lib_dumpvbuffer.c
+0x00292f39	%s version %s %s %s	fs/procfs/fs_procfsversion.c
+0x002f5256	%s: Error %d	libs/libc/stdio/lib_perror.c
+0x0028cfa4	,M3.2.0,M11.1.0	libs/libc/time/lib_localtime.c
+0x002928a9,0x0030ac9c	-rom1fs-	arch/risc-v/src/bl808/bl808_start.c|arch/risc-v/src/sg2000/sg2000_start.c|fs/romfs/fs_romfs.h
+0x002f522c	/bin/nsh	libs/libc/pwd/lib_pwd.h
+0x002a2b22	/dev/adb0	drivers/usbdev/adb.c
+0x002c0b9f	/dev/audio	audio/audio.c|include/nuttx/audio/audio.h
+0x0000981c	/dev/buttons	boards/arm/a1x/pcduino-a10/src/a1x_bringup.c|boards/arm/gd32f4/gd32f450zk-aiotbox/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470zk-aiotbox/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_bringup.c|boards/arm/imxrt/imxrt1060-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1064-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1170-evk/src/imxrt_bringup.c|boards/arm/kinetis/freedom-k66f/src/k66_bringup.c|boards/arm/lpc54xx/lpcxpresso-lpc54628/src/lpc54_bringup.c|boards/arm/mx8mp/verdin-mx8mp/src/mx8mp_bringup.c|boards/arm/nrf52/nrf52832-dk/src/nrf52_bringup.c|boards/arm/nrf52/nrf52840-dk/src/nrf52_bringup.c|boards/arm/nrf52/thingy52/src/nrf52_bringup.c|boards/arm/nrf53/nrf5340-dk/src/nrf53_bringup.c|boards/arm/nrf53/thingy53/src/nrf53_bringup.c|boards/arm/nrf91/nrf9160-dk/src/nrf91_bringup.c|boards/arm/nrf91/thingy91/src/nrf91_bringup.c|boards/arm/rp2040/raspberrypi-pico/src/rp2040_bringup.c|boards/arm/rp2040/w5500-evb-pico/src/rp2040_bringup.c|boards/arm/s32k1xx/s32k118evb/src/s32k1xx_bringup.c|boards/arm/s32k1xx/s32k144evb/src/s32k1xx_bringup.c|boards/arm/s32k1xx/s32k146evb/src/s32k1xx_bringup.c|boards/arm/s32k1xx/s32k148evb/src/s32k1xx_bringup.c|boards/arm/s32k1xx/ucans32k146/src/s32k1xx_bringup.c|boards/arm/s32k3xx/mr-canhubk3/src/s32k3xx_bringup.c|boards/arm/s32k3xx/s32k344evb/src/s32k3xx_bringup.c|boards/arm/samv7/same70-qmtech/src/sam_bringup.c|boards/arm/stm32/axoloti/src/stm32_bringup.c|boards/arm/stm32/b-g431b-esc1/src/stm32_bringup.c|boards/arm/stm32/clicker2-stm32/src/stm32_bringup.c|boards/arm/stm32/nucleo-f103rb/src/stm32_bringup.c|boards/arm/stm32/nucleo-f302r8/src/stm32_bringup.c|boards/arm/stm32/nucleo-f446re/src/stm32_bringup.c|boards/arm/stm32/nucleo-g431rb/src/stm32_bringup.c|boards/arm/stm32/olimex-stm32-p407/src/stm32_bringup.c|boards/arm/stm32/photon/src/stm32_bringup.c|boards/arm/stm32/stm32f103-minimum/src/stm32_bringup.c|boards/arm/stm32/stm32f401rc-rs485/src/stm32_bringup.c|boards/arm/stm32/stm32f411e-disco/src/stm32_bringup.c|boards/arm/stm32/stm32f429i-disco/src/stm32_bringup.c|boards/arm/stm32/stm32f4discovery/src/stm32_bringup.c|boards/arm/stm32/stm32ldiscovery/src/stm32_bringup.c|boards/arm/stm32/stm32vldiscovery/src/stm32_bringup.c|boards/arm/stm32f0l0g0/nucleo-g070rb/src/stm32_bringup.c|boards/arm/stm32f0l0g0/stm32l0538-disco/src/stm32_bringup.c|boards/arm/stm32f7/stm32f746g-disco/src/stm32_bringup.c|boards/arm/stm32h7/nucleo-h743zi/src/stm32_bringup.c|boards/arm/stm32h7/stm32h747i-disco/src/stm32_bringup.c|boards/arm/stm32l4/nucleo-l452re/src/stm32_bringup.c|boards/arm/stm32l5/nucleo-l552ze/src/stm32_bringup.c|boards/arm/stm32l5/stm32l562e-dk/src/stm32_bringup.c|boards/arm/stm32wl5/nucleo-wl55jc/src/stm32_appinit.c|boards/arm/tiva/tm4c1294-launchpad/src/tm4c_bringup.c|boards/arm/tiva/tm4c129e-launchpad/src/tm4c_bringup.c|boards/risc-v/esp32c3/esp32c3-generic/src/esp32c3_bringup.c|boards/risc-v/esp32c6/esp32c6-devkitc/src/esp32c6_bringup.c|boards/risc-v/esp32c6/esp32c6-devkitm/src/esp32c6_bringup.c|boards/risc-v/esp32h2/esp32h2-devkit/src/esp32h2_bringup.c|boards/risc-v/fe310/hifive1-revb/src/fe310_bringup.c|boards/risc-v/rv32m1/rv32m1-vega/src/rv32m1_bringup.c|boards/sim/sim/sim/src/sim_bringup.c|boards/xtensa/esp32/esp32-2432S028/src/esp32_bringup.c|boards/xtensa/esp32/esp32-audio-kit/src/esp32_bringup.c|boards/xtensa/esp32/esp32-devkitc/src/esp32_bringup.c|boards/xtensa/esp32/esp32-ethernet-kit/src/esp32_bringup.c|boards/xtensa/esp32/esp32-lyrat/src/esp32_bringup.c|boards/xtensa/esp32/esp32-pico-kit/src/esp32_bringup.c|boards/xtensa/esp32/esp32-sparrow-kit/src/esp32_bringup.c|boards/xtensa/esp32/esp32-wrover-kit/src/esp32_bringup.c|boards/xtensa/esp32/lilygo_tbeam_lora_gps/src/esp32_bringup.c|boards/xtensa/esp32/ttgo_eink5_v2/src/esp32_bringup.c|boards/xtensa/esp32/ttgo_lora_esp32/src/esp32_bringup.c|boards/xtensa/esp32/ttgo_t_display_esp32/src/esp32_bringup.c|boards/xtensa/esp32s2/esp32s2-kaluga-1/src/esp32s2_bringup.c|boards/xtensa/esp32s2/esp32s2-saola-1/src/esp32s2_bringup.c|boards/xtensa/esp32s3/esp32s3-box/src/esp32s3_bringup.c|boards/xtensa/esp32s3/esp32s3-devkit/src/esp32s3_bringup.c|boards/xtensa/esp32s3/esp32s3-eye/src/esp32s3_bringup.c|boards/xtensa/esp32s3/esp32s3-lcd-ev/src/esp32s3_bringup.c|boards/xtensa/esp32s3/esp32s3-meadow/src/esp32s3_bringup.c
+0x0028c5e3	/dev/console	arch/arm/src/a1x/a1x_serial.c|arch/arm/src/am335x/am335x_serial.c|arch/arm/src/at32/at32_serial.c|arch/arm/src/c5471/c5471_serial.c|arch/arm/src/cxd32xx/cxd32_serial.c|arch/arm/src/cxd56xx/cxd56_serial.c|arch/arm/src/dm320/dm320_serial.c|arch/arm/src/efm32/efm32_leserial.c|arch/arm/src/efm32/efm32_serial.c|arch/arm/src/eoss3/eoss3_serial.c|arch/arm/src/gd32f4/gd32f4xx_serial.c|arch/arm/src/imx1/imx_serial.c|arch/arm/src/imx6/imx_serial.c|arch/arm/src/imxrt/imxrt_serial.c|arch/arm/src/kinetis/kinetis_lpserial.c|arch/arm/src/kinetis/kinetis_serial.c|arch/arm/src/kl/kl_serial.c|arch/arm/src/lc823450/lc823450_serial.c|arch/arm/src/lpc17xx_40xx/lpc17_40_serial.c|arch/arm/src/lpc214x/lpc214x_serial.c|arch/arm/src/lpc2378/lpc23xx_serial.c|arch/arm/src/lpc31xx/lpc31_serial.c|arch/arm/src/lpc43xx/lpc43_serial.c|arch/arm/src/lpc54xx/lpc54_serial.c|arch/arm/src/max326xx/max32660/max32660_serial.c|arch/arm/src/mx8mp/mx8mp_serial.c|arch/arm/src/nrf52/nrf52_serial.c|arch/arm/src/nrf53/nrf53_serial.c|arch/arm/src/nrf91/nrf91_serial.c|arch/arm/src/nuc1xx/nuc_serial.c|arch/arm/src/phy62xx/uart.c|arch/arm/src/rp2040/rp2040_serial.c|arch/arm/src/rtl8720c/ameba_uart.c|arch/arm/src/s32k1xx/s32k1xx_serial.c|arch/arm/src/s32k3xx/s32k3xx_serial.c|arch/arm/src/sam34/sam_serial.c|arch/arm/src/sama5/sam_dbgu.c|arch/arm/src/sama5/sam_flexcom_serial.c|arch/arm/src/sama5/sam_serial.c|arch/arm/src/samd2l2/sam_serial.c|arch/arm/src/samd5e5/sam_serial.c|arch/arm/src/samv7/sam_serial.c|arch/arm/src/stm32/stm32_serial.c|arch/arm/src/stm32f0l0g0/stm32_serial_v1.c|arch/arm/src/stm32f0l0g0/stm32_serial_v2.c|arch/arm/src/stm32f7/stm32_serial.c|arch/arm/src/stm32h7/stm32_serial.c|arch/arm/src/stm32l4/stm32l4_serial.c|arch/arm/src/stm32l5/stm32l5_serial.c|arch/arm/src/stm32u5/stm32_serial.c|arch/arm/src/stm32wb/stm32wb_serial.c|arch/arm/src/stm32wl5/stm32wl5_serial.c|arch/arm/src/str71x/str71x_serial.c|arch/arm/src/tiva/common/tiva_serial.c|arch/arm/src/tlsr82/tlsr82_serial.c|arch/arm/src/tlsr82/tlsr82_spi_console.c|arch/arm/src/tms570/tms570_serial.c|arch/arm/src/xmc4/xmc4_serial.c|arch/arm64/src/a64/a64_serial.c|arch/arm64/src/imx8/imx8qm_serial.c|arch/arm64/src/imx9/imx9_lpuart.c|arch/arm64/src/rk3399/rk3399_serial.c|arch/avr/src/at32uc3/at32uc3_serial.c|arch/avr/src/at90usb/at90usb_serial.c|arch/avr/src/atmega/atmega_serial.c|arch/hc/src/m9s12/m9s12_serial.c|arch/mips/src/pic32mx/pic32mx_serial.c|arch/mips/src/pic32mz/pic32mz_serial.c|arch/misoc/src/common/misoc_serial.c|arch/or1k/src/mor1kx/mor1kx_serial.c|arch/renesas/src/m16c/m16c_serial.c|arch/renesas/src/rx65n/rx65n_serial.c|arch/renesas/src/sh1/sh1_serial.c|arch/risc-v/src/bl602/bl602_serial.c|arch/risc-v/src/bl808/bl808_serial.c|arch/risc-v/src/c906/c906_serial.c|arch/risc-v/src/common/espressif/esp_serial.c|arch/risc-v/src/esp32c3-legacy/esp32c3_serial.c|arch/risc-v/src/fe310/fe310_serial.c|arch/risc-v/src/hpm6000/hpm_serial.c|arch/risc-v/src/hpm6750/hpm6750_serial.c|arch/risc-v/src/k210/k210_serial.c|arch/risc-v/src/litex/litex_serial.c|arch/risc-v/src/mpfs/mpfs_serial.c|arch/risc-v/src/rv32m1/rv32m1_serial.c|arch/sim/src/sim/sim_uart.c|arch/sparc/src/bm3803/bm3803-serial.c|arch/sparc/src/bm3823/bm3823-serial.c|arch/sparc/src/s698pm/s698pm-serial.c|arch/tricore/src/tc3xx/tc3xx_serial.c|arch/xtensa/src/esp32/esp32_serial.c|arch/xtensa/src/esp32s2/esp32s2_serial.c|arch/xtensa/src/esp32s3/esp32s3_serial.c|arch/z16/src/z16f/z16f_serial.c|arch/z80/src/ez80/ez80_serial.c|arch/z80/src/z180/z180_scc.c|arch/z80/src/z8/z8_serial.c|boards/sim/sim/sim/src/sim_bringup.c|boards/z80/z80/z80sim/src/z80_serial.c|drivers/misc/lwl_console.c|drivers/segger/serial_rtt.c|drivers/serial/serial_cmsdk.c|drivers/serial/uart_16550.c|drivers/serial/uart_pl011.c|drivers/serial/uart_rpmsg.c|drivers/syslog/syslog_console.c|drivers/syslog/syslog_consolechannel.c|drivers/usbdev/cdcacm.c|drivers/usbdev/pl2303.c|sched/group/group_setupidlefiles.c
+0x002966cb	/dev/fb%d	drivers/video/fb.c
+0x002966d5	/dev/fb%d.%d	drivers/video/fb.c
+0x002f50ce	/dev/i2c%d	drivers/i2c/i2c_driver.c
+0x0029823c	/dev/input0	boards/arm64/a64/pinephone/src/pinephone_bringup.c|boards/arm64/a64/pinephone/src/pinephone_touch.c|boards/arm64/a64/pinephone/src/pinephone_touch.h|drivers/input/gt9xx.c|include/nuttx/input/gt9xx.h|include/nuttx/input/touchscreen.h
+0x0028cae2	/dev/log	drivers/syslog/syslog_chardev.c
+0x0028cb15	/dev/logrpmsg	drivers/syslog/syslog_rpmsg_server.c
+0x0029741a	/dev/mmcsd%d	boards/arm/lpc31xx/ea3131/src/lpc31_fillpage.c|boards/arm/lpc31xx/ea3152/src/lpc31_fillpage.c|drivers/mmcsd/mmcsd_procfs.c|drivers/mmcsd/mmcsd_sdio.c|drivers/mmcsd/mmcsd_spi.c
+0x002b8afd	/dev/mouse0	include/nuttx/input/mouse.h
+0x0029f063	/dev/null	boards/sim/sim/sim/src/sim_bringup.c|drivers/misc/dev_null.c|libs/libc/unistd/lib_daemon.c|sched/group/group_setupidlefiles.c
+0x0028d568	/dev/oneshot	arch/risc-v/src/common/espressif/esp_oneshot.c|boards/arm/stm32/stm32f103-minimum/src/stm32_bringup.c|boards/risc-v/bl602/bl602evb/src/bl602_bringup.c|boards/risc-v/esp32c3-legacy/common/src/esp32c3_board_oneshot.c|boards/sim/sim/sim/src/sim_bringup.c|boards/sparc/bm3803/xx3803/src/bm3803_appinit.c|boards/x86_64/intel64/qemu-intel64/src/qemu_bringup.c|boards/xtensa/esp32/common/src/esp32_oneshot.c|boards/xtensa/esp32s2/esp32s2-kaluga-1/src/esp32s2_oneshot.c|boards/xtensa/esp32s2/esp32s2-saola-1/src/esp32s2_oneshot.c|boards/xtensa/esp32s2/franzininho-wifi/src/esp32s2_oneshot.c|boards/xtensa/esp32s3/common/src/esp32s3_board_tim.c
+0x0028caa5	/dev/ptmx	drivers/serial/ptmx.c|libs/libc/stdlib/lib_openpty.c
+0x0028ccd9	/dev/pts/%d	drivers/serial/pty.c|libs/libc/stdlib/lib_ptsnamer.c
+0x0028cabd	/dev/pty%d	drivers/serial/ptmx.c|drivers/serial/pty.c|libs/libc/stdlib/lib_openpty.c
+0x0028c901	/dev/ram%d	boards/sim/sim/sim/src/sim_zoneinfo.c|drivers/misc/ramdisk.c
+0x0028c219	/dev/ram0	boards/risc-v/bl602/bl602evb/src/bl602_bringup.c|boards/risc-v/mpfs/icicle/src/mpfs_bringup.c
+0x0028d8d0	/dev/random	arch/arm/src/lpc54xx/lpc54_rng.c|arch/arm/src/nrf52/nrf52_rng.c|arch/arm/src/sama5/sam_trng.c|arch/arm/src/samv7/sam_trng.c|arch/arm/src/stm32/stm32_rng.c|arch/arm/src/stm32f0l0g0/stm32_rng.c|arch/arm/src/stm32f7/stm32_rng.c|arch/arm/src/stm32l4/stm32l4_rng.c|arch/risc-v/src/common/espressif/esp_random.c|arch/risc-v/src/esp32c3-legacy/esp32c3_rng.c|arch/x86_64/src/intel64/intel64_rng.c|arch/xtensa/src/esp32/esp32_rng.c|arch/xtensa/src/esp32s2/esp32s2_rng.c|arch/xtensa/src/esp32s3/esp32s3_rng.c|drivers/virtio/virtio-rng.c|libs/libc/misc/lib_getrandom.c
+0x0028ca81	/dev/rptun/%s	drivers/rptun/rptun.c
+0x002966b5	/dev/rtc%d	drivers/timers/rtc.c
+0x002965f3	/dev/spi%d	drivers/spi/spi_driver.c
+0x0029341c	/dev/tmpb%06lx	fs/driver/fs_mtdproxy.c
+0x0029228f	/dev/tmpc%06lx	fs/driver/fs_blockproxy.c
+0x002965d9	/dev/tty	drivers/serial/uart_rpmsg.c
+0x0028d543	/dev/ttyS0	arch/arm/src/a1x/a1x_serial.c|arch/arm/src/am335x/am335x_serial.c|arch/arm/src/at32/at32_serial.c|arch/arm/src/c5471/c5471_serial.c|arch/arm/src/cxd32xx/cxd32_serial.c|arch/arm/src/cxd56xx/cxd56_serial.c|arch/arm/src/dm320/dm320_serial.c|arch/arm/src/efm32/efm32_serial.c|arch/arm/src/eoss3/eoss3_serial.c|arch/arm/src/gd32f4/gd32f4xx_serial.c|arch/arm/src/imx1/imx_serial.c|arch/arm/src/imx6/imx_serial.c|arch/arm/src/imxrt/imxrt_serial.c|arch/arm/src/kl/kl_serial.c|arch/arm/src/lc823450/lc823450_serial.c|arch/arm/src/lpc17xx_40xx/lpc17_40_serial.c|arch/arm/src/lpc214x/lpc214x_serial.c|arch/arm/src/lpc2378/lpc23xx_serial.c|arch/arm/src/lpc31xx/lpc31_serial.c|arch/arm/src/lpc43xx/lpc43_serial.c|arch/arm/src/lpc54xx/lpc54_serial.c|arch/arm/src/max326xx/max32660/max32660_serial.c|arch/arm/src/mx8mp/mx8mp_serial.c|arch/arm/src/nrf52/nrf52_serial.c|arch/arm/src/nrf53/nrf53_serial.c|arch/arm/src/nrf91/nrf91_serial.c|arch/arm/src/nuc1xx/nuc_serial.c|arch/arm/src/phy62xx/uart.c|arch/arm/src/rp2040/rp2040_serial.c|arch/arm/src/rtl8720c/ameba_uart.c|arch/arm/src/s32k1xx/s32k1xx_serial.c|arch/arm/src/s32k3xx/s32k3xx_serial.c|arch/arm/src/sam34/sam_serial.c|arch/arm/src/sama5/sam_serial.c|arch/arm/src/samd2l2/sam_serial.c|arch/arm/src/samd5e5/sam_serial.c|arch/arm/src/samv7/sam_serial.c|arch/arm/src/stm32/stm32_serial.c|arch/arm/src/stm32f0l0g0/stm32_serial_v1.c|arch/arm/src/stm32f0l0g0/stm32_serial_v2.c|arch/arm/src/stm32f7/stm32_serial.c|arch/arm/src/stm32h7/stm32_serial.c|arch/arm/src/stm32l4/stm32l4_serial.c|arch/arm/src/stm32l5/stm32l5_serial.c|arch/arm/src/stm32u5/stm32_serial.c|arch/arm/src/stm32wb/stm32wb_serial.c|arch/arm/src/stm32wl5/stm32wl5_serial.c|arch/arm/src/str71x/str71x_serial.c|arch/arm/src/tiva/common/tiva_serial.c|arch/arm/src/tlsr82/tlsr82_serial.c|arch/arm/src/tms570/tms570_serial.c|arch/arm/src/xmc4/xmc4_serial.c|arch/arm64/src/a64/a64_serial.c|arch/arm64/src/imx8/imx8qm_serial.c|arch/arm64/src/imx9/imx9_lpuart.c|arch/arm64/src/rk3399/rk3399_serial.c|arch/avr/src/at32uc3/at32uc3_serial.c|arch/avr/src/at90usb/at90usb_serial.c|arch/avr/src/atmega/atmega_serial.c|arch/hc/src/m9s12/m9s12_serial.c|arch/mips/src/pic32mx/pic32mx_serial.c|arch/mips/src/pic32mz/pic32mz_serial.c|arch/misoc/src/common/misoc_serial.c|arch/renesas/src/m16c/m16c_serial.c|arch/renesas/src/sh1/sh1_serial.c|arch/risc-v/src/c906/c906_serial.c|arch/risc-v/src/common/espressif/esp_serial.c|arch/risc-v/src/esp32c3-legacy/esp32c3_serial.c|arch/risc-v/src/fe310/fe310_serial.c|arch/risc-v/src/hpm6000/hpm_serial.c|arch/risc-v/src/k210/k210_serial.c|arch/risc-v/src/litex/litex_serial.c|arch/risc-v/src/mpfs/mpfs_serial.c|arch/sparc/src/bm3803/bm3803-serial.c|arch/sparc/src/bm3823/bm3823-serial.c|arch/sparc/src/s698pm/s698pm-serial.c|arch/tricore/src/tc3xx/tc3xx_serial.c|arch/xtensa/src/esp32/esp32_serial.c|arch/xtensa/src/esp32s2/esp32s2_serial.c|arch/xtensa/src/esp32s3/esp32s3_serial.c|arch/z16/src/z16f/z16f_serial.c|arch/z80/src/ez80/ez80_serial.c|arch/z80/src/z180/z180_scc.c|arch/z80/src/z8/z8_serial.c|boards/renesas/sh1/us7032evb1/shterm/shterm.c|boards/z80/z80/z80sim/src/z80_serial.c|drivers/serial/serial_cmsdk.c|drivers/serial/uart_16550.c|drivers/serial/uart_pl011.c
+0x0028cce5	/dev/ttyp%d	drivers/serial/pty.c|libs/libc/stdlib/lib_ptsnamer.c
+0x0028d8dc	/dev/urandom	arch/arm/src/lpc54xx/lpc54_rng.c|arch/arm/src/sama5/sam_trng.c|arch/arm/src/samv7/sam_trng.c|arch/arm/src/stm32/stm32_rng.c|arch/arm/src/stm32f0l0g0/stm32_rng.c|arch/arm/src/stm32f7/stm32_rng.c|arch/arm/src/stm32l4/stm32l4_rng.c|arch/risc-v/src/common/espressif/esp_random.c|arch/risc-v/src/esp32c3-legacy/esp32c3_rng.c|arch/x86_64/src/intel64/intel64_rng.c|arch/xtensa/src/esp32/esp32_rng.c|arch/xtensa/src/esp32s3/esp32s3_rng.c|drivers/crypto/dev_urandom.c|libs/libc/misc/lib_getrandom.c
+0x0028ca98	/dev/usensor	drivers/sensors/usensor.c|include/nuttx/sensors/sensor.h
+0x0028d8c1	/dev/watchdog0	arch/arm/src/cxd56xx/cxd56_wdt.c|arch/arm/src/imxrt/imxrt_wdog.c|arch/arm/src/lc823450/lc823450_wdt.c|boards/arm/at32/at32f437-mini/src/at32_bringup.c|boards/arm/phy62xx/phy6222/src/bringup.c|boards/arm/sam34/sam4s-xplained-pro/src/sam_wdt.c|boards/arm/stm32/photon/src/stm32_bringup.c|boards/arm/stm32h7/nucleo-h743zi/src/stm32_bringup.c|boards/risc-v/esp32c3-legacy/common/src/esp32c3_board_wdt.c|boards/risc-v/esp32c3/esp32c3-generic/src/esp32c3_bringup.c|boards/risc-v/esp32c6/esp32c6-devkitc/src/esp32c6_bringup.c|boards/risc-v/esp32c6/esp32c6-devkitm/src/esp32c6_bringup.c|boards/risc-v/esp32h2/esp32h2-devkit/src/esp32h2_bringup.c|boards/sparc/bm3803/xx3803/src/bm3803_appinit.c|boards/sparc/s698pm/s698pm-dkit/src/s698pm_appinit.c|boards/xtensa/esp32/common/src/esp32_board_wdt.c|boards/xtensa/esp32s2/common/src/esp32s2_board_wdt.c|boards/xtensa/esp32s3/common/src/esp32s3_board_wdt.c|drivers/timers/watchdog.c|include/nuttx/timers/watchdog.h
+0x002c03db,0x00348d24	0123456789ABCDEF	arch/risc-v/src/esp32c3-legacy/esp32c3_bignum.c|fs/fat/fs_fat32dirent.c
+0x00348ecc	0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ	arch/arm/src/phy62xx/my_printf.c
+0x0029cd64,0x0034bcf1	0123456789abcdef	arch/arm/src/rtl8720c/amebaz_coex.c|drivers/video/max7456.c|wireless/bluetooth/bt_smp.c
+0x00296af2,0x00348ef1	0123456789abcdefghijklmnopqrstuvwxyz	arch/arm/src/phy62xx/my_printf.c|libs/libc/stdlib/lib_itoa.c
+0x0028f07b	255.255.255.0	drivers/wireless/gs2200m.c
+0x0030775c	<noname>	drivers/note/noteram_driver.c|drivers/segger/note_sysview.c|fs/procfs/fs_procfsproc.c|sched/misc/assert.c|sched/task/task_setup.c
+0x0032b598,0x00348e35	ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/	libs/libc/net/lib_base64.c
+0x0028c26b	AppBringUp	sched/init/nx_bringup.c
+0x002976c8	BogoMIPS	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x00296400	CALLBACKS                 IDLE           STANDBY        SLEEP	drivers/power/pm/pm_procfs.c
+0x0029f64b	CHACHA20-POLY1305	crypto/xform.c
+0x0028270d	CHANNEL=	drivers/wireless/gs2200m.c
+0x002f3b0d	COMPLETED	arch/sim/src/sim/sim_wifidriver.c
+0x0029775e	CPU architecture: %s	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x00297784	CPU implementer	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x002977b2	CPU part	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x002977c5	CPU revision	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0029779e	CPU variant	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0028f1f3	Calling %p	libs/libc/misc/lib_cxx_initialize.c
+0x002f5159	Composite	drivers/usbdev/composite_desc.c
+0x002d9360	Connected	arch/arm/src/lpc17xx_40xx/lpc17_40_usbhost.c|arch/arm/src/lpc54xx/lpc54_usb0_ohci.c|wireless/bluetooth/bt_netdev.c
+0x00296473	DOMAIN%-2d                  STATE          COUNT          TIME	drivers/power/pm/pm_procfs.c
+0x002964cd	DOMAIN%-2d                  WAKE           SLEEP          TOTAL	drivers/power/pm/pm_procfs.c
+0x002ce9b0	DRaddr:%s 	net/procfs/netdev_statistics.c
+0x00296c08	December	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x002ceb03	Dropped    	net/procfs/net_statistics.c
+0x0028c9fb	Dump rpmsg info between cpu (master: %s)%s <==> %s:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x002a3e46	EADDRINUSE	libs/libc/string/lib_strerror.c
+0x002a3e51	EADDRNOTAVAIL	libs/libc/string/lib_strerror.c
+0x002a3e5f	EAFNOSUPPORT	libs/libc/string/lib_strerror.c
+0x002a3e82	EAI_AGAIN	libs/libc/netdb/lib_gaistrerror.c
+0x002a3e8c	EAI_BADFLAGS	libs/libc/netdb/lib_gaistrerror.c
+0x002a3eb3	EAI_FAIL	libs/libc/netdb/lib_gaistrerror.c
+0x002a3ebc	EAI_FAMILY	libs/libc/netdb/lib_gaistrerror.c
+0x002a3ec7	EAI_MEMORY	libs/libc/netdb/lib_gaistrerror.c
+0x002a3edd	EAI_NONAME	libs/libc/netdb/lib_gaistrerror.c
+0x002a3ee8	EAI_OVERFLOW	libs/libc/netdb/lib_gaistrerror.c
+0x002a3f02	EAI_SERVICE	libs/libc/netdb/lib_gaistrerror.c
+0x002a3f0e	EAI_SOCKTYPE	libs/libc/netdb/lib_gaistrerror.c
+0x002a3f1b	EALREADY	libs/libc/string/lib_strerror.c
+0x002a3f30	ECANCELED	libs/libc/string/lib_strerror.c
+0x002a3f43	ECONNABORTED	libs/libc/string/lib_strerror.c
+0x002a3f50	ECONNREFUSED	libs/libc/string/lib_strerror.c
+0x002a3f5d	ECONNRESET	libs/libc/string/lib_strerror.c
+0x002a3f68	EDESTADDRREQ	libs/libc/string/lib_strerror.c
+0x002a40cf	EHOSTDOWN	libs/libc/string/lib_strerror.c
+0x002a3f82	EHOSTUNREACH	libs/libc/string/lib_strerror.c
+0x002a3fb8	EMSGSIZE	libs/libc/string/lib_strerror.c
+0x002a3fc1	ENAMETOOLONG	libs/libc/string/lib_strerror.c
+0x002a3fce	ENETDOWN	libs/libc/string/lib_strerror.c
+0x002a3fd7	ENETUNREACH	libs/libc/string/lib_strerror.c
+0x002a400e	ENOPROTOOPT	libs/libc/string/lib_strerror.c
+0x002a4028	ENOTCONN	libs/libc/string/lib_strerror.c
+0x002a4039	ENOTEMPTY	libs/libc/string/lib_strerror.c
+0x002a4043	ENOTSOCK	libs/libc/string/lib_strerror.c
+0x002a4054	EOVERFLOW	libs/libc/string/lib_strerror.c
+0x002a4071	EPROTONOSUPPORT	libs/libc/string/lib_strerror.c
+0x002a4081	EPROTOTYPE	libs/libc/string/lib_strerror.c
+0x002a40d9	EREMOTEIO	libs/libc/string/lib_strerror.c
+0x002940c2	ERROR: Could not set red led	drivers/leds/ncp5623c.c
+0x002a364e	ERROR: Failed to allocate memory	binfmt/libelf/libelf_read.c|libs/libc/hex2bin/lib_hex2bin.c
+0x0029737e	ERROR: Failed to get I2C%d interface	boards/arm/imxrt/imxrt1020-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1050-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1060-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1064-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1170-evk/src/imxrt_bringup.c|boards/arm/imxrt/teensy-4.x/src/imxrt_i2c.c|boards/arm/lc823450/lc823450-xgevk/src/lc823450_appinit.c|boards/arm/lpc43xx/lpc4337-ws/src/lpc43_appinit.c|boards/arm/lpc43xx/lpc4370-link2/src/lpc43_appinit.c|boards/arm/lpc54xx/lpcxpresso-lpc54628/src/lpc54_i2c.c|boards/arm/lpc54xx/lpcxpresso-lpc54628/src/lpc54_i2ctool.c|boards/arm/nrf52/arduino-nano-33ble-rev2/src/nrf52_bringup.c|boards/arm/nrf52/arduino-nano-33ble/src/nrf52_bringup.c|boards/arm/nrf52/nrf52-feather/src/nrf52_i2c.c|boards/arm/nrf52/nrf52840-dk/src/nrf52_bringup.c|boards/arm/nrf52/thingy52/src/nrf52_bringup.c|boards/arm/nrf53/thingy53/src/nrf53_i2c.c|boards/arm/sama5/giant-board/src/sam_bringup.c|boards/arm/sama5/jupiter-nano/src/sam_bringup.c|boards/arm/sama5/sama5d2-xult/src/sam_bringup.c|boards/arm/sama5/sama5d3-xplained/src/sam_bringup.c|boards/arm/sama5/sama5d4-ek/src/sam_bringup.c|boards/arm/samv7/same70-xplained/src/sam_bringup.c|boards/arm/samv7/samv71-xult/src/sam_bringup.c|boards/arm/stm32/fire-stm32v2/src/stm32_appinit.c|boards/arm/stm32/olimex-stm32-e407/src/stm32_bringup.c|boards/arm/stm32/omnibusf4/src/stm32_bringup.c|boards/arm/stm32/stm3210e-eval/src/stm32_bringup.c|boards/arm/stm32/stm3220g-eval/src/stm32_appinit.c|boards/arm/stm32/stm3240g-eval/src/stm32_bringup.c|boards/arm/stm32/stm32f103-minimum/src/stm32_bringup.c|boards/arm/stm32/stm32f401rc-rs485/src/stm32_bringup.c|boards/arm/stm32/stm32f4discovery/src/stm32_bringup.c|boards/arm/stm32f0l0g0/b-l072z-lrwan1/src/stm32_bringup.c|boards/arm/stm32f0l0g0/nucleo-g070rb/src/stm32_bringup.c|boards/arm/stm32f7/nucleo-144/src/stm32_bringup.c|boards/arm/stm32f7/stm32f746-ws/src/stm32_appinitialize.c|boards/arm/stm32f7/stm32f777zit6-meadow/src/stm32_bringup.c|boards/arm/stm32h7/linum-stm32h753bi/src/stm32_bringup.c|boards/arm/stm32h7/nucleo-h743zi/src/stm32_bringup.c|boards/arm/stm32h7/stm32h747i-disco/src/stm32_bringup.c|boards/arm/stm32l4/nucleo-l476rg/src/stm32_appinit.c|boards/arm/tiva/dk-tm4c129x/src/tm4c_bringup.c|boards/arm/tiva/tm4c1294-launchpad/src/tm4c_bringup.c|boards/arm/tiva/tm4c129e-launchpad/src/tm4c_bringup.c|boards/arm64/a64/pinephone/src/pinephone_bringup.c|boards/xtensa/esp32/common/src/esp32_board_i2c.c
+0x002a97a8	ERROR: Failed to open %s: %s	boards/renesas/sh1/us7032evb1/shterm/shterm.c
+0x002a8d05	ERROR: Failed to read file: %d	drivers/wireless/ieee80211/bcm43xxx/bcmf_core.c
+0x002973a4	ERROR: Failed to register I2C%d driver: %d	boards/arm/imxrt/imxrt1020-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1050-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1060-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1064-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1170-evk/src/imxrt_bringup.c|boards/arm/imxrt/teensy-4.x/src/imxrt_i2c.c|boards/arm/lc823450/lc823450-xgevk/src/lc823450_appinit.c|boards/arm/lpc43xx/lpc4337-ws/src/lpc43_appinit.c|boards/arm/lpc43xx/lpc4370-link2/src/lpc43_appinit.c|boards/arm/lpc54xx/lpcxpresso-lpc54628/src/lpc54_i2ctool.c|boards/arm/nrf52/arduino-nano-33ble-rev2/src/nrf52_bringup.c|boards/arm/nrf52/arduino-nano-33ble/src/nrf52_bringup.c|boards/arm/nrf52/nrf52-feather/src/nrf52_i2c.c|boards/arm/nrf52/nrf52840-dk/src/nrf52_bringup.c|boards/arm/nrf52/thingy52/src/nrf52_bringup.c|boards/arm/nrf53/thingy53/src/nrf53_i2c.c|boards/arm/sama5/giant-board/src/sam_bringup.c|boards/arm/sama5/jupiter-nano/src/sam_bringup.c|boards/arm/sama5/sama5d2-xult/src/sam_bringup.c|boards/arm/sama5/sama5d3-xplained/src/sam_bringup.c|boards/arm/sama5/sama5d4-ek/src/sam_bringup.c|boards/arm/samv7/same70-xplained/src/sam_bringup.c|boards/arm/samv7/samv71-xult/src/sam_bringup.c|boards/arm/stm32/fire-stm32v2/src/stm32_appinit.c|boards/arm/stm32/olimex-stm32-e407/src/stm32_bringup.c|boards/arm/stm32/omnibusf4/src/stm32_bringup.c|boards/arm/stm32/stm3210e-eval/src/stm32_bringup.c|boards/arm/stm32/stm3220g-eval/src/stm32_appinit.c|boards/arm/stm32/stm3240g-eval/src/stm32_bringup.c|boards/arm/stm32/stm32f103-minimum/src/stm32_bringup.c|boards/arm/stm32/stm32f103-minimum/src/stm32_hyt271.c|boards/arm/stm32/stm32f401rc-rs485/src/stm32_bringup.c|boards/arm/stm32/stm32f4discovery/src/stm32_bringup.c|boards/arm/stm32f0l0g0/b-l072z-lrwan1/src/stm32_bringup.c|boards/arm/stm32f0l0g0/nucleo-g070rb/src/stm32_bringup.c|boards/arm/stm32f7/nucleo-144/src/stm32_bringup.c|boards/arm/stm32f7/stm32f746-ws/src/stm32_appinitialize.c|boards/arm/stm32f7/stm32f777zit6-meadow/src/stm32_bringup.c|boards/arm/stm32h7/linum-stm32h753bi/src/stm32_bringup.c|boards/arm/stm32h7/nucleo-h743zi/src/stm32_bringup.c|boards/arm/stm32h7/stm32h747i-disco/src/stm32_bringup.c|boards/arm/stm32l4/nucleo-l476rg/src/stm32_appinit.c|boards/arm/stm32u5/nucleo-u5a5zj-q/src/stm32_bringup.c|boards/arm/tiva/dk-tm4c129x/src/tm4c_bringup.c|boards/arm/tiva/tm4c1294-launchpad/src/tm4c_bringup.c|boards/arm/tiva/tm4c129e-launchpad/src/tm4c_bringup.c|boards/arm64/a64/pinephone/src/pinephone_bringup.c|boards/sim/sim/sim/src/sim_bringup.c|boards/xtensa/esp32/common/src/esp32_board_i2c.c
+0x00294335	ERROR: Failed to register driver: %d	arch/xtensa/src/esp32/esp32_himem.c|arch/xtensa/src/esp32s3/esp32s3_himem.c|boards/arm/cxd56xx/drivers/sensors/cxd5610_gnss.c|boards/arm/xmc4/xmc4700-relax/src/xmc4_bringup.c|boards/arm/xmc4/xmc4800-relax/src/xmc4_bringup.c|drivers/analog/ads1242.c|drivers/contactless/mfrc522.c|drivers/contactless/pn532.c|drivers/crypto/se05x.c|drivers/lcd/ht16k33_14seg.c|drivers/lcd/st7032.c|drivers/leds/apa102.c|drivers/leds/lp503x.c|drivers/leds/max7219.c|drivers/leds/ncp5623c.c|drivers/leds/pca9635pw.c|drivers/leds/ws2812.c|drivers/power/battery/battery_charger.c|drivers/power/battery/battery_gauge.c|drivers/power/battery/battery_monitor.c|drivers/rf/dat-31r5-sp.c|drivers/sensors/adt7320.c|drivers/sensors/aht10.c|drivers/sensors/apds9960.c|drivers/sensors/as726x.c|drivers/sensors/bh1750fvi.c|drivers/sensors/bmg160.c|drivers/sensors/bmp180.c|drivers/sensors/bmp180_uorb.c|drivers/sensors/dhtxx.c|drivers/sensors/hdc1008.c|drivers/sensors/ina219.c|drivers/sensors/ina226.c|drivers/sensors/ina3221.c|drivers/sensors/isl29023.c|drivers/sensors/kxtj9.c|drivers/sensors/l3gd20_uorb.c|drivers/sensors/lis3dh.c|drivers/sensors/lis3dsh.c|drivers/sensors/lis3mdl.c|drivers/sensors/lm75.c|drivers/sensors/lm92.c|drivers/sensors/lsm303agr.c|drivers/sensors/lsm6dsl.c|drivers/sensors/lsm9ds1.c|drivers/sensors/ltc4151.c|drivers/sensors/max31855.c|drivers/sensors/max31865.c|drivers/sensors/max6675.c|drivers/sensors/mb7040.c|drivers/sensors/mcp9844.c|drivers/sensors/mlx90393.c|drivers/sensors/mlx90614.c|drivers/sensors/mpl115a.c|drivers/sensors/ms58xx.c|drivers/sensors/msa301.c|drivers/sensors/scd30.c|drivers/sensors/scd41.c|drivers/sensors/sgp30.c|drivers/sensors/sht21.c|drivers/sensors/sht3x.c|drivers/sensors/sps30.c|drivers/sensors/t67xx.c|drivers/sensors/veml6070.c|drivers/sensors/vl53l1x.c|drivers/spi/ice40.c|drivers/spi/spi_slave_driver.c|drivers/usbmisc/fusb301.c|drivers/usbmisc/fusb302.c|drivers/usbmisc/fusb303.c
+0x00297047	ERROR: IPv4 dns_recv_response failed	libs/libc/netdb/lib_dnsquery.c
+0x00297025	ERROR: IPv4 dns_send_query failed	libs/libc/netdb/lib_dnsquery.c
+0x00297000	ERROR: IPv6 dns_recv_response failed	libs/libc/netdb/lib_dnsquery.c
+0x00296fde	ERROR: IPv6 dns_send_query failed	libs/libc/netdb/lib_dnsquery.c
+0x002a3a23	ERROR: Unrecognized option	tools/zds/zdsar.c
+0x0028f7a6	ERROR: bind() failed: %d	fs/userfs/fs_userfs.c|libs/libc/userfs/lib_userfs.c
+0x00009829	ERROR: btn_lower_initialize() failed: %d	boards/arm/a1x/pcduino-a10/src/a1x_bringup.c|boards/arm/gd32f4/gd32f450zk-aiotbox/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470zk-aiotbox/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_bringup.c|boards/arm/imxrt/imxrt1060-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1064-evk/src/imxrt_bringup.c|boards/arm/imxrt/imxrt1170-evk/src/imxrt_bringup.c|boards/arm/kinetis/freedom-k66f/src/k66_bringup.c|boards/arm/lpc54xx/lpcxpresso-lpc54628/src/lpc54_bringup.c|boards/arm/mx8mp/verdin-mx8mp/src/mx8mp_bringup.c|boards/arm/nrf52/nrf52832-dk/src/nrf52_bringup.c|boards/arm/nrf52/nrf52840-dk/src/nrf52_bringup.c|boards/arm/nrf52/thingy52/src/nrf52_bringup.c|boards/arm/nrf53/nrf5340-dk/src/nrf53_bringup.c|boards/arm/nrf53/thingy53/src/nrf53_bringup.c|boards/arm/nrf91/nrf9160-dk/src/nrf91_bringup.c|boards/arm/nrf91/thingy91/src/nrf91_bringup.c|boards/arm/rp2040/raspberrypi-pico/src/rp2040_bringup.c|boards/arm/rp2040/w5500-evb-pico/src/rp2040_bringup.c|boards/arm/s32k1xx/s32k118evb/src/s32k1xx_bringup.c|boards/arm/s32k1xx/s32k144evb/src/s32k1xx_bringup.c|boards/arm/s32k1xx/s32k146evb/src/s32k1xx_bringup.c|boards/arm/s32k1xx/s32k148evb/src/s32k1xx_bringup.c|boards/arm/s32k1xx/ucans32k146/src/s32k1xx_bringup.c|boards/arm/s32k3xx/s32k344evb/src/s32k3xx_bringup.c|boards/arm/samv7/same70-qmtech/src/sam_bringup.c|boards/arm/stm32/b-g431b-esc1/src/stm32_bringup.c|boards/arm/stm32/clicker2-stm32/src/stm32_bringup.c|boards/arm/stm32/nucleo-f103rb/src/stm32_bringup.c|boards/arm/stm32/nucleo-f302r8/src/stm32_bringup.c|boards/arm/stm32/nucleo-f446re/src/stm32_bringup.c|boards/arm/stm32/nucleo-g431rb/src/stm32_bringup.c|boards/arm/stm32/olimex-stm32-p407/src/stm32_bringup.c|boards/arm/stm32/photon/src/stm32_bringup.c|boards/arm/stm32/stm32f103-minimum/src/stm32_bringup.c|boards/arm/stm32/stm32f401rc-rs485/src/stm32_bringup.c|boards/arm/stm32/stm32f411e-disco/src/stm32_bringup.c|boards/arm/stm32/stm32f429i-disco/src/stm32_bringup.c|boards/arm/stm32/stm32f4discovery/src/stm32_bringup.c|boards/arm/stm32/stm32ldiscovery/src/stm32_bringup.c|boards/arm/stm32/stm32vldiscovery/src/stm32_bringup.c|boards/arm/stm32f0l0g0/nucleo-g070rb/src/stm32_bringup.c|boards/arm/stm32f0l0g0/stm32l0538-disco/src/stm32_bringup.c|boards/arm/stm32f7/stm32f746g-disco/src/stm32_bringup.c|boards/arm/stm32h7/nucleo-h743zi/src/stm32_bringup.c|boards/arm/stm32h7/stm32h747i-disco/src/stm32_bringup.c|boards/arm/stm32l4/nucleo-l452re/src/stm32_bringup.c|boards/arm/stm32l5/nucleo-l552ze/src/stm32_bringup.c|boards/arm/stm32l5/stm32l562e-dk/src/stm32_bringup.c|boards/arm/stm32wl5/nucleo-wl55jc/src/stm32_appinit.c|boards/arm/tiva/tm4c1294-launchpad/src/tm4c_bringup.c|boards/arm/tiva/tm4c129e-launchpad/src/tm4c_bringup.c|boards/risc-v/esp32c3/esp32c3-generic/src/esp32c3_bringup.c|boards/risc-v/esp32c6/esp32c6-devkitc/src/esp32c6_bringup.c|boards/risc-v/esp32c6/esp32c6-devkitm/src/esp32c6_bringup.c|boards/risc-v/esp32h2/esp32h2-devkit/src/esp32h2_bringup.c|boards/risc-v/fe310/hifive1-revb/src/fe310_bringup.c|boards/risc-v/rv32m1/rv32m1-vega/src/rv32m1_bringup.c|boards/sim/sim/sim/src/sim_bringup.c|boards/xtensa/esp32/esp32-2432S028/src/esp32_bringup.c|boards/xtensa/esp32/esp32-audio-kit/src/esp32_bringup.c|boards/xtensa/esp32/esp32-devkitc/src/esp32_bringup.c|boards/xtensa/esp32/esp32-ethernet-kit/src/esp32_bringup.c|boards/xtensa/esp32/esp32-lyrat/src/esp32_bringup.c|boards/xtensa/esp32/esp32-pico-kit/src/esp32_bringup.c|boards/xtensa/esp32/esp32-sparrow-kit/src/esp32_bringup.c|boards/xtensa/esp32/esp32-wrover-kit/src/esp32_bringup.c|boards/xtensa/esp32/lilygo_tbeam_lora_gps/src/esp32_bringup.c|boards/xtensa/esp32/ttgo_eink5_v2/src/esp32_bringup.c|boards/xtensa/esp32/ttgo_lora_esp32/src/esp32_bringup.c|boards/xtensa/esp32/ttgo_t_display_esp32/src/esp32_bringup.c|boards/xtensa/esp32s2/esp32s2-kaluga-1/src/esp32s2_bringup.c|boards/xtensa/esp32s2/esp32s2-saola-1/src/esp32s2_bringup.c
+0x00294075	ERROR: i2c_write returned error code %d	drivers/leds/lp503x.c|drivers/leds/ncp5623c.c|drivers/leds/pca9635pw.c
+0x0028d677	ERROR: progmem_initialize failed	boards/arm/gd32f4/gd32f450zk-aiotbox/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470zk-aiotbox/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_bringup.c|boards/arm/samd5e5/metro-m4/src/sam_smartfs.c
+0x002a4099	ESHUTDOWN	libs/libc/string/lib_strerror.c
+0x002a40f8	ESOCKTNOSUPPORT	libs/libc/string/lib_strerror.c
+0x002a40aa	ETIMEDOUT	libs/libc/string/lib_strerror.c
+0x002dd359	Failed to create timer	arch/xtensa/src/esp32/esp32_ble_adapter.c|arch/xtensa/src/esp32s3/esp32s3_ble_adapter.c
+0x002b6896	Failed to open %s: %s	tools/mksyscall.c
+0x002976f0	Features	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x002c504b	Features:	video/videomode/edid_dump.c
+0x00296bc3	February	libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0029cf11	File name too long	include/errno.h
+0x00292e00	HeapCheck:	fs/procfs/fs_procfsproc.c
+0x00290698	IEEE 802.11	net/netdev/netdev_ioctl.c
+0x00009a83	Idle_Task	sched/init/nx_start.c
+0x00295f21	Inactive	sched/sched/sched_get_stateinfo.c
+0x00277515	Initialize	tools/nxstyle.c
+0x002ba7b3	Invalid mode: %d	arch/risc-v/src/common/espressif/esp_spi.c|arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c|arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c|arch/xtensa/src/esp32s2/esp32s2_spi.c|arch/xtensa/src/esp32s2/esp32s2_spi_slave.c|arch/xtensa/src/esp32s3/esp32s3_qspi.c|arch/xtensa/src/esp32s3/esp32s3_spi.c|arch/xtensa/src/esp32s3/esp32s3_spi_slave.c
+0x0029ceff	Invalid parameter	include/nuttx/wireless/ieee802154/ieee802154_mac.h
+0x002dd407	Invalid parameters	libs/libnx/nxmu/nx_getrectangle.c|libs/libnx/nxtk/nxtk_gettoolbar.c|libs/libnx/nxtk/nxtk_getwindow.c
+0x0028d01d	Local time zone must be set--see zic manual page	libs/libc/time/lib_localtime.c
+0x00292e55	Main task:	fs/procfs/fs_procfsproc.c
+0x00292e7e	Member IDs:	fs/procfs/fs_procfsproc.c
+0x00292e75	Members:	fs/procfs/fs_procfsproc.c
+0x002c1495	No error	arch/arm/src/lpc43xx/spifi/src/spifilib_dev_common.c|libs/libc/regex/regerror.c
+0x00296bff	November	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0029dcbc	Out of memory!	drivers/usbdev/cdcecm.c
+0x00292dbc,0x00308ed2	Priority:	fs/procfs/fs_procfsproc.c
+0x002ceb0f	Received   	net/procfs/net_statistics.c
+0x002c0f47	Received:	drivers/usbhost/usbhost_max3421e.c|net/procfs/net_mld.c
+0x00292f05	SCHED_FIFO	fs/procfs/fs_procfsproc.c
+0x00292f10	SCHED_SPORADIC	fs/procfs/fs_procfsproc.c
+0x00296c6d	Saturday	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x00292dc6,0x00308ec7	Scheduler:	fs/procfs/fs_procfsproc.c
+0x002c0f1a	Sending:	drivers/usbhost/usbhost_max3421e.c
+0x002cea5d	Sent       	net/procfs/net_statistics.c
+0x00296bed	September	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x00292dd1,0x00308ebe	SigMask:	fs/procfs/fs_procfsproc.c
+0x00292e15	StackAlloc:	fs/procfs/fs_procfsproc.c
+0x00292e2a	StackBase:	fs/procfs/fs_procfsproc.c
+0x00292e35,0x00308eb3	StackSize:	fs/procfs/fs_procfsproc.c
+0x00292e4a,0x00308ea8	StackUsed:	fs/procfs/fs_procfsproc.c
+0x00296c5d	Thursday	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0028d459	Total Blks	mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0028d44e	Total Size	mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x00296da2	Unknown address	libs/libc/netdb/lib_dnsquery.c
+0x002935a5	Unrecognized	fs/mount/fs_gettype.c|tools/noteinfo.c
+0x002a4baf	WARNING:	arch/avr/src/at32uc3/at32uc3_gpioirq.c
+0x00295f4b	Waiting,MQ empty	sched/sched/sched_get_stateinfo.c
+0x00295f5c	Waiting,MQ full	sched/sched/sched_get_stateinfo.c
+0x00295f01	Waiting,Mutex:%d	sched/sched/sched_get_stateinfo.c
+0x00295f2a	Waiting,Semaphore	sched/sched/sched_get_stateinfo.c
+0x00295f3c	Waiting,Signal	sched/sched/sched_get_stateinfo.c
+0x00295f12	Waiting,Unlock	sched/sched/sched_get_stateinfo.c
+0x00296c53	Wednesday	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0029296f	[0-9]*/**	fs/procfs/fs_procfs.c
+0x0028ced4	aAfFeEgG	libs/libc/stdio/lib_libvscanf.c
+0x0028cfd8	abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 :+-._	libs/libc/time/lib_localtime.c
+0x002931ed	autoformat	boards/arm/imxrt/imxrt1064-evk/src/imxrt_flexspi_nor.c|boards/arm/imxrt/imxrt1170-evk/src/imxrt_flexspi_fram.c|boards/arm/imxrt/imxrt1170-evk/src/imxrt_flexspi_nor.c|boards/arm/phy62xx/phy6222/src/bringup.c|boards/arm/stm32h7/linum-stm32h753bi/src/stm32_w25q.c|boards/arm/tlsr82/tlsr8278adk80d/src/tlsr8278_bringup.c|boards/risc-v/bl602/bl602evb/src/bl602_bringup.c|boards/sparc/bm3803/xx3803/src/bm3803_am29lv.c|fs/littlefs/lfs_vfs.c
+0x002f2659	contains	include/nuttx/input/touchscreen.h
+0x00297539	cur_freq	arch/arm/src/lc823450/lc823450_procfs_dvfs.c
+0x003098af	devif_iob_send	net/devif/devif_iobsend.c
+0x00297700	fastmult	arch/arm/src/common/hwcap.h
+0x002a34a9	filename	fs/smartfs/smartfs_utils.c
+0x002931e1	forceformat	boards/arm/gd32f4/gd32f450zk-aiotbox/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_gd25.c|boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_gd25.c|boards/arm/gd32f4/gd32f470zk-aiotbox/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470zk-aiotbox/src/gd32f4xx_gd25.c|boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_bringup.c|boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_gd25.c|boards/arm/nrf52/nrf52840-dk/src/nrf52_mx25.c|boards/arm/nrf53/nrf5340-dk/src/nrf53_mx25.c|boards/arm/s32k3xx/mr-canhubk3/src/s32k3xx_bringup.c|boards/arm/stm32h7/nucleo-h743zi2/src/stm32_bringup.c|boards/arm/stm32h7/stm32h745i-disco/src/stm32_bringup.c|boards/risc-v/esp32c3-legacy/common/src/esp32c3_board_spiflash.c|boards/risc-v/esp32c3/common/src/esp_board_spiflash.c|boards/risc-v/esp32c6/common/src/esp_board_spiflash.c|boards/risc-v/esp32h2/common/src/esp_board_spiflash.c|boards/sim/sim/sim/src/sim_bringup.c|boards/xtensa/esp32/common/src/esp32_board_spiflash.c|boards/xtensa/esp32s2/common/src/esp32s2_board_spiflash.c|boards/xtensa/esp32s3/common/src/esp32s3_board_spiflash.c|fs/littlefs/lfs_vfs.c
+0x00292b1a	free: dump all free node	fs/procfs/fs_procfsmeminfo.c
+0x00292fa9	fspath1=	fs/unionfs/fs_unionfs.c
+0x00292fbb	fspath2=	fs/unionfs/fs_unionfs.c
+0x00292ee8	group/status	fs/procfs/fs_procfsproc.c
+0x00292efb	heapcheck	fs/procfs/fs_procfsproc.c
+0x002a7b52	https://	tools/nxstyle.c
+0x0028cf15	infinity	libs/libc/stdlib/lib_strtold.c
+0x00274f46	initialize	drivers/mtd/mtd_nandram.c
+0x00290b79	local:[%s]	net/local/local_sockif.c
+0x002cebdb	local_address	net/procfs/net_tcp.c|net/procfs/net_udp.c
+0x00307ba4	localhost	libs/libc/net/lib_loopback.c
+0x0028cfbf,0x0030b3bc	localtime	libs/libc/time/lib_localtime.c
+0x002b6b62,0x002ebe0d	lseek failed: %s	boards/arm/lpc31xx/ea3131/tools/lpchdr.c|boards/arm/lpc31xx/ea3152/tools/lpchdr.c|boards/arm/lpc31xx/olimex-lpc-h3131/tools/lpchdr.c
+0x00290fec	neighbor	net/netlink/netlink_route.c
+0x00292a96	nthrottle	fs/procfs/fs_procfsiobinfo.c
+0x002929b7	partitions	fs/procfs/fs_procfs.c
+0x0028cfb4	posixrules	libs/libc/time/lib_localtime.c
+0x00292fb2	prefix1=	fs/unionfs/fs_unionfs.c
+0x00292fc4	prefix2=	fs/unionfs/fs_unionfs.c
+0x0029659e	preparefail	drivers/power/pm/pm_procfs.c
+0x002976b8	processor	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c|arch/risc-v/src/common/riscv_cpuinfo.c
+0x0030939b	psock_tcp_send	net/tcp/tcp_send_buffered.c
+0x00309400	psock_udp_sendto	net/udp/udp_sendto_buffered.c
+0x002bb525	pthread_create	boards/arm/lpc17xx_40xx/pnev5180b/src/lpc17_40_symtab.c
+0x002cebcc	remote_address	net/procfs/net_tcp.c|net/procfs/net_udp.c
+0x0028ca30	rpmsg vq RX:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0028ca3e	rpmsg vq TX:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0028caeb	rpmsg-syslog	drivers/syslog/syslog_rpmsg.h
+0x002965cf	rpmsg-tty	drivers/serial/uart_rpmsg.c
+0x0028c810	rpmsg-uinput-%s	drivers/input/uinput.c
+0x0028cb56	rpmsg-usrsock	include/nuttx/usrsock/usrsock_rpmsg.h
+0x00290ec6	rpmsg:[%s:[%s%s]<->%s]	net/rpmsg/rpmsg_sockif.c
+0x00290edd	rpmsg:[%s<->%s:[%s%s]]	net/rpmsg/rpmsg_sockif.c
+0x002930f2	rpmsgfs-	fs/rpmsgfs/rpmsgfs.h
+0x0028f368	sigaction	boards/arm/lpc17xx_40xx/pnev5180b/src/lpc17_40_symtab.c
+0x00290b84	socketpair%p	net/local/local_sockif.c
+0x002d2e62	start scan	drivers/wireless/ieee80211/bcm43xxx/bcmf_driver.c
+0x002930e9	timeout=	fs/rpmsgfs/rpmsgfs.c
+0x002f8520	unsigned	arch/arm/include/types.h|arch/arm64/include/types.h|arch/avr/include/avr/types.h|arch/avr/include/avr32/types.h|arch/ceva/include/types.h|arch/hc/include/hc12/types.h|arch/hc/include/hcs12/types.h|arch/mips/include/types.h|arch/misoc/include/types.h|arch/or1k/include/types.h|arch/renesas/include/m16c/types.h|arch/renesas/include/rx65n/types.h|arch/renesas/include/sh1/types.h|arch/risc-v/include/types.h|arch/sim/include/types.h|arch/sparc/include/types.h|arch/tricore/include/types.h|arch/x86/include/i486/types.h|arch/x86_64/include/intel64/types.h|arch/xtensa/include/types.h|arch/z16/include/types.h|arch/z80/include/ez80/types.h|arch/z80/include/z180/types.h|arch/z80/include/z8/types.h|arch/z80/include/z80/types.h
+0x002f84fc	unsigned char	libs/libc/misc/lib_ncompress.c
+0x00292afc	used: dump all allocated node	fs/procfs/fs_procfsmeminfo.c
+0x0029771f	vfpv3d16	arch/arm/src/common/hwcap.h
+0x00296595	wakelock	drivers/power/pm/pm_procfs.c

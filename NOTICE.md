@@ -19,6 +19,14 @@ repository's MIT license. Clone with `--recurse-submodules` only if you want
 the original research material locally; the toolkit itself does not require
 the submodule at runtime.
 
+The firmware research also compares the owner's A1 V1.6.88 image with the
+public BEST1700/BES2800BP library-mode release in `open-vela/vendor_bes`.
+That vendor repository carries a restrictive BES license. No BES static
+library, programmer binary, firmware image, or copied vendor implementation is
+distributed here. The published match table records independently measured
+symbol/address facts; compatible C code in this repository was written
+separately from decompiled pseudocode and public protocol behavior.
+
 "DingTalk", "钉钉", "TALIX", and other product names may be trademarks of
 their respective owners. This project is not affiliated with or endorsed by
 them.

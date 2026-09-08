@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.egg-info/
+build/
+dist/
+*.part
+.a1-device.json
+credentials.json
+recordings/
+private/
+.env

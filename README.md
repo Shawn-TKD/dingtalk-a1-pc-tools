@@ -222,6 +222,26 @@ git clone --recurse-submodules https://github.com/Shawn-TKD/dingtalk-a1-pc-tools
 子模块。具体提交、证据等级和未验证项目见
 [docs/VALIDATION-MATRIX.md](docs/VALIDATION-MATRIX.md)。
 
+## 固件研究与兼容源码
+
+仓库新增三组互相分离的成果：
+
+- [`firmware-research/reports`](firmware-research/reports)：V1.6.88 的
+  Flash/启动、USB、RPTUN、按键、震动、录音和文件协议分析；
+- [`firmware-research/compat-src`](firmware-research/compat-src)：可在主机
+  严格编译和测试的 clean-room C11 产品核心；
+- [`sdk`](sdk)：面向电脑、App 和 Agent 的 Python SDK；
+- [`usb-file-manager`](usb-file-manager)：通过已验证 USB/ADB 通道管理自有
+  A1 文件的本地网页界面。
+
+BLE 请求分发表共有 27 条，兼容服务已经实现其中 22 条。完整命令、风险与
+剩余 5 条 provisioning/reset 路径见
+[`COMMAND-REGISTRY.md`](firmware-research/compat-src/docs/COMMAND-REGISTRY.md)。
+
+同芯片 openvela BEST1700/BES2800BP 库只用于本地符号和 ABI 对照。仓库不
+分发原厂固件、设备凭据、录音、抓包、BES 静态库或可刷写镜像。当前兼容源码
+也不是可安全烧录到 A1 的替换固件。
+
 ## 验证与测试
 
 ```powershell

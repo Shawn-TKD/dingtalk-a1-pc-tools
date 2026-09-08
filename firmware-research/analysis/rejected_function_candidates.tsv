@@ -1,0 +1,2 @@
+address	reason	evidence
+103d8592	overlapping_non_entry_fragment	Starts with MOVS rather than a prologue, consumes r7/r8 and stack locals established by 103d809c, has no direct callers, and branches back into 103d809c at 103d8258.

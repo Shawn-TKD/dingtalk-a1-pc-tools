@@ -1,0 +1,73 @@
+address	name	confidence	evidence
+103c7d84	dt_vibrate_ms_blocking	medium	call shape enables motor, sleeps duration*1000, disables motor; VIBRATE log strings
+103c7dc0	dt_vibrate_initialize_once	medium	one-time flag and 500 ms vibration; Already initialized log in adjacent literal pool
+103c7df0	dt_vibrate_once	high	single 300 ms wrapper; bind callback log names dt_vibrate_once
+103cb4a4	should_permit_file_list_permission	high	embedded identifier and incognito/SDK policy strings
+103d42d4	generate_filename	high	embedded identifier; emits /emmc/audio/%014llu using monotonic timestamp rule
+103d54fc	create_new_file	high	embedded identifier and create/switch/delete-small-file logs
+103d700c	stop_recording_internal	high	embedded identifier and complete stop/schedule notification flow
+103d7554	dt_audio_control_button_callback	medium	button event queue callback in aone/dt_audio_control.c; exact original identifier absent
+103d6e70	update_audio_state	high	embedded identifier; derives states 0..4 from recording, streaming, and pause flags
+103d6ee4	pause_recording_internal	high	embedded identifier; calls dt_audio_pause and updates UI/state
+103d6f78	resume_recording_internal	high	embedded identifier; calls dt_audio_resume and updates UI/state
+103d712c	handle_stream_start	high	embedded identifier; allocates stream path and sends the current audio header
+103d7360	stop_chat_stream_internal	high	embedded identifier; stops chat streaming and restores prior recording/paused state
+103d7714	start_translate_streaming_internal	high	embedded identifier; starts shared stream path and records translate-stream flags
+103d77b0	start_recording_internal	high	embedded identifier; starts ordinary recording and optional authenticated upload stream
+103d7970	start_chat_stream_internal	high	embedded identifier; saves prior state, sends HEAD, starts recording and chat stream
+103d7d78	schedule_start_recording	high	embedded identifier; stores schedule id and starts external recording
+103d809c	dt_audio_event_callback	high	embedded identifier and full event/action/key dispatch; 103d8592 is an overlapping non-entry fragment
+103db2e8	get_device_info_callback	high	embedded identifier; builds pk/dn/supportWifi/supportWire/supportgsm JSON
+103db4c4	bind_status_callback	high	embedded identifier; bind/unbind UI, vibration, UT, HID state side effects
+103dc024	notify_characteristic_changed_with_addr	high	embedded identifier; address lookup, MTU slicing and BLE send
+103dc910	a1_dt_display_set_voice_memo_hint	high	embedded identifier and display refresh state transition logs
+103e1a78	private_task_func_file_delete	high	firmware identifier is misspelled pritvate_task_func_file_delete; deletes DB item and /emmc/audio/%014llu
+103e8f70	dtiot_hal_hid_init	high	function-specific initialization and task creation logs
+103e8ff8	dtiot_hal_hid_deinit	high	function-specific callback unregister and RX task shutdown logs
+103e914c	dtiot_hal_hid_send	high	function-specific /dev/dingtalk write and 127-byte limit logs
+103c500c	get_battery_percent	medium	clamps the PMU battery reading to 100; used by BLE, HID, debug UI, and low-battery paths
+103c85cc	dtiot_os_hal_get_storage_info	high	embedded identifier; statvfs total and available blocks converted to MiB
+103d4898	get_current_audio_fid	medium	locks the current path and parses its numeric basename; returns -1 when no positive FID is available
+103d6bf8	get_audio_duration_ms	medium	accumulates active elapsed time and paused intervals; debug command identifies unit as ms
+103d7e50	get_audio_status	medium	locked read of stock state 0..4 with recording-stream normalization
+103dc618	get_product_key	medium	selects one of two 32-byte product keys according to A1/A2 hardware type
+103dc640	get_device_name	medium	returns the initialized 32-byte device-name/SN buffer used by BLE and USB information responses
+103dc64c	get_wifi_mac	medium	returns the initialized Wi-Fi MAC string used by USB information response
+103d241a	audio_db_encode_record	high	exact eight-byte pack from FID, duration and live flags
+103d2454	audio_db_decode_record	high	exact inverse eight-byte unpack into FID, duration and flags
+103d2492	audio_db_decode_fid	high	extracts the five-byte big-endian FID from one packed record
+103d24c4	audio_db_mark_deleted	high	sets bit seven of the packed record flags byte
+103d24d8	audio_db_find_segment	medium	binary-searches cached 24-byte segment descriptors by FID
+103d2544	audio_db_find_record	medium	binary-searches one ascending eight-byte packed segment by FID
+103d2594	audio_db_read_fid_at_offset	medium	seeks the database and decodes one eight-byte record FID
+103d25e8	audio_db_write_record_at_offset	medium	seeks, writes and flushes one eight-byte packed record
+103d2640	audio_db_load_segment_cache	high	loads one 8,000-byte/1,000-record segment into the shared cache
+103d2700	audio_db_should_compact	high	compacts when physical records exceed 10,000 and twice the live count
+103d27e8	audio_db_write_header	high	writes big-endian live count and four opaque format bytes at offset zero
+103d283c	audio_db_dump_records	medium	prints packed bytes and decoded fields for each record
+103ddc00	update_display_content	high	embedded identifier appears throughout this inlined 7544-byte LVGL renderer; sole caller is the range-checked refresh wrapper
+103d9bf4	dt_audio_remark_enabled	high	caller diagnostic names the predicate; wrapper preserves the boolean returned by the internal state check despite incorrect decompiler void type
+103d9d0c	take_pending_remark_timestamp	medium	atomically reads and clears the shared 64-bit pending remark timestamp under its mutex
+103da090	dt_audio_schedule_entry_valid	medium	validates a nonzero 64-bit start strictly before the 64-bit end
+103da0b4	dt_audio_schedule_has_unexpired	medium	returns zero as soon as a valid entry has end strictly after the supplied 64-bit clock
+103da0fc	dt_audio_schedule_find_next_start	medium	selects the smallest valid start strictly after the supplied 64-bit clock
+103c8570	dtiot_data_write	medium	thin wrapper over dtiot_hal_os_flash_write used for fixed-offset DTIOT records
+103cf5d8	dtiot_device_set_generated_secret	medium	copies less than 64 bytes into the device-secret cache and persists the full slot at offset 0
+103cf770	dtiot_device_load_generated_secret	medium	loads the 64-byte DTIOT device-secret slot from offset 0
+103cf8bc	read_be32	medium	explicit four-byte big-endian to native conversion used by binding fields
+103dc3bc	dt_device_is_activated	medium	checks whether product activation state at offset 0xa8 equals two
+103d176c	md5_digest	medium	init/update/final one-shot hash wrapper; callers and embedded identifiers identify MD5
+103ca1b8	gray_switch_send_control_response	medium	builds response fields key and code zero, sends it, and records transport result 200
+103cbf30	ordinary_file_block_response_callback	medium	maps code 200 to transfer event one and all other responses to resend event two
+103dc798	dt_dinger_sdk_at_least_1_6_patch	medium	compares parsed major/minor/patch against a caller-supplied patch threshold for version 1.6.x
+103dc834	dt_dinger_supports_cap_1_6_80	medium	thin wrapper around SDK patch threshold 0x50
+103dc840	dt_dinger_supports_cap_1_6_82	medium	thin wrapper around SDK patch threshold 0x52
+103dc84c	dt_dinger_supports_incognito_mode	medium	thin wrapper around SDK patch threshold 0x58 and sole file-list policy capability
+103e1230	private_task_func_send_header	high	embedded worker identifier; builds command 0x0114 fid/size/attrs request
+103e1374	private_task_func_send_block	high	embedded worker identifier; emits 48000-byte ordinary blocks with sequence and CRC
+103e1688	private_resend_file_block	high	embedded worker identifier; preserves and caps ordinary block retries
+103e17b0	private_task_func_get_file_list	high	embedded worker identifier; constructs capped recording-index response and truncation trailer
+103e19fc	private_task_func_cancel_file_sync	medium	async request type seven worker that sets cancel and closes the current sync file
+103e1af4	private_task_func_file_verify	high	embedded worker identifier; verifies usrinfo.tmp and publishes usrinfo.bmp
+103e477c	private_task_send_raw_block	high	embedded worker identifier; emits 8000-byte raw path blocks
+103e4964	private_task_resend_raw_block	high	embedded worker identifier; rewinds raw offset and sequence before requeueing send

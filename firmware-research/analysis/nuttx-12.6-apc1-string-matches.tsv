@@ -1,0 +1,156 @@
+offsets	literal	sources
+0x0027b21b	           	arch/arm/src/at32/at32_serial.c|arch/arm/src/stm32/stm32_hciuart.c|arch/arm/src/stm32/stm32_serial.c|arch/arm/src/stm32f0l0g0/stm32_serial_v1.c|arch/arm/src/stm32f0l0g0/stm32_serial_v2.c|arch/arm/src/stm32f7/stm32_serial.c|arch/arm/src/stm32h7/stm32_serial.c|arch/arm/src/stm32l4/stm32l4_serial.c|arch/arm/src/stm32l5/stm32l5_serial.c|arch/arm/src/stm32u5/stm32_serial.c|arch/arm/src/stm32wb/stm32wb_serial.c|arch/arm/src/stm32wl5/stm32wl5_serial.c|drivers/net/enc28j60.h|net/procfs/net_statistics.c
+0x0027b175	              RST: %04x  %04x	net/procfs/net_statistics.c
+0x0026f743	       %s -h	tools/incdir.c
+0x0026a1e1	      %s buffer %p hold by %s	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0026a1bc	    %s buffer, total %d, pending %d	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0026a27a	    ept %s	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0026d76c	  %s type %s	fs/mount/fs_procfs_mount.c
+0x0026d708	  Block    Number	fs/mount/fs_procfs_mount.c
+0x0027b1b9	  Checksum 	net/procfs/net_statistics.c
+0x0026d6ae	  Filesystem      Size      Used  Available Mounted on	fs/mount/fs_procfs_mount.c
+0x0027b24a	  ICMPv6	net/procfs/net_statistics.c
+0x0027b1de	  IPv4        VHL: %04x   Frg: %04x	net/procfs/net_statistics.c
+0x0027b1c5	  IPv6        VHL: %04x	net/procfs/net_statistics.c
+0x0027b143	  Rexmit   	net/procfs/net_statistics.c
+0x0026d71b	  Size     Blocks       Used   Available Mounted on	fs/mount/fs_procfs_mount.c
+0x0027b194	  TCP         ACK: %04x   SYN: %04x	net/procfs/net_statistics.c
+0x0027b169	  Type     	net/procfs/net_statistics.c
+0x0026a286	  rpmsg buffer list:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0026a267	  rpmsg ept list:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0026eb87	 %s %s %s %s	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0026d220	%-12s%.18s	fs/procfs/fs_procfsproc.c
+0x0026d2e6	%-12s%ld	fs/procfs/fs_procfsproc.c
+0x0026d2b1	%-12s%zu	fs/procfs/fs_procfsproc.c
+0x0026d30e	%-12s0x%02x	fs/procfs/fs_procfsproc.c
+0x0026e6ee	%.3s %.3s%3d %.2d:%.2d:%.2d %d	libs/libc/time/lib_asctimer.c
+0x0026e602	%02d/%02d/%04d	libs/libc/time/lib_strftime.c
+0x0026e5f3	%02d:%02d:%02d	libs/libc/time/lib_strftime.c
+0x0026e5dd	%02d:%02d:%02d %s	libs/libc/time/lib_strftime.c
+0x00253817,0x00253c3a,0x0026435f,0x00275d46	%02x:%02x:%02x:%02x:%02x:%02x	libs/libc/net/lib_etherntoa.c
+0x0026e5c9	%04d-%02d-%02d	libs/libc/time/lib_strftime.c
+0x0026a389	%04x  %s	libs/libc/misc/lib_dumpvbuffer.c
+0x0026cf47	%10d%10d%10d%10d	fs/procfs/fs_procfsiobinfo.c
+0x0026cf25	%10s%10s%10s%10s	fs/procfs/fs_procfsiobinfo.c
+0x0026e927	%12d%12d	mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0026e91d	%12s%12s	mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0026a643	%12s:%11lu%9lu%9lu%9lu%9lu%9lu	mm/mempool/mempool_procfs.c
+0x0026e808	%12zu%*p	mm/mempool/mempool.c|mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0026a60f	%13s%11s%9s%9s%9s%9s%9s	mm/mempool/mempool_procfs.c
+0x0026d291	%lu.%09lu,%lu.%09lu	fs/procfs/fs_procfsproc.c
+0x0026a37f	%s (%p):	libs/libc/misc/lib_dumpvbuffer.c
+0x0026d3f0	%s version %s %s %s	fs/procfs/fs_procfsversion.c
+0x0027b431	%s: Error %d	libs/libc/stdio/lib_perror.c
+0x0026a393	%u.%u.%u.%u	libs/libc/net/lib_inetaddr.c|libs/libc/net/lib_inetntoa.c|libs/libc/net/lib_inetntop.c
+0x0026cd87,0x00293f78	-rom1fs-	arch/risc-v/src/bl808/bl808_start.c|arch/risc-v/src/sg2000/sg2000_start.c|fs/romfs/fs_romfs.h
+0x00269d8f	/dev/console	arch/arm/src/a1x/a1x_serial.c|arch/arm/src/am335x/am335x_serial.c|arch/arm/src/at32/at32_serial.c|arch/arm/src/c5471/c5471_serial.c|arch/arm/src/cxd32xx/cxd32_serial.c|arch/arm/src/cxd56xx/cxd56_serial.c|arch/arm/src/dm320/dm320_serial.c|arch/arm/src/efm32/efm32_leserial.c|arch/arm/src/efm32/efm32_serial.c|arch/arm/src/eoss3/eoss3_serial.c|arch/arm/src/gd32f4/gd32f4xx_serial.c|arch/arm/src/imx1/imx_serial.c|arch/arm/src/imx6/imx_serial.c|arch/arm/src/imxrt/imxrt_serial.c|arch/arm/src/kinetis/kinetis_lpserial.c|arch/arm/src/kinetis/kinetis_serial.c|arch/arm/src/kl/kl_serial.c|arch/arm/src/lc823450/lc823450_serial.c|arch/arm/src/lpc17xx_40xx/lpc17_40_serial.c|arch/arm/src/lpc214x/lpc214x_serial.c|arch/arm/src/lpc2378/lpc23xx_serial.c|arch/arm/src/lpc31xx/lpc31_serial.c|arch/arm/src/lpc43xx/lpc43_serial.c|arch/arm/src/lpc54xx/lpc54_serial.c|arch/arm/src/max326xx/max32660/max32660_serial.c|arch/arm/src/mx8mp/mx8mp_serial.c|arch/arm/src/nrf52/nrf52_serial.c|arch/arm/src/nrf53/nrf53_serial.c|arch/arm/src/nrf91/nrf91_serial.c|arch/arm/src/nuc1xx/nuc_serial.c|arch/arm/src/phy62xx/uart.c|arch/arm/src/rp2040/rp2040_serial.c|arch/arm/src/rtl8720c/ameba_uart.c|arch/arm/src/s32k1xx/s32k1xx_serial.c|arch/arm/src/s32k3xx/s32k3xx_serial.c|arch/arm/src/sam34/sam_serial.c|arch/arm/src/sama5/sam_dbgu.c|arch/arm/src/sama5/sam_flexcom_serial.c|arch/arm/src/sama5/sam_serial.c|arch/arm/src/samd2l2/sam_serial.c|arch/arm/src/samd5e5/sam_serial.c|arch/arm/src/samv7/sam_serial.c|arch/arm/src/stm32/stm32_serial.c|arch/arm/src/stm32f0l0g0/stm32_serial_v1.c|arch/arm/src/stm32f0l0g0/stm32_serial_v2.c|arch/arm/src/stm32f7/stm32_serial.c|arch/arm/src/stm32h7/stm32_serial.c|arch/arm/src/stm32l4/stm32l4_serial.c|arch/arm/src/stm32l5/stm32l5_serial.c|arch/arm/src/stm32u5/stm32_serial.c|arch/arm/src/stm32wb/stm32wb_serial.c|arch/arm/src/stm32wl5/stm32wl5_serial.c|arch/arm/src/str71x/str71x_serial.c|arch/arm/src/tiva/common/tiva_serial.c|arch/arm/src/tlsr82/tlsr82_serial.c|arch/arm/src/tlsr82/tlsr82_spi_console.c|arch/arm/src/tms570/tms570_serial.c|arch/arm/src/xmc4/xmc4_serial.c|arch/arm64/src/a64/a64_serial.c|arch/arm64/src/imx8/imx8qm_serial.c|arch/arm64/src/imx9/imx9_lpuart.c|arch/arm64/src/rk3399/rk3399_serial.c|arch/avr/src/at32uc3/at32uc3_serial.c|arch/avr/src/at90usb/at90usb_serial.c|arch/avr/src/atmega/atmega_serial.c|arch/hc/src/m9s12/m9s12_serial.c|arch/mips/src/pic32mx/pic32mx_serial.c|arch/mips/src/pic32mz/pic32mz_serial.c|arch/misoc/src/common/misoc_serial.c|arch/or1k/src/mor1kx/mor1kx_serial.c|arch/renesas/src/m16c/m16c_serial.c|arch/renesas/src/rx65n/rx65n_serial.c|arch/renesas/src/sh1/sh1_serial.c|arch/risc-v/src/bl602/bl602_serial.c|arch/risc-v/src/bl808/bl808_serial.c|arch/risc-v/src/c906/c906_serial.c|arch/risc-v/src/common/espressif/esp_serial.c|arch/risc-v/src/esp32c3-legacy/esp32c3_serial.c|arch/risc-v/src/fe310/fe310_serial.c|arch/risc-v/src/hpm6000/hpm_serial.c|arch/risc-v/src/hpm6750/hpm6750_serial.c|arch/risc-v/src/k210/k210_serial.c|arch/risc-v/src/litex/litex_serial.c|arch/risc-v/src/mpfs/mpfs_serial.c|arch/risc-v/src/rv32m1/rv32m1_serial.c|arch/sim/src/sim/sim_uart.c|arch/sparc/src/bm3803/bm3803-serial.c|arch/sparc/src/bm3823/bm3823-serial.c|arch/sparc/src/s698pm/s698pm-serial.c|arch/tricore/src/tc3xx/tc3xx_serial.c|arch/xtensa/src/esp32/esp32_serial.c|arch/xtensa/src/esp32s2/esp32s2_serial.c|arch/xtensa/src/esp32s3/esp32s3_serial.c|arch/z16/src/z16f/z16f_serial.c|arch/z80/src/ez80/ez80_serial.c|arch/z80/src/z180/z180_scc.c|arch/z80/src/z8/z8_serial.c|boards/sim/sim/sim/src/sim_bringup.c|boards/z80/z80/z80sim/src/z80_serial.c|drivers/misc/lwl_console.c|drivers/segger/serial_rtt.c|drivers/serial/serial_cmsdk.c|drivers/serial/uart_16550.c|drivers/serial/uart_pl011.c|drivers/serial/uart_rpmsg.c|drivers/syslog/syslog_console.c|drivers/syslog/syslog_consolechannel.c|drivers/usbdev/cdcacm.c|drivers/usbdev/pl2303.c|sched/group/group_setupidlefiles.c
+0x0026a2d2	/dev/log	drivers/syslog/syslog_chardev.c
+0x00269fdc	/dev/loop	drivers/loop/loop.c
+0x0026a82f	/dev/oneshot	arch/risc-v/src/common/espressif/esp_oneshot.c|boards/arm/stm32/stm32f103-minimum/src/stm32_bringup.c|boards/risc-v/bl602/bl602evb/src/bl602_bringup.c|boards/risc-v/esp32c3-legacy/common/src/esp32c3_board_oneshot.c|boards/sim/sim/sim/src/sim_bringup.c|boards/sparc/bm3803/xx3803/src/bm3803_appinit.c|boards/x86_64/intel64/qemu-intel64/src/qemu_bringup.c|boards/xtensa/esp32/common/src/esp32_oneshot.c|boards/xtensa/esp32s2/esp32s2-kaluga-1/src/esp32s2_oneshot.c|boards/xtensa/esp32s2/esp32s2-saola-1/src/esp32s2_oneshot.c|boards/xtensa/esp32s2/franzininho-wifi/src/esp32s2_oneshot.c|boards/xtensa/esp32s3/common/src/esp32s3_board_tim.c
+0x0026a136	/dev/ram%d	boards/sim/sim/sim/src/sim_zoneinfo.c|drivers/misc/ramdisk.c
+0x00269a2a	/dev/ram0	boards/risc-v/bl602/bl602evb/src/bl602_bringup.c|boards/risc-v/mpfs/icicle/src/mpfs_bringup.c
+0x0026a97c	/dev/random	arch/arm/src/lpc54xx/lpc54_rng.c|arch/arm/src/nrf52/nrf52_rng.c|arch/arm/src/sama5/sam_trng.c|arch/arm/src/samv7/sam_trng.c|arch/arm/src/stm32/stm32_rng.c|arch/arm/src/stm32f0l0g0/stm32_rng.c|arch/arm/src/stm32f7/stm32_rng.c|arch/arm/src/stm32l4/stm32l4_rng.c|arch/risc-v/src/common/espressif/esp_random.c|arch/risc-v/src/esp32c3-legacy/esp32c3_rng.c|arch/x86_64/src/intel64/intel64_rng.c|arch/xtensa/src/esp32/esp32_rng.c|arch/xtensa/src/esp32s2/esp32s2_rng.c|arch/xtensa/src/esp32s3/esp32s3_rng.c|drivers/virtio/virtio-rng.c|libs/libc/misc/lib_getrandom.c
+0x0026a29c	/dev/rptun/%s	drivers/rptun/rptun.c
+0x0026e2ad	/dev/tty	drivers/serial/uart_rpmsg.c
+0x0026e715	/dev/urandom	arch/arm/src/lpc54xx/lpc54_rng.c|arch/arm/src/sama5/sam_trng.c|arch/arm/src/samv7/sam_trng.c|arch/arm/src/stm32/stm32_rng.c|arch/arm/src/stm32f0l0g0/stm32_rng.c|arch/arm/src/stm32f7/stm32_rng.c|arch/arm/src/stm32l4/stm32l4_rng.c|arch/risc-v/src/common/espressif/esp_random.c|arch/risc-v/src/esp32c3-legacy/esp32c3_rng.c|arch/x86_64/src/intel64/intel64_rng.c|arch/xtensa/src/esp32/esp32_rng.c|arch/xtensa/src/esp32s3/esp32s3_rng.c|drivers/crypto/dev_urandom.c|libs/libc/misc/lib_getrandom.c
+0x0026a96d	/dev/watchdog0	arch/arm/src/cxd56xx/cxd56_wdt.c|arch/arm/src/imxrt/imxrt_wdog.c|arch/arm/src/lc823450/lc823450_wdt.c|boards/arm/at32/at32f437-mini/src/at32_bringup.c|boards/arm/phy62xx/phy6222/src/bringup.c|boards/arm/sam34/sam4s-xplained-pro/src/sam_wdt.c|boards/arm/stm32/photon/src/stm32_bringup.c|boards/arm/stm32h7/nucleo-h743zi/src/stm32_bringup.c|boards/risc-v/esp32c3-legacy/common/src/esp32c3_board_wdt.c|boards/risc-v/esp32c3/esp32c3-generic/src/esp32c3_bringup.c|boards/risc-v/esp32c6/esp32c6-devkitc/src/esp32c6_bringup.c|boards/risc-v/esp32c6/esp32c6-devkitm/src/esp32c6_bringup.c|boards/risc-v/esp32h2/esp32h2-devkit/src/esp32h2_bringup.c|boards/sparc/bm3803/xx3803/src/bm3803_appinit.c|boards/sparc/s698pm/s698pm-dkit/src/s698pm_appinit.c|boards/xtensa/esp32/common/src/esp32_board_wdt.c|boards/xtensa/esp32s2/common/src/esp32s2_board_wdt.c|boards/xtensa/esp32s3/common/src/esp32s3_board_wdt.c|drivers/timers/watchdog.c|include/nuttx/timers/watchdog.h
+0x0026a11d	/dev/zero	drivers/misc/dev_zero.c
+0x001fef65,0x00286f62	0123456789ABCDEF	arch/risc-v/src/esp32c3-legacy/esp32c3_bignum.c|fs/fat/fs_fat32dirent.c
+0x001fef76,0x0027da9e	0123456789abcdef	arch/arm/src/rtl8720c/amebaz_coex.c|drivers/video/max7456.c|wireless/bluetooth/bt_smp.c
+0x0026e56b	0123456789abcdefghijklmnopqrstuvwxyz	arch/arm/src/phy62xx/my_printf.c|libs/libc/stdlib/lib_itoa.c
+0x0026b908	255.255.255.0	drivers/wireless/gs2200m.c
+0x002927fd	<noname>	drivers/note/noteram_driver.c|drivers/segger/note_sysview.c|fs/procfs/fs_procfsproc.c|sched/misc/assert.c|sched/task/task_setup.c
+0x00269a7c	AppBringUp	sched/init/nx_bringup.c
+0x0026eb30	BogoMIPS	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0026e0f9	CALLBACKS                 IDLE           STANDBY        SLEEP	drivers/power/pm/pm_procfs.c
+0x0024d781	COMPLETED	arch/sim/src/sim/sim_wifidriver.c
+0x0026ebd3	CPU architecture: %s	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0026ebf9	CPU implementer	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0026ec27	CPU part	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0026ec3a	CPU revision	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0026ec13	CPU variant	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0026e16c	DOMAIN%-2d                  STATE          COUNT          TIME	drivers/power/pm/pm_procfs.c
+0x0026e1c6	DOMAIN%-2d                  WAKE           SLEEP          TOTAL	drivers/power/pm/pm_procfs.c
+0x0027b0b0	DRaddr:%s 	net/procfs/netdev_statistics.c
+0x0026e664	December	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0027b203	Dropped    	net/procfs/net_statistics.c
+0x0026a216	Dump rpmsg info between cpu (master: %s)%s <==> %s:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0026f2ca	ERROR: Failed to allocate memory	binfmt/libelf/libelf_read.c|libs/libc/hex2bin/lib_hex2bin.c
+0x0026f69f	ERROR: Unrecognized option	tools/zds/zdsar.c
+0x0026bdd4	ERROR: bind() failed: %d	fs/userfs/fs_userfs.c|libs/libc/userfs/lib_userfs.c
+0x0026bdb8	ERROR: socket() failed: %d	fs/userfs/fs_userfs.c|libs/libc/netdb/lib_dnsbind.c|libs/libc/userfs/lib_userfs.c
+0x0026eb58	Features	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c
+0x0026e61f	February	libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0026d2a6	HeapCheck:	fs/procfs/fs_procfsproc.c
+0x0026c1a2	IEEE 802.11	net/netdev/netdev_ioctl.c
+0x000016ef	Idle_Task	sched/init/nx_start.c
+0x0026dfa7	Inactive	sched/sched/sched_get_stateinfo.c
+0x0026d2fb	Main task:	fs/procfs/fs_procfsproc.c
+0x0026d324	Member IDs:	fs/procfs/fs_procfsproc.c
+0x0026d31b	Members:	fs/procfs/fs_procfsproc.c
+0x0026e65b	November	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0026d262,0x00293212	Priority:	fs/procfs/fs_procfsproc.c
+0x0027b20f	Received   	net/procfs/net_statistics.c
+0x0026d3bc	SCHED_FIFO	fs/procfs/fs_procfsproc.c
+0x0026d3c7	SCHED_SPORADIC	fs/procfs/fs_procfsproc.c
+0x0026e6c9	Saturday	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0026d26c,0x00293207	Scheduler:	fs/procfs/fs_procfsproc.c
+0x0027b15d	Sent       	net/procfs/net_statistics.c
+0x0026e649	September	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0026d277,0x002931fe	SigMask:	fs/procfs/fs_procfsproc.c
+0x0026d2bb	StackAlloc:	fs/procfs/fs_procfsproc.c
+0x0026d2d0	StackBase:	fs/procfs/fs_procfsproc.c
+0x0026d2db,0x002931f3	StackSize:	fs/procfs/fs_procfsproc.c
+0x0026d2f0,0x002931e8	StackUsed:	fs/procfs/fs_procfsproc.c
+0x0026e6b9	Thursday	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0026e912	Total Blks	mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0026e907	Total Size	mm/mm_heap/mm_memdump.c|mm/tlsf/mm_tlsf.c
+0x0026e7aa	Unknown address	libs/libc/netdb/lib_dnsquery.c
+0x0026a521	Unknown error	libs/libc/netdb/lib_gaistrerror.c|libs/libc/string/lib_strerror.c
+0x0026d77a	Unrecognized	fs/mount/fs_gettype.c|tools/noteinfo.c
+0x0026dfd1	Waiting,MQ empty	sched/sched/sched_get_stateinfo.c
+0x0026dfe2	Waiting,MQ full	sched/sched/sched_get_stateinfo.c
+0x0026df79	Waiting,Mutex:%d	sched/sched/sched_get_stateinfo.c
+0x0026dfb0	Waiting,Semaphore	sched/sched/sched_get_stateinfo.c
+0x0026dfc2	Waiting,Signal	sched/sched/sched_get_stateinfo.c
+0x0026df8a	Waiting,Unlock	sched/sched/sched_get_stateinfo.c
+0x0026e6af	Wednesday	libs/libc/locale/lib_langinfo.c|libs/libc/time/lib_strftime.c|libs/libc/time/lib_strptime.c
+0x0026ce4d	[0-9]*/**	fs/procfs/fs_procfs.c
+0x0026a473	aAfFeEgG	libs/libc/stdio/lib_libvscanf.c
+0x00253de1	channels	drivers/analog/ads7828.c|drivers/analog/max1161x.c
+0x00281f37,0x002820ef,0x00282485,0x00282579,0x002826c8,0x002829c7	disconnect	arch/sim/src/sim/sim_wifidriver.c|drivers/video/goldfish_camera.c|wireless/bluetooth/bt_conn.c
+0x0026eb68	fastmult	arch/arm/src/common/hwcap.h
+0x0026cfbb	free: dump all free node	fs/procfs/fs_procfsmeminfo.c
+0x0026d462	fspath1=	fs/unionfs/fs_unionfs.c
+0x0026d474	fspath2=	fs/unionfs/fs_unionfs.c
+0x0026d39b	group/env	fs/procfs/fs_procfsproc.c
+0x0026d3a5	group/status	fs/procfs/fs_procfsproc.c
+0x0026d3b2	heapcheck	fs/procfs/fs_procfsproc.c
+0x0026a496	infinity	libs/libc/stdlib/lib_strtold.c
+0x0026c2dc	local:[%s]	net/local/local_sockif.c
+0x0027b2db	local_address	net/procfs/net_tcp.c|net/procfs/net_udp.c
+0x00292a58	localhost	libs/libc/net/lib_loopback.c
+0x00294698	localtime	libs/libc/time/lib_localtime.c
+0x0026cf37	nthrottle	fs/procfs/fs_procfsiobinfo.c
+0x00292c12	oneshot_initialize	arch/arm/src/armv8-r/arm_arch_timer.c|arch/arm64/src/common/arm64_arch_timer.c
+0x0026d46b	prefix1=	fs/unionfs/fs_unionfs.c
+0x0026d47d	prefix2=	fs/unionfs/fs_unionfs.c
+0x0026e297	preparefail	drivers/power/pm/pm_procfs.c
+0x0026eb20	processor	arch/arm/src/armv6-m/arm_cpuinfo.c|arch/arm/src/armv7-a/arm_cpuinfo.c|arch/arm/src/armv7-m/arm_cpuinfo.c|arch/arm/src/armv7-r/arm_cpuinfo.c|arch/arm/src/armv8-m/arm_cpuinfo.c|arch/arm/src/armv8-r/arm_cpuinfo.c|arch/risc-v/src/common/riscv_cpuinfo.c
+0x00276023	pthread_create	boards/arm/lpc17xx_40xx/pnev5180b/src/lpc17_40_symtab.c
+0x0026bd3f	recovery	arch/arm/src/lc823450/lc823450_ipl2.c
+0x0027b2cc	remote_address	net/procfs/net_tcp.c|net/procfs/net_udp.c
+0x0026a24b	rpmsg vq RX:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0026a259	rpmsg vq TX:	drivers/rptun/rptun.c|drivers/rptun/rptun_dump.c
+0x0026a2c5	rpmsg-syslog	drivers/syslog/syslog_rpmsg.h
+0x0026e2a3	rpmsg-tty	drivers/serial/uart_rpmsg.c
+0x0026a30e	rpmsg-usrsock	include/nuttx/usrsock/usrsock_rpmsg.h
+0x0026c361	rpmsg:[%s:[%s%s]<->%s]	net/rpmsg/rpmsg_sockif.c
+0x0026c378	rpmsg:[%s<->%s:[%s%s]]	net/rpmsg/rpmsg_sockif.c
+0x0026d59b	rpmsgfs-	fs/rpmsgfs/rpmsgfs.h
+0x0026bbfb	sigaction	boards/arm/lpc17xx_40xx/pnev5180b/src/lpc17_40_symtab.c
+0x0026c2e7	socketpair%p	net/local/local_sockif.c
+0x0026d592	timeout=	fs/rpmsgfs/rpmsgfs.c
+0x0026cf9d	used: dump all allocated node	fs/procfs/fs_procfsmeminfo.c
+0x0026eb94	vfpv3d16	arch/arm/src/common/hwcap.h
+0x0026e28e	wakelock	drivers/power/pm/pm_procfs.c

@@ -27,6 +27,12 @@ private/
 *.ogg
 recordings/
 outputs/
+firmware-research/reference-cache/
+firmware-research/decompiled/
+firmware-research/unpacked-*/
+firmware-research/build-*/
+*.a
+*.o
 
 # Python / Node build products
 .venv/
@@ -36,6 +42,9 @@ __pycache__/
 .pytest_cache/
 node_modules/
 console/dist/
+sdk/private/
+usb-file-manager/.local/
+usb-file-manager/dist/
 
 # Editors and OS
 .idea/
