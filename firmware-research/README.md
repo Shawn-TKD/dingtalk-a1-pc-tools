@@ -17,8 +17,12 @@ Start with:
 
 1. `compat-src/docs/COMMAND-REGISTRY.md` for the 27 inbound BLE commands;
 2. `reports/PRODUCT-RECONSTRUCTION-STATUS.md` for measured coverage;
-3. `compat-src/docs/TRACEABILITY.md` for behavior-to-address evidence;
-4. `reports/BEST1700-BSP-BRIDGE-ANALYSIS-20260908.md` for the same-chip BSP
+3. `reports/FIRMWARE-MODIFICATION-STATUS-20260915.md` for the latest
+   owner-controlled modification evidence and safety boundary;
+4. `reports/DISPLAY-AND-BUTTON-ARCHITECTURE-20260915.md` for the new display
+   renderer, bitmap and button-path findings;
+5. `compat-src/docs/TRACEABILITY.md` for behavior-to-address evidence;
+6. `reports/BEST1700-BSP-BRIDGE-ANALYSIS-20260908.md` for the same-chip BSP
    comparison and its licensing/deployment limits.
 
 ## Inputs intentionally not published
@@ -26,7 +30,8 @@ Start with:
 The repository excludes OTA/installed firmware binaries, full string dumps,
 Ghidra projects, recordings, packet captures, device/account configuration,
 factory identity, deviceSecret, API keys, access tokens, vendor static
-libraries and programmer binaries. Some analysis scripts therefore require
+libraries, raw write tools, device-specific patch payloads and programmer
+binaries. Some analysis scripts therefore require
 the researcher to provide their own legally obtained image or local reference
 BSP before regenerating a table.
 
@@ -59,4 +64,6 @@ python tools/match-elf-objects.py OWN_AP_IMAGE.bin LOCAL_OBJECTS/*.o \
 ```
 
 Never flash an output from this directory. The current milestone is a
-no-flash target link and development-board validation.
+no-flash target link and development-board validation. The reports document
+observations made on an owner-controlled test device; they are not deployment
+or modification instructions.
